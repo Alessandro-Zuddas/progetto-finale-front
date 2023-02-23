@@ -40,7 +40,7 @@ export default {
             >
               <div>
                 <img
-                  class="ms-logo"
+                  class="ms-logo rounded"
                   src="../../../assets/img/deliveroo-app-logo.png"
                   alt="logo"
                 />
@@ -104,7 +104,6 @@ export default {
       width: 20px;
       height: 20px;
       margin-right: 10px;
-      border-radius: 3px;
     }
 
     .ms-content {

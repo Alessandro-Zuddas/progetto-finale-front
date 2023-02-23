@@ -53,6 +53,23 @@ export default {
         </div>
       </div>
     </div>
+    <section class="section-discount text-light p-3">
+      <div class="container d-flex justify-content-center p-3">
+        <div class="col-6 text-center">
+          <h1>Menù in offerta: sconti fino al 25%</h1>
+          <p>
+            Perfetti per dare più gusto alla tua settimana, ordinare i piatti
+            più amati da tutta la famiglia e fare una pausa dai fornelli.
+          </p>
+          <small>
+            Si applicano spese di consegna e di servizio. Offerta soggetta a
+            disponibiltà, solo per ristoranti aderenti all'iniziativa. Si
+            applicano termini di condizioni, consultabili qui.
+            <u>Termini e condizioni qui.</u></small
+          >
+        </div>
+      </div>
+    </section>
   </section>
 </template>
 
@@ -87,5 +104,14 @@ export default {
       color: black;
     }
   }
+}
+.section-discount {
+  background: rgb(0, 126, 137);
+  background: linear-gradient(
+    to bottom right,
+    rgba(0, 126, 137, 1) 0%,
+    rgba(25, 190, 181, 1) 84%,
+    rgba(23, 196, 185, 1) 100%
+  );
 }
 </style>

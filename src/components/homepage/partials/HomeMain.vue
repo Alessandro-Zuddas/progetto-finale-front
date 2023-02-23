@@ -93,7 +93,7 @@ export default {
   </section>
   <!-- SECTION-DISCOUNT END -->
   <!-- SECTION-WORK -->
-  <div class="container">
+  <div class="container my-3">
     <div class="row flex-nowrap column-container">
       <div class="col-6 ms-column-1 my-2 rounded">
         <div class="ms-text p-3">

@@ -62,7 +62,19 @@ export default {
   <section class="section-discount text-light p-3">
     <div class="container d-flex justify-content-center p-3">
       <div class="col-6 text-center">
-        <h1>Menù in offerta: sconti fino al 25%</h1>
+        <div class="ms-title d-flex">
+          <img
+            class="stars-image"
+            src="../../../assets/img/stelle.png"
+            alt="stelle"
+          />
+          <h1>Menù in offerta: sconti fino al 25%</h1>
+          <img
+            class="stars-image"
+            src="../../../assets/img/stelle.png"
+            alt="stelle"
+          />
+        </div>
         <p>
           Perfetti per dare più gusto alla tua settimana, ordinare i piatti più
           amati da tutta la famiglia e fare una pausa dai fornelli.
@@ -119,5 +131,9 @@ export default {
     rgba(25, 190, 181, 1) 84%,
     rgba(23, 196, 185, 1) 100%
   );
+  .stars-image {
+    width: 20%;
+    height: 10%;
+  }
 }
 </style>

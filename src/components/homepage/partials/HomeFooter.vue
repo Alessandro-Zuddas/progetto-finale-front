@@ -42,9 +42,10 @@ export default {
           <h4 class="text-light">Porta Deliveroo con te</h4>
           <ul class="list-unstyled">
             <li>
+              <!-- DA MODIFICARE -->
               <a href="#"
                 ><img
-                  class="ms-img-badge"
+                  class="ms-img-badge w-50"
                   src="../../../assets/img/badge-app-store.png"
                   alt="app-store"
               /></a>
@@ -56,6 +57,7 @@ export default {
                   src="../../../assets/img/badge-google-play.png"
                   alt="google-play"
               /></a>
+              <!-- /DA MODIFICARE -->
             </li>
           </ul>
         </div>

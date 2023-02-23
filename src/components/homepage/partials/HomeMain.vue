@@ -5,6 +5,7 @@ export default {
 </script>
 
 <template>
+  <!-- SECTION-APP -->
   <section>
     <div class="container p-3">
       <div class="row m-3 shadow">
@@ -59,6 +60,8 @@ export default {
       </div>
     </div>
   </section>
+  <!-- SECTION-APP END -->
+  <!-- SECTION-DISCOUNT -->
   <section class="section-discount text-light p-3">
     <div class="container d-flex justify-content-center p-3">
       <div class="col-6 text-center">
@@ -88,6 +91,37 @@ export default {
       </div>
     </div>
   </section>
+  <!-- SECTION-DISCOUNT END -->
+  <!-- SECTION-WORK -->
+  <div class="container">
+    <div class="row flex-nowrap column-container">
+      <div class="col-6 ms-column-1 m-2 rounded">
+        <div class="ms-text p-3">
+          <h3>Diventa nostro partner</h3>
+          <p>
+            raggiungi più clienti con DeliveBool. Gestiamo noi la consegna, così
+            tu puoi dedicarti a offrire i migliori piatti e prodotti.
+          </p>
+          <button class="ms-button rounded p-2">
+            Inizia ora <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+      <div class="col-6 ms-column-2 m-2 rounded">
+        <div class="ms-text p-3">
+          <h3>Consegna con noi</h3>
+          <p>
+            La libertà di consegnare dove e quando vuoi, con ottimi guadagni,
+            convenzioni e sconti riservati a te.
+          </p>
+          <button class="ms-button rounded p-2">
+            Inizia ora <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- SECTION-WORK-END -->
 </template>
 
 <style lang="scss" scoped>
@@ -134,6 +168,29 @@ export default {
   .stars-image {
     width: 20%;
     height: 10%;
+  }
+}
+
+.ms-column-1 {
+  background-image: url(../../../assets/img/cuoco.jpg);
+  background-size: cover;
+  height: 350px;
+  position: relative;
+}
+.ms-column-2 {
+  background-image: url(../../../assets/img/rider.avif);
+  background-size: cover;
+  height: 350px;
+  position: relative;
+}
+.ms-text {
+  position: absolute;
+  left: 50;
+  bottom: 0;
+  color: #fff;
+
+  .ms-button {
+    border: none;
   }
 }
 </style>

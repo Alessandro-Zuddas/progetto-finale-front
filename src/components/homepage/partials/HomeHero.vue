@@ -6,19 +6,73 @@ export default {
 
 <template>
 
-    <div class="container-fluid px-0">
-        
+    <div class="container-fluid">
+        <div class="row">
+            <div class="ms-hero-img ms-hero-one col-6 px-0 bg-black"></div>
+
+            <div class="ms-hero-img ms-hero-two col-6 px-0 bg-black"></div>
+
+            <div class="ms-input-col my-4 px-0 d-flex flex-column align-items-center justify-content-center">
+                <h1 class="text-center text-light my-4">I piatti dei ristoranti che ami, a domicilio</h1>
+                <form class="ms-search-form" action="">
+                    <input class="ms-input-home px-2" type="text" placeholder="Cerca un ristorante">
+                    <button class="ms-search-btn" type="submit">Cerca</button>
+                </form>
+            </div>
+        </div>
     </div>
   
 </template>
 
 <style lang="scss" scoped>
 
-.container-fluid{
-    height: 46.875rem;
-    background-image: url(https://www.foodaffairs.it/wp-content/uploads/2022/03/Deliveroo-Plus-con-Amazon-Prime-1-1.jpg);
-    background-position: top;
+.row{
+    position: relative;
+}
+
+.ms-hero-img{
+    height: 37.5rem;
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.ms-hero-one{
+    background-position: center;
+    background-image: url(https://cdn.discordapp.com/attachments/1031863405595869184/1078279752261042206/Deliveroo-ODC-removebg-preview.png);
+}
+
+.ms-hero-two{
+    background-position: center;
+    background-image: url(https://cdn.discordapp.com/attachments/1031863405595869184/1078281741455855706/intro-1653066580-removebg-preview_1.png);
+}
+
+
+
+.ms-input-col{
+    position: absolute;
+    top: 40%;
+}
+
+.ms-search-form{
+    position: relative;
+}
+
+.ms-input-home{
+    width: 31.25rem;
+    padding: .9375rem .3125rem;
+    border: none;
+    border-radius: 1.5625rem;
+}
+
+.ms-search-btn{
+    position: absolute;
+    left: 83%;
+    top: 9%;
+    color: white;
+    background-color: #00CCBC;
+    border: none;
+    border-radius: 1.5625rem;
+    padding: .625rem 1.25rem;
+}
+
 </style>

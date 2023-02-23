@@ -10,7 +10,7 @@ export default {
         <div class="container">
             <div class="row justify-content-between align-items-center">
                 <div class="col my-2">
-                    <a href="http://localhost:5176/">
+                    <a href="http://localhost:5174/">
                         <img class="ms-logo-home" src="https://logodownload.org/wp-content/uploads/2019/09/deliveroo-logo-6.png" alt="Logo Deliveroo">
                     </a>
                 </div>

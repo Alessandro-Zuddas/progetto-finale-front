@@ -6,7 +6,7 @@ export default {
 
 <template>
   <!-- SECTION-APP -->
-  <section>
+  <section class="ms-main-section">
     <div class="container p-3">
       <div class="row m-3 shadow">
         <div class="col-6 p-3 ms-text-top">
@@ -125,6 +125,11 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+
+.ms-main-section{
+  margin-top: 165px;
+
+}
 .ms-badge {
   width: 20%;
   padding-right: 20px;

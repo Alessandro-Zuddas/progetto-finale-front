@@ -115,13 +115,13 @@ export default {
         <div class="col px-0 text-center block">
           <img class="ms-carousel-img" src="https://img2.storyblok.com/filters:format(webp)/f/62776/256x256/9b19027dd1/icon-wine.jpg" alt="Img">
         </div>
-        <div class="col px-3 text-center block">
+        <div class="col px-0 text-center block">
           <img class="ms-carousel-img ms-img-wide" src="https://img2.storyblok.com/filters:format(webp)/f/62776/512x256/b07158449c/sushi-wide.jpg" alt="Img">
         </div>
-        <div class="col px-3 text-center block">
+        <div class="col px-0 text-center block">
           <img class="ms-carousel-img ms-img-wide" src="https://img2.storyblok.com/filters:format(webp)/f/62776/512x256/8bd9a1cb99/bowl-wide.jpg" alt="Img">
         </div>
-        <div class="col px-3 text-center block">
+        <div class="col px-0 text-center block">
           <img class="ms-carousel-img ms-img-wide" src="https://img2.storyblok.com/filters:format(webp)/f/62776/512x288/5a53f723cc/icecreamwide.png" alt="Img">
         </div>
         <div class="col px-0 text-center block">
@@ -161,14 +161,14 @@ export default {
 .ms-carousel-container{
   width: 100%;
   position: absolute;
-  top: -150px;
+  top: -160px;
 }
 
 .ms-carousel-container-one-copy {
   width: 100%;
   position: absolute;
-  top: -150px;
-  right: -92%;
+  top: -160px;
+  right: -90%;
 }
 
 .ms-carousel-container-two{
@@ -181,7 +181,7 @@ export default {
   width: 100%;
   position: absolute;
   top: .625rem;
-  left: -92%;
+  left: -90%;
 }
 
 .ms-carousel-img{
@@ -191,7 +191,8 @@ export default {
 }
 
 .ms-img-wide{
-  width: 100%;
+  width: 150px;
+  height: 150px;
 }
 
 .carousel{
@@ -221,5 +222,7 @@ export default {
   0%   { transform: translate3d(0, 0, 0); }
   100% { transform: translate3d(calc(12 * 150px), 0, 0); }
 }
+
+
 
 </style>

@@ -21,8 +21,8 @@ export default {
 <template>
   <HomeHeader />
   <HomeHero />
-  <HomeMain />
   <HomeCarousel/>
+  <HomeMain />
   <HomeFooter />
 </template>
 

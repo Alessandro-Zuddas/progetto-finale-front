@@ -1,15 +1,20 @@
 <script>
+
+import HomeHeader from './partials/HomeHeader.vue';
+
 export default {
   name: "HomePage",
+
+  components: {
+    HomeHeader,
+  }
 };
 </script>
 
 <template>
 
-  <div>
-    <h1>Home Page</h1>
-  </div>
-  
+    <HomeHeader/>
+
 </template>
 
 <style lang="scss" scoped>

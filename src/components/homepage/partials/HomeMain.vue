@@ -34,14 +34,19 @@ export default {
             src="../../../assets/img/Map.png"
             alt="Map"
           />
-          <div class="ms-notification-container shadow">
-            <div class="ms-title d-flex align-items-center">
-              <img
-                class="ms-logo"
-                src="../../../assets/img/deliveroo-app-logo.png"
-                alt="logo"
-              />
-              <span>DELIVEROO</span>
+          <div class="ms-notification-container shadow rounded">
+            <div
+              class="ms-title d-flex align-items-center justify-content-between"
+            >
+              <div>
+                <img
+                  class="ms-logo"
+                  src="../../../assets/img/deliveroo-app-logo.png"
+                  alt="logo"
+                />
+                <span>DELIVEROO</span>
+              </div>
+              <div>ora</div>
             </div>
             <div class="ms-content">
               <strong>Aggiornamento ordine</strong>
@@ -53,23 +58,23 @@ export default {
         </div>
       </div>
     </div>
-    <section class="section-discount text-light p-3">
-      <div class="container d-flex justify-content-center p-3">
-        <div class="col-6 text-center">
-          <h1>Menù in offerta: sconti fino al 25%</h1>
-          <p>
-            Perfetti per dare più gusto alla tua settimana, ordinare i piatti
-            più amati da tutta la famiglia e fare una pausa dai fornelli.
-          </p>
-          <small>
-            Si applicano spese di consegna e di servizio. Offerta soggetta a
-            disponibiltà, solo per ristoranti aderenti all'iniziativa. Si
-            applicano termini di condizioni, consultabili qui.
-            <u>Termini e condizioni qui.</u></small
-          >
-        </div>
+  </section>
+  <section class="section-discount text-light p-3">
+    <div class="container d-flex justify-content-center p-3">
+      <div class="col-6 text-center">
+        <h1>Menù in offerta: sconti fino al 25%</h1>
+        <p>
+          Perfetti per dare più gusto alla tua settimana, ordinare i piatti più
+          amati da tutta la famiglia e fare una pausa dai fornelli.
+        </p>
+        <small>
+          Si applicano spese di consegna e di servizio. Offerta soggetta a
+          disponibiltà, solo per ristoranti aderenti all'iniziativa. Si
+          applicano termini di condizioni, consultabili qui.
+          <u>Termini e condizioni qui.</u>
+        </small>
       </div>
-    </section>
+    </div>
   </section>
 </template>
 
@@ -80,9 +85,11 @@ export default {
 }
 .ms-image-container {
   position: relative;
+
   .ms-image-map {
     width: 526px;
   }
+
   .ms-notification-container {
     position: absolute;
     top: 0;
@@ -92,12 +99,12 @@ export default {
     color: #bdbdbd;
     padding: 10px;
     margin: 10px;
-    border-radius: 10px;
 
     .ms-logo {
       width: 20px;
       height: 20px;
       margin-right: 10px;
+      border-radius: 3px;
     }
 
     .ms-content {

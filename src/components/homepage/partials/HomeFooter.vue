@@ -44,7 +44,7 @@ export default {
             <li>
               <a href="#"
                 ><img
-                  class="ms-img-badge"
+                  class="ms-img-badge w-50"
                   src="../../../assets/img/badge-app-store.png"
                   alt="app-store"
               /></a>

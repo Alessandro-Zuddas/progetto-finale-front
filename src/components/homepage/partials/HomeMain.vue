@@ -62,7 +62,7 @@ export default {
   </section>
   <!-- SECTION-APP END -->
   <!-- SECTION-DISCOUNT -->
-  <section class="section-discount text-light p-3 m-3">
+  <section class="section-discount text-light p-3 my-3">
     <div class="container d-flex justify-content-center p-3">
       <div class="col-6 text-center">
         <div class="ms-title d-flex">
@@ -95,7 +95,7 @@ export default {
   <!-- SECTION-WORK -->
   <div class="container">
     <div class="row flex-nowrap column-container">
-      <div class="col-6 ms-column-1 m-2 rounded">
+      <div class="col-6 ms-column-1 my-2 rounded">
         <div class="ms-text p-3">
           <h3>Diventa nostro partner</h3>
           <p>

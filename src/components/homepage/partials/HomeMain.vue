@@ -9,7 +9,7 @@ export default {
   <section>
     <div class="container p-3">
       <div class="row m-3 shadow">
-        <div class="col-6 p-3 ms-text">
+        <div class="col-6 p-3 ms-text-top">
           <h3>Segui gli ordini passo passo</h3>
           <p>
             I piatti e i prodotti che ami, consegnati in pochissimo tempo.
@@ -93,7 +93,7 @@ export default {
   </section>
   <!-- SECTION-DISCOUNT END -->
   <!-- SECTION-WORK -->
-  <div class="container m-3">
+  <div class="container">
     <div class="row flex-nowrap column-container">
       <div class="col-6 ms-column-1 m-2 rounded">
         <div class="ms-text p-3">

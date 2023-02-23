@@ -2,6 +2,7 @@
 import HomeHeader from "./partials/HomeHeader.vue";
 import HomeHero from "./partials/HomeHero.vue";
 import HomeMain from "./partials/HomeMain.vue";
+import HomeCarousel from "./partials/HomeCarousel.vue";
 import HomeFooter from "./partials/HomeFooter.vue";
 
 export default {
@@ -11,8 +12,9 @@ export default {
     HomeHeader,
     HomeHero,
     HomeMain,
+    HomeCarousel,
     HomeFooter,
-  },
+},
 };
 </script>
 
@@ -20,7 +22,12 @@ export default {
   <HomeHeader />
   <HomeHero />
   <HomeMain />
+  <HomeCarousel/>
   <HomeFooter />
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+
+
+</style>

@@ -6,10 +6,10 @@ export default {
 
 <template>
   <section>
-    <div class="container text-center ms-comtainer">
-      <div class="row">
-        <div class="col-3 p-3">
-          <h3>Scopri Deliveroo</h3>
+    <div class="container">
+      <div class="row d-flex justify-content-center">
+        <div class="col-2 p-3 m-3 ms-container">
+          <h4 class="text-light">Scopri Deliveroo</h4>
           <ul class="list-unstyled">
             <li><a href="#">Investitori</a></li>
             <li><a href="#">Chi siamo</a></li>
@@ -22,33 +22,39 @@ export default {
             <li><a href="#">Diventa nostro partner</a></li>
           </ul>
         </div>
-        <div class="col-3 p-3">
-          <h3>Note legali</h3>
+        <div class="col-2 p-3 m-3 ms-container">
+          <h4 class="text-light">Note legali</h4>
           <ul class="list-unstyled">
             <li><a href="#">Termini & Condizioni</a></li>
             <li><a href="#">Informativa sulla privacy</a></li>
             <li><a href="#">Cookies</a></li>
           </ul>
         </div>
-        <div class="col-3 p-3">
-          <h3>Aiuto</h3>
+        <div class="col-2 p-3 m-3 ms-container">
+          <h4 class="text-light">Aiuto</h4>
           <ul class="list-unstyled">
             <li><a href="#">Contatti</a></li>
             <li><a href="#">FAQ</a></li>
             <li><a href="#">Tipi di cucina</a></li>
           </ul>
         </div>
-        <div class="col-3 p-3">
-          <h3>Porta Deliveroo con te</h3>
+        <div class="col-2 p-3 m-3 ms-container">
+          <h4 class="text-light">Porta Deliveroo con te</h4>
           <ul class="list-unstyled">
             <li>
               <a href="#"
-                ><img src="../../../assets/img/badge-app-store.png" alt=""
+                ><img
+                  class="ms-img-badge"
+                  src="../../../assets/img/badge-app-store.png"
+                  alt=""
               /></a>
             </li>
             <li>
               <a href="#"
-                ><img src="../../../assets/img/badge-google-play.png" alt=""
+                ><img
+                  class="ms-img-badge w-50"
+                  src="../../../assets/img/badge-google-play.png"
+                  alt=""
               /></a>
             </li>
           </ul>
@@ -61,8 +67,16 @@ export default {
 <style lang="scss" scoped>
 section {
   background-color: #2e3333;
-}
-.ms-comtainer {
-  background-color: #434848;
+
+  .ms-container {
+    background-color: #434848;
+    a {
+      text-decoration: none;
+      color: white;
+    }
+    li {
+      padding: 5px 0;
+    }
+  }
 }
 </style>

@@ -46,7 +46,7 @@ export default {
                 ><img
                   class="ms-img-badge"
                   src="../../../assets/img/badge-app-store.png"
-                  alt=""
+                  alt="app-store"
               /></a>
             </li>
             <li>
@@ -54,7 +54,7 @@ export default {
                 ><img
                   class="ms-img-badge w-50"
                   src="../../../assets/img/badge-google-play.png"
-                  alt=""
+                  alt="google-play"
               /></a>
             </li>
           </ul>

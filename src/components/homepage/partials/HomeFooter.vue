@@ -6,11 +6,11 @@ export default {
 
 <template>
   <section>
-    <div class="container text-center">
+    <div class="container text-center ms-comtainer">
       <div class="row">
-        <div class="col-3">
+        <div class="col-3 p-3">
           <h3>Scopri Deliveroo</h3>
-          <ul>
+          <ul class="list-unstyled">
             <li><a href="#">Investitori</a></li>
             <li><a href="#">Chi siamo</a></li>
             <li><a href="#">Ristoranti</a></li>
@@ -22,32 +22,35 @@ export default {
             <li><a href="#">Diventa nostro partner</a></li>
           </ul>
         </div>
-        <div class="col-3">
+        <div class="col-3 p-3">
           <h3>Note legali</h3>
-          <ul>
+          <ul class="list-unstyled">
             <li><a href="#">Termini & Condizioni</a></li>
             <li><a href="#">Informativa sulla privacy</a></li>
             <li><a href="#">Cookies</a></li>
           </ul>
         </div>
-        <div class="col-3">
+        <div class="col-3 p-3">
           <h3>Aiuto</h3>
-          <ul>
+          <ul class="list-unstyled">
             <li><a href="#">Contatti</a></li>
             <li><a href="#">FAQ</a></li>
             <li><a href="#">Tipi di cucina</a></li>
           </ul>
         </div>
-        <div class="col-3">
+        <div class="col-3 p-3">
           <h3>Porta Deliveroo con te</h3>
-          <ul>
+          <ul class="list-unstyled">
             <li>
-              <a href="#"><img src="assets/img/badge-app-store" alt="" /></a>
+              <a href="#"
+                ><img src="../../../assets/img/badge-app-store.png" alt=""
+              /></a>
             </li>
             <li>
-              <a href="#"><img src="assets/img/badge-app-store" alt="" /></a>
+              <a href="#"
+                ><img src="../../../assets/img/badge-google-play.png" alt=""
+              /></a>
             </li>
-            <li><a href="#">Tipi di cucina</a></li>
           </ul>
         </div>
       </div>
@@ -58,5 +61,8 @@ export default {
 <style lang="scss" scoped>
 section {
   background-color: #2e3333;
+}
+.ms-comtainer {
+  background-color: #434848;
 }
 </style>

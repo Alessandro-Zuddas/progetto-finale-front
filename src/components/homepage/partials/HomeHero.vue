@@ -8,11 +8,11 @@ export default {
 
     <div class="container-fluid">
         <div class="row">
-            <div class="ms-hero-img ms-hero col-6 px-0 d-flex"></div>
+            <div class="ms-hero-img ms-hero-one col-6 px-0 bg-black"></div>
 
-            <div class="ms-hero-img ms-hero col-6 px-0 d-flex"></div>
+            <div class="ms-hero-img ms-hero-two col-6 px-0 bg-black"></div>
 
-            <div class="ms-input-col px-0 d-flex flex-column align-items-center justify-content-center">
+            <div class="ms-input-col my-4 px-0 d-flex flex-column align-items-center justify-content-center">
                 <h1 class="text-center text-light my-4">I piatti dei ristoranti che ami, a domicilio</h1>
                 <form class="ms-search-form" action="">
                     <input class="ms-input-home px-2" type="text" placeholder="Cerca un ristorante">
@@ -31,15 +31,21 @@ export default {
 }
 
 .ms-hero-img{
-    height: 31.25rem;
+    height: 37.5rem;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-.ms-hero{
+.ms-hero-one{
     background-position: center;
-    background-image: url(https://www.gdoweek.it/wp-content/uploads/sites/7/2021/07/Deliveroo-ODC-696x696.jpeg);
+    background-image: url(https://cdn.discordapp.com/attachments/1031863405595869184/1078279752261042206/Deliveroo-ODC-removebg-preview.png);
 }
+
+.ms-hero-two{
+    background-position: center;
+    background-image: url(https://cdn.discordapp.com/attachments/1031863405595869184/1078281741455855706/intro-1653066580-removebg-preview_1.png);
+}
+
 
 
 .ms-input-col{

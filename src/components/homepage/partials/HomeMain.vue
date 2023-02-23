@@ -13,7 +13,7 @@ export default {
           <p>
             I piatti e i prodotti che ami, consegnati in pochissimo tempo.
             Vedrai quando il rider ha ritirato l'ordine, che potrai seguire
-            passo passo, e riceverai una notifica quando sarà quasi da te
+            passo passo, e riceverai una notifica quando sarà quasi da te.
           </p>
           <div class="ms-buttons pt-3">
             <img

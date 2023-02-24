@@ -48,7 +48,7 @@ export default {
       <img class="icon" src="../../../assets/icons/coffee.png" alt="coffee" />
       <img class="icon" src="../../../assets/icons/hamburger.png" alt="hamburger" />
       <img class="icon" src="../../../assets/icons/icecream.png" alt="icecream" />
-      <img class="icon" src="../../../assets/icons/bibita.png" alt="drink" />
+      <img class="icon" src="../../../assets/icons/drink.png" alt="drink" />
       <img class="icon" src="../../../assets/icons/cupcake.png" alt="cupcake" />
       <img class="icon" src="../../../assets/icons/hotdog.png" alt="hotdog" />
       <img class="icon" src="../../../assets/icons/milk.png" alt="milk" />

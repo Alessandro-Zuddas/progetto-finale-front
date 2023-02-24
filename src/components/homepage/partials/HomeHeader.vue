@@ -1,6 +1,15 @@
 <script>
+
+import { store } from "../../../store";
+
 export default {
   name: "HomeHeader",
+
+  data(){
+    return {
+      store,
+    }
+  },
 };
 </script>
 
@@ -17,6 +26,9 @@ export default {
                 <div class="col text-end my-2">
                     <a class="mx-2 btn btn-primary" href="http://127.0.0.1:8000/login">Accedi</a>
                     <a class="mx-2 btn btn-secondary" href="http://127.0.0.1:8000/register">Registrati</a>
+                    <select name="typologies" id="typologies">
+                        
+                    </select>
                 </div>
             </div>
         </div>

@@ -1,13 +1,15 @@
 <script>
 
 import axios from "axios";
-import HomePage from "./components/homepage/HomePage.vue";
+import HomeHeader from "./components/HomeHeader.vue";
+import HomeFooter from "./components/HomeFooter.vue";
 import { store } from "../src/store";
 
 
 export default {
   components: {
-    HomePage,
+    HomeHeader,
+    HomeFooter,
   },
   data(){
     return {
@@ -36,7 +38,11 @@ export default {
 
 <template>
   <div>
-    <HomePage/>
+    <HomeHeader/>
+
+    <router-view></router-view>
+
+    <HomeFooter/>
   </div>
 </template>
 

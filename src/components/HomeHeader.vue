@@ -1,6 +1,6 @@
 <script>
 
-import { store } from "../../../store";
+import { store } from "../store";
 
 export default {
   name: "HomeHeader",
@@ -19,13 +19,16 @@ export default {
         <div class="container">
             <div class="row justify-content-between align-items-center">
                 <div class="col my-2">
-                    <a href="http://localhost:5174/">
+                    <router-link :to="{ name: 'homepage' }">
                         <img class="ms-logo-home" src="https://logodownload.org/wp-content/uploads/2019/09/deliveroo-logo-6.png" alt="Logo Deliveroo">
-                    </a>
+                    </router-link>
                 </div>
                 <div class="col text-end my-2">
                     <a class="mx-2 btn btn-primary" href="http://127.0.0.1:8000/login">Accedi</a>
                     <a class="mx-2 btn btn-secondary" href="http://127.0.0.1:8000/register">Registrati</a>
+                    <router-link class="col ms-nav-links" :to="{ name: 'restaurants' }">
+                        <strong>Ristoranti</strong>
+                    </router-link>
                 </div>
             </div>
         </div>
@@ -37,6 +40,15 @@ export default {
 
 .ms-logo-home{
     width: 200px;
+}
+
+.ms-nav-links{
+    color: white;
+    text-decoration: none;
+}
+
+.ms-nav-links:hover{
+    transform: scale(1.5);
 }
 
 </style>

@@ -9,10 +9,10 @@ export default {
 
 <template>
   <div>
-    <HomePage />
+    <HomePage/>
   </div>
 </template>
 
 <style lang="scss">
-@import "./style/global.scss";
+  @import "./style/global.scss";
 </style>

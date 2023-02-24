@@ -33,6 +33,23 @@ export default {
         </small>
       </div>
     </div>
+   
+    <div class="d-flex align-items-end">
+      <img class="icon" src="../../../assets/icons/cupcake.png" alt="" />
+      <img class="icon" src="../../../assets/icons/hotdog.png" alt="" />
+      <img class="icon" src="../../../assets/icons/latte.png" alt="" />
+      <img class="icon" src="../../../assets/icons/tacos.png" alt="" />
+      <img class="icon" src="../../../assets/icons/pollo.png" alt="" />
+      <img class="icon" src="../../../assets/icons/pizza.png" alt="" />
+      <img class="icon" src="../../../assets/icons/riso.png" alt="" />
+      <img class="icon" src="../../../assets/icons/mela.png" alt="" />
+      <img class="icon" src="../../../assets/icons/udon.png" alt="" />
+      <img class="icon" src="../../../assets/icons/panino.png" alt="" />
+      <img class="icon" src="../../../assets/icons/caffè.png" alt="" />
+      <img class="icon" src="../../../assets/icons/hamburger.png" alt="" />
+      <img class="icon" src="../../../assets/icons/gelato.png" alt="" />
+      <img class="icon" src="../../../assets/icons/bibita.png" alt="" />
+    </div>
   </section>
 </template>
 
@@ -51,5 +68,8 @@ export default {
     width: 20%;
     height: 10%;
   }
+}
+.icon{
+  width:90px
 }
 </style>

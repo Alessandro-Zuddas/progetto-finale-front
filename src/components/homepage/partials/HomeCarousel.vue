@@ -161,26 +161,26 @@ export default {
 .ms-carousel-container{
   width: 100%;
   position: absolute;
-  top: -160px;
+  top: -165px;
 }
 
 .ms-carousel-container-one-copy {
   width: 100%;
   position: absolute;
-  top: -160px;
+  top: -165px;
   right: -90%;
 }
 
 .ms-carousel-container-two{
   width: 100%;
   position: absolute;
-  top: .625rem;
+  top: .550rem;
 }
 
 .ms-carousel-container-two-copy{
   width: 100%;
   position: absolute;
-  top: .625rem;
+  top: .550rem;
   left: -90%;
 }
 

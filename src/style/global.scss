@@ -6,3 +6,7 @@ IMPORT BOOTSTRAP
 body::-webkit-scrollbar{
     display: none;
 }
+
+html{
+    scrollbar-width: none;
+}

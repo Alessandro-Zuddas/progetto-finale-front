@@ -1,6 +1,15 @@
 <script>
+
+import { store } from "../../../store";
+
 export default {
   name: "HomeHeader",
+
+  data(){
+    return {
+      store,
+    }
+  },
 };
 </script>
 

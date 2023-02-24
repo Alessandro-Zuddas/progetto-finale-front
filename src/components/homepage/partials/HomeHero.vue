@@ -12,12 +12,12 @@ export default {
 
             <div class="ms-hero-img ms-hero-two col-6 px-0 bg-black"></div>
 
-            <div class="ms-input-col my-4 px-0 d-flex flex-column align-items-center justify-content-center">
+            <div class="ms-input-col px-0 d-flex flex-column align-items-center justify-content-center">
                 <h1 class="text-center text-light my-4">I piatti dei ristoranti che ami, a domicilio</h1>
-                <form class="ms-search-form" action="">
+                <!-- <form class="ms-search-form" action="">
                     <input class="ms-input-home px-2" type="text" placeholder="Cerca un ristorante">
                     <button class="ms-search-btn" type="submit">Cerca</button>
-                </form>
+                </form> -->
             </div>
         </div>
     </div>
@@ -50,7 +50,7 @@ export default {
 
 .ms-input-col{
     position: absolute;
-    top: 40%;
+    top: 25%;
 }
 
 .ms-search-form{

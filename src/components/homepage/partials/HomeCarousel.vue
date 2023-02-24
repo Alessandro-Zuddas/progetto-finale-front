@@ -224,4 +224,17 @@ export default {
   100% { transform: translate3d(calc(12 * 150px), 0, 0); }
 }
 
+// DA DEFINIRE
+
+// /* Schermi grandi o ad alta risoluzione */
+// @media all and (min-width: 1000px) { 
+//   .ms-carousel-container-one-copy {
+//     right: -90%;
+//   }
+
+//   .ms-carousel-container-two-copy{
+//     left: -90%;
+//   }
+// }
+
 </style>

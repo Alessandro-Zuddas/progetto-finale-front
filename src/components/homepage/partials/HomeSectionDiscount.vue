@@ -62,7 +62,7 @@ export default {
     rgba(25, 190, 181, 1) 84%,
     rgba(23, 196, 185, 1) 100%
   );
-  margin-top: 200px;
+  margin-top: 100px !important;
 
   .stars-image {
     width: 20%;

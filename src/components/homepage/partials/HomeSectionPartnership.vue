@@ -37,7 +37,7 @@ export default {
 
 <style lang="scss" scoped>
 .ms-section {
-  margin-top: 200px;
+  margin-top: 100px !important;
 
   .ms-column-1 {
     background-image: url(../../../assets/img/cuoco.jpg);

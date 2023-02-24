@@ -49,6 +49,12 @@ export default {
       <img class="icon" src="../../../assets/icons/hamburger.png" alt="" />
       <img class="icon" src="../../../assets/icons/gelato.png" alt="" />
       <img class="icon" src="../../../assets/icons/bibita.png" alt="" />
+      <img class="icon" src="../../../assets/icons/cupcake.png" alt="" />
+      <img class="icon" src="../../../assets/icons/hotdog.png" alt="" />
+      <img class="icon" src="../../../assets/icons/latte.png" alt="" />
+      <img class="icon" src="../../../assets/icons/tacos.png" alt="" />
+      <img class="icon" src="../../../assets/icons/pollo.png" alt="" />
+      <img class="icon" src="../../../assets/icons/pizza.png" alt="" />
     </div>
   </section>
 </template>

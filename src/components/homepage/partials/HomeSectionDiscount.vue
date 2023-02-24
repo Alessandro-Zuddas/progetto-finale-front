@@ -35,26 +35,26 @@ export default {
     </div>
    
     <div class="d-flex align-items-end justify-content-center">
-      <img class="icon" src="../../../assets/icons/cupcake.png" alt="" />
-      <img class="icon" src="../../../assets/icons/hotdog.png" alt="" />
-      <img class="icon" src="../../../assets/icons/latte.png" alt="" />
-      <img class="icon" src="../../../assets/icons/tacos.png" alt="" />
-      <img class="icon" src="../../../assets/icons/pollo.png" alt="" />
-      <img class="icon" src="../../../assets/icons/pizza.png" alt="" />
-      <img class="icon" src="../../../assets/icons/riso.png" alt="" />
-      <img class="icon" src="../../../assets/icons/mela.png" alt="" />
-      <img class="icon" src="../../../assets/icons/udon.png" alt="" />
-      <img class="icon" src="../../../assets/icons/panino.png" alt="" />
-      <img class="icon" src="../../../assets/icons/caffè.png" alt="" />
-      <img class="icon" src="../../../assets/icons/hamburger.png" alt="" />
-      <img class="icon" src="../../../assets/icons/gelato.png" alt="" />
-      <img class="icon" src="../../../assets/icons/bibita.png" alt="" />
-      <img class="icon" src="../../../assets/icons/cupcake.png" alt="" />
-      <img class="icon" src="../../../assets/icons/hotdog.png" alt="" />
-      <img class="icon" src="../../../assets/icons/latte.png" alt="" />
-      <img class="icon" src="../../../assets/icons/tacos.png" alt="" />
-      <img class="icon" src="../../../assets/icons/pollo.png" alt="" />
-      <img class="icon" src="../../../assets/icons/pizza.png" alt="" />
+      <img class="icon" src="../../../assets/icons/cupcake.png" alt="cupcake" />
+      <img class="icon" src="../../../assets/icons/hotdog.png" alt="hotdog" />
+      <img class="icon" src="../../../assets/icons/milk.png" alt="milk" />
+      <img class="icon" src="../../../assets/icons/tacos.png" alt="tacos" />
+      <img class="icon" src="../../../assets/icons/chicken.png" alt="chicken" />
+      <img class="icon" src="../../../assets/icons/pizza.png" alt="pizza" />
+      <img class="icon" src="../../../assets/icons/rice.png" alt="rice" />
+      <img class="icon" src="../../../assets/icons/apple.png" alt="apple" />
+      <img class="icon" src="../../../assets/icons/udon.png" alt="udon" />
+      <img class="icon" src="../../../assets/icons/sandwich.png" alt="sandwich" />
+      <img class="icon" src="../../../assets/icons/coffee.png" alt="coffee" />
+      <img class="icon" src="../../../assets/icons/hamburger.png" alt="hamburger" />
+      <img class="icon" src="../../../assets/icons/icecream.png" alt="icecream" />
+      <img class="icon" src="../../../assets/icons/bibita.png" alt="drink" />
+      <img class="icon" src="../../../assets/icons/cupcake.png" alt="cupcake" />
+      <img class="icon" src="../../../assets/icons/hotdog.png" alt="hotdog" />
+      <img class="icon" src="../../../assets/icons/milk.png" alt="milk" />
+      <img class="icon" src="../../../assets/icons/tacos.png" alt="tacos" />
+      <img class="icon" src="../../../assets/icons/chicken.png" alt="chicken" />
+      <img class="icon" src="../../../assets/icons/pizza.png" alt="pizza" />
     </div>
   </section>
 </template>

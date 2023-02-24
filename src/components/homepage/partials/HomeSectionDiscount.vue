@@ -34,7 +34,7 @@ export default {
       </div>
     </div>
    
-    <div class="d-flex align-items-end">
+    <div class="d-flex align-items-end justify-content-center">
       <img class="icon" src="../../../assets/icons/cupcake.png" alt="" />
       <img class="icon" src="../../../assets/icons/hotdog.png" alt="" />
       <img class="icon" src="../../../assets/icons/latte.png" alt="" />

@@ -23,12 +23,6 @@ export default {
                         <img class="ms-logo-home" src="https://logodownload.org/wp-content/uploads/2019/09/deliveroo-logo-6.png" alt="Logo Deliveroo">
                     </a>
                 </div>
-                <div class="col text-end">
-                    <select class="form-select w-100" name="typologies" id="typologies">
-                        <option value="" selected>Ricerca per tipologia</option>
-                        <option value=""></option>
-                    </select>
-                </div>
                 <div class="col text-end my-2">
                     <a class="mx-2 btn btn-primary" href="http://127.0.0.1:8000/login">Accedi</a>
                     <a class="mx-2 btn btn-secondary" href="http://127.0.0.1:8000/register">Registrati</a>

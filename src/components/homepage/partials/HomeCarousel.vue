@@ -8,7 +8,7 @@ export default {
 <template>
 
   <!-- Carousel row one -->
-  <div class="container-fluid d-flex justify-content-center">
+  <div class="container-fluid d-flex justify-content-center d-none d-xxl-flex">
       <div class="row ms-carousel-container carousel">
         <div class="col px-0 text-center block">
           <img class="ms-carousel-img" src="https://img2.storyblok.com/filters:format(webp)/f/62776/256x256/54ae25d5da/kfc.jpg" alt="Img">

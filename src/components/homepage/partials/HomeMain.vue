@@ -2,6 +2,7 @@
 import HomeSectionApp from "./HomeSectionApp.vue";
 import HomeSectionDiscount from "./HomeSectionDiscount.vue";
 import HomeSectionPartnership from "./HomeSectionPartnership.vue";
+import HomeSectionRestaurants from "../HomeSectionRestaurants.vue";
 
 export default {
   name: "HomeMain",
@@ -10,6 +11,7 @@ export default {
     HomeSectionApp,
     HomeSectionDiscount,
     HomeSectionPartnership,
+    HomeSectionRestaurants
   },
 };
 </script>
@@ -17,6 +19,7 @@ export default {
 <template>
   <HomeSectionApp />
   <HomeSectionDiscount />
+  <HomeSectionRestaurants />
   <HomeSectionPartnership />
 </template>
 

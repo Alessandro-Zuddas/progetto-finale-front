@@ -5,7 +5,7 @@ export default {
 </script>
 
 <template>
-  <section class="ms-section text-light p-3 my-3">
+  <section class="ms-section text-light p-3">
     <div class="container d-flex justify-content-center p-3">
       <div class="col-6 text-center">
         <div class="d-flex">
@@ -61,13 +61,14 @@ export default {
 
 <style lang="scss" scoped>
 .ms-section {
-  background: rgb(0, 126, 137);
-  background: linear-gradient(
-    to bottom right,
-    rgba(0, 126, 137, 1) 0%,
-    rgba(25, 190, 181, 1) 84%,
-    rgba(23, 196, 185, 1) 100%
-  );
+  background-color: rgba(23, 196, 185, 1);
+  // background: rgb(0, 126, 137);
+  // background: linear-gradient(
+  //   to bottom right,
+  //   rgba(0, 126, 137, 1) 0%,
+  //   rgba(25, 190, 181, 1) 84%,
+  //   rgba(23, 196, 185, 1) 100%
+  // );
   margin-top: 100px !important;
 
   .stars-image {

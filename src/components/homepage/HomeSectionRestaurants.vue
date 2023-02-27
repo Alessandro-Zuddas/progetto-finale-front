@@ -42,6 +42,9 @@
                     console.log(error)
                 })
             },
+            showSingleRestaurant(){
+                //Logica show singolo ristorante
+            }
         },
         created() {
             this.fetchRestaurants();
@@ -53,8 +56,10 @@
     <div class="container-fluid">
         <div class="row">
             <div class="ms-col-aside">
-                <h2 class="ms-2 text-light">Seleziona una categoria:</h2>
-                <label :for=" typology.slug " class="ms-2 text-light" v-for="typology in this.store.typologies">
+                <div class="ms-title-container">
+                    <h2 class="ms-2">Seleziona una categoria:</h2>
+                </div>
+                <label :for=" typology.slug " class="ms-2 text-light ms-check-restaurant" v-for="typology in this.store.typologies">
                     <input type="checkbox" :value=" typology.slug " :id=" typology.slug " class="me-1" v-model="this.selectedTypes">
                     {{ typology.name }}
                 </label>
@@ -105,7 +110,9 @@
         height: 85vh;
         display: flex;
         flex-direction: column;
-        overflow-y: hidden;
+        overflow-y: auto;
+        border: 1px solid white;
+        border-radius: 15px;
     }
 
     .ms-col-big{
@@ -115,10 +122,23 @@
         justify-content: center;
         flex-wrap: wrap;
         overflow-y: auto;
+        border: 1px solid white;
+        border-radius: 15px;
     }
 
     .card{
         max-height: 37.5rem;
+    }
+
+    .ms-title-container{
+        background-color: white;
+        border-radius: 15px;
+        margin-top: .3125rem;
+    }
+
+    .ms-check-restaurant{
+        padding: 10px;
+        border-bottom: 1px solid white;
     }
 
 </style>

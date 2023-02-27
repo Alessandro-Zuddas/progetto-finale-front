@@ -18,9 +18,21 @@ export default {
         this.store.shoppingCart.forEach(product => {
             
             let productPrice = product.quantity * product.product.price;
-            this.store.totalPrice += productPrice;
+            this.store.totalPrice += productPrice.toFixed(2);
 
         });
+    },
+    removeOneItem(product){
+        product.quantity = parseInt(product.quantity) - 1;
+
+        if(product.quantity == 0){
+            this.deleteItem(product.product.id);
+        }
+
+        localStorage.setItem("cart", JSON.stringify(this.store.shoppingCart));
+    },
+    addOneItem(product){
+        product.quantity = parseInt(product.quantity) + 1;
     }
   },
 };
@@ -62,12 +74,14 @@ export default {
     <div class="offcanvas-body">
         <div v-if="this.store.shoppingCart.length > 0">
             <h1>Dettagli dell'ordine:</h1>
-            <div class="ms-cart-product d-flex" v-for="item in this.store.shoppingCart">
+            <div class="ms-cart-product d-flex align-items-center" v-for="item in this.store.shoppingCart">
                 <div class="mx-2 my-2">- 
                     <strong>{{ item.product.name }}:</strong>
                 </div>
                 <div class="mx-2 my-2">{{ item.product.price }}</div>
-                <div class="mx-2 my-2">x {{ item.quantity }}</div>
+                <div class="mx-2 my-2">
+                    <button class="ms-quantity-button btn btn-danger" @click="removeOneItem(item), calculateTotalPrice()">-</button> x {{ item.quantity }} <button class="ms-quantity-button btn btn-success" @click="addOneItem(item), calculateTotalPrice()">+</button>
+                </div>
             </div>
             <h1 class="ms-total-price my-4">Totale: {{ this.store.totalPrice }} €</h1>
         </div>
@@ -100,6 +114,13 @@ export default {
 
 .ms-cart-product{
     border-bottom: 1px solid black;
+}
+
+.ms-quantity-button{
+    padding: 3px 8px;
+    border-radius: 50%;
+    border: none;
+    aspect-ratio: 1;
 }
 
 </style>

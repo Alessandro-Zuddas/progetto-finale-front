@@ -50,7 +50,7 @@
 </script>
 
 <template>
-    <div class="container-fluid py-5">
+    <div class="ms-container container shadow py-5">
         <div class="row">
             <div class="ms-col-aside">
                 <div class="ms-title-container pb-4">
@@ -95,7 +95,7 @@
 
 <style lang="scss" scoped>
 
-    .container-fluid{
+    .ms-container{
         margin-top: 100px;
         padding: .625rem 10px;
         background: rgba(255, 255, 255, 0.7);
@@ -110,7 +110,7 @@
     }
 
     .ms-col-big{
-        width: 80vw;
+        width: 67vw;
         height: 85vh;
         display: flex;
         justify-content: center;

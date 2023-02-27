@@ -64,7 +64,9 @@ export default {
 
   },
   created(){
-    this.store.shoppingCart = localStorage.getItem('cart') || [];
+    if( localStorage.getItem("cart") ){
+        this.store.shoppingCart = JSON.parse(localStorage.getItem('cart')); 
+    }
 
     axios.get('http://127.0.0.1:8000/api/companies/' + this.$route.params.slug)
     .then(response => {

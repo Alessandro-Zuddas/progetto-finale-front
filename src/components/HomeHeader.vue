@@ -45,7 +45,11 @@ export default {
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-        ...
+       <ul>
+            <li v-for="item in this.store.shoppingCart">
+                {{ item.product.name }}
+            </li>
+       </ul>
     </div>
     </div>
     <!-- /Carrello -->

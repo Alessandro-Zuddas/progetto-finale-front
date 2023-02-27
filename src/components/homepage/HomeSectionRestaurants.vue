@@ -110,7 +110,7 @@
     }
 
     .ms-col-big{
-        width: 67vw;
+        width: 60vw;
         height: 85vh;
         display: flex;
         justify-content: center;

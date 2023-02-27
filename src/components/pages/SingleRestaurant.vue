@@ -58,19 +58,19 @@ export default {
         </div>
         <div class="ms-products-container">
         
-          <div class="ms-product d-flex">
+          <div class="ms-product py-4 d-flex justify-content-center">
             <div class="card mx-2 my-2" style="width: 18rem;" v-for="product in restaurant.products">
                 <div class="card-body">
                     <h5 class="card-title">{{ product.name }}</h5>
                     <p class="card-text">
                         <strong>Descrizione:</strong> <br>
-                        {{ product.description }}
+                        {{ product.description }} <br>
                         <strong>Prezzo:</strong> <br>
                         {{ product.price }}
                     </p>
                     <input type="number" name="" id="quantity" >
                    <button
-                        class="btn btn-primary">
+                        class="btn btn-primary my-2">
                             Aggiungi al carrello
                 </button>
                 </div>

@@ -57,26 +57,25 @@ export default {
             </h6>
         </div>
         <div class="ms-products-container">
-        
-          <div class="ms-product py-4 d-flex justify-content-center">
-            <div class="card mx-2 my-2" style="width: 18rem;" v-for="product in restaurant.products">
-                <div class="card-body">
-                    <h5 class="card-title">{{ product.name }}</h5>
-                    <p class="card-text">
-                        <strong>Descrizione:</strong> <br>
-                        {{ product.description }} <br>
-                        <strong>Prezzo:</strong> <br>
-                        {{ product.price }}
-                    </p>
-                    <input type="number" name="" id="quantity" >
-                   <button
-                        class="btn btn-primary my-2">
-                            Aggiungi al carrello
-                </button>
+            <div class="ms-product py-4 d-flex justify-content-center">
+                <div class="card mx-2 my-2" style="width: 18rem;" v-for="product in restaurant.products">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">
+                            <strong>Descrizione:</strong> <br>
+                            {{ product.description }} <br>
+                            <strong>Prezzo:</strong> <br>
+                            {{ product.price }}
+                        </p>
+                        <input type="number" name="" id="quantity" >
+                    <button
+                            class="btn btn-primary my-2">
+                                Aggiungi al carrello
+                    </button>
+                    </div>
                 </div>
-          </div>
-         </div>
-      </div>
+            </div>
+        </div>
     </div>
 
 </template>
@@ -86,6 +85,7 @@ export default {
 .ms-aside{
     width: 30vw;
     height: 80vh;
+    border-right: 1px solid black;
 }
 
 .ms-products-container{
@@ -93,10 +93,15 @@ export default {
     height: 80vh;
 }
 
+.ms-product{
+    flex-wrap: wrap;
+}
+
 .ms-company-img{
     max-width: 28.125rem;
     max-height: 28.125rem;
     border-radius: 1.5625rem;
+    overflow-y: auto;
 }
 
 </style>

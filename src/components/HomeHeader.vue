@@ -18,7 +18,7 @@ export default {
         this.store.shoppingCart.forEach(product => {
             
             let productPrice = product.quantity * product.product.price;
-            this.store.totalPrice += productPrice.toFixed(2);
+            this.store.totalPrice += productPrice;
 
         });
     },
@@ -111,7 +111,11 @@ export default {
 .ms-cart-icon{
     font-size: 1.375rem;
 }
-
+.ms-button{
+       background-color:  rgba(23, 196, 185, 1);
+       color: #fff;
+       width:100%;
+}
 .ms-cart-product{
     border-bottom: 1px solid black;
 }

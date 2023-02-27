@@ -21,6 +21,19 @@ export default {
             this.store.totalPrice += productPrice;
 
         });
+    },
+    deleteItem(id){
+        this.store.shoppingCart.forEach(product => {
+            if(product.product.id==id){
+                this.store.shoppingCart.splice(id, 1);
+                return
+            }
+        })
+        if( this.store.shoppingCart.length>1){
+            localStorage.setItem('cart', JSON.stringify(this.store.shoppingCart));
+        }else{
+            localStorage.setItem('cart', []);
+        }
     }
   },
 };
@@ -55,26 +68,32 @@ export default {
     </div>
     <!-- Carrello -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-    <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasRightLabel">Carrello</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-        <div v-if="this.store.shoppingCart.length > 0">
-            <h1>Dettagli dell'ordine:</h1>
-            <div class="ms-cart-product d-flex" v-for="item in this.store.shoppingCart">
-                <div class="mx-2 my-2">- 
-                    <strong>{{ item.product.name }}:</strong>
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasRightLabel">Carrello</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div v-if="this.store.shoppingCart.length > 0">
+                <h1>Dettagli dell'ordine:</h1>
+                <div class="ms-cart-product d-flex align-items-center" v-for="item in this.store.shoppingCart">
+                    <div class="mx-1 d-inline" @click="deleteItem(item.product.id)">X</div>
+                    <div class="mx-2 my-2 d-inline">- 
+                        <strong>{{ item.product.name }}:</strong>
+                    </div>
+                    <div class="mx-2 my-2">{{ item.product.price }}</div>
+                    <div class="mx-2 my-2">x {{ item.quantity }}</div>
                 </div>
-                <div class="mx-2 my-2">{{ item.product.price }}</div>
-                <div class="mx-2 my-2">x {{ item.quantity }}</div>
+                <h1 class="ms-total-price my-4">Totale: {{ this.store.totalPrice }} €</h1>
+                <router-link
+                        :to="{ name: 'check-out'}"
+                        class="btn ms-button">
+                            Checkout
+                </router-link>
             </div>
-            <h1 class="ms-total-price my-4">Totale: {{ this.store.totalPrice }} €</h1>
+            <div v-else>
+                <h1>Il carrello è vuoto!</h1>
+            </div>
         </div>
-        <div v-else>
-            <h1>Il carrello è vuoto!</h1>
-        </div>
-    </div>
     </div>
     <!-- /Carrello -->
 </template>
@@ -97,7 +116,11 @@ export default {
 .ms-cart-icon{
     font-size: 1.375rem;
 }
-
+.ms-button{
+       background-color:  rgba(23, 196, 185, 1);
+       color: #fff;
+       width:100%;
+}
 .ms-cart-product{
     border-bottom: 1px solid black;
 }

@@ -81,7 +81,11 @@
                             <strong>Ordine minimo:</strong>
                             {{ restaurant.minimum_order }} €
                         </p>
-                        <a :href="restaurant.slug" class="btn btn-primary">Ordina ora!</a>
+                        <router-link
+                        :to="{ name: 'single-restaurant', params: { slug: restaurant.slug } }"
+                        class="btn btn-primary">
+                            Ordina ora!
+                        </router-link>
                     </div>
                 </div>                
             </div>

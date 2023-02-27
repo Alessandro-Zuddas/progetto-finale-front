@@ -69,7 +69,7 @@ export default {
 <style lang="scss" scoped>
 section {
   background-color: #2e3333;
-  margin-top: 100px !important;
+  // margin-top: 100px !important;
 
   .ms-container {
     background-color: #434848;

@@ -1,6 +1,6 @@
 <script>
 import axios from 'axios';
-
+import { store } from "../../store";
 
 export default {
   name: "SingleRestaurant",
@@ -11,7 +11,25 @@ export default {
   data(){
     return{
         restaurant: {},
+        store,
     }
+  },
+  methods:{
+
+    addToCart(id){
+        let quantity = document.getElementById(`${id}-quantity`);
+
+        console.log(quantity);
+
+        const item = {
+            "id": id,
+            "quantity": quantity,
+        };
+        this.store.shoppingCart.push(item);
+
+        console.log(this.store.shoppingCart)
+    },  
+
   },
   created(){
     console.log(this.$route.params.slug);
@@ -67,8 +85,8 @@ export default {
                             <strong>Prezzo:</strong> <br>
                             {{ product.price }}
                         </p>
-                        <input type="number" name="" id="quantity" >
-                    <button
+                        <input type="number" name="quantity" :id="product.id + '-quantity'" min="1">
+                    <button @click="addToCart(product.id)"
                             class="btn btn-primary my-2">
                                 Aggiungi al carrello
                     </button>

@@ -3,6 +3,7 @@ import { reactive } from "vue";
 export const store = reactive({
     typologies: [],
     companies: [],
+    shoppingCart: [],
     email: "",
     name: "",
     id:"",

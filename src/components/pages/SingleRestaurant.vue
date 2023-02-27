@@ -33,8 +33,28 @@ export default {
 <template>
 
     <div class="container-fluid d-flex p-0">
-        <div class="ms-aside">
-
+        <div class="ms-aside py-4 px-4">
+            <div class="text-center mb-4">
+                <img :src="this.restaurant.image" class="ms-company-img" :alt="this.restaurant.company_name" v-if="this.restaurant.image">
+                <img src="https://via.placeholder.com/150" class="card-img-top ms-company-img" :alt="this.restaurant.company_name" v-else>
+                <h1 class="my-1">{{ this.restaurant.company_name }}</h1>
+                <small class="">{{ this.restaurant.address }}</small>
+            </div>
+            <h6 class="my-3">
+                <i class="fa-solid fa-phone mx-2"></i>
+                <strong>Numero di telefono:</strong>
+                {{ this.restaurant.telephone }}.
+            </h6>
+            <h6 class="my-3">
+                <i class="fa-regular fa-clock mx-2"></i>
+                <strong>Orario di apertura:</strong>
+                {{ this.restaurant.opening_hours }}.
+            </h6>
+            <h6 class="my-3">
+                <i class="fa-regular fa-sack-dollar mx-2"></i>
+                <strong>Ordine minimo:</strong>
+                {{ this.restaurant.minimum_order }} €.
+            </h6>
         </div>
         <div class="ms-products-container">
         
@@ -66,12 +86,17 @@ export default {
 .ms-aside{
     width: 30vw;
     height: 80vh;
-    background-color: red;
 }
 
 .ms-products-container{
     width: 70vw;
     height: 80vh;
+}
+
+.ms-company-img{
+    max-width: 28.125rem;
+    max-height: 28.125rem;
+    border-radius: 1.5625rem;
 }
 
 </style>

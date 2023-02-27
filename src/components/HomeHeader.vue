@@ -33,6 +33,19 @@ export default {
     },
     addOneItem(product){
         product.quantity = parseInt(product.quantity) + 1;
+    },
+    deleteItem(id){
+        this.store.shoppingCart.forEach(product => {
+            if(product.product.id==id){
+                this.store.shoppingCart.splice(id, 1);
+                return
+            }
+        })
+        if( this.store.shoppingCart.length>1){
+            localStorage.setItem('cart', JSON.stringify(this.store.shoppingCart));
+        }else{
+            localStorage.setItem('cart', []);
+        }
     }
   },
 };
@@ -75,7 +88,8 @@ export default {
         <div v-if="this.store.shoppingCart.length > 0">
             <h1>Dettagli dell'ordine:</h1>
             <div class="ms-cart-product d-flex align-items-center" v-for="item in this.store.shoppingCart">
-                <div class="mx-2 my-2">- 
+                <div class=" d-inline" @click="delete">X</div>
+                <div class="mx-2 my-2 d-inline">- 
                     <strong>{{ item.product.name }}:</strong>
                 </div>
                 <div class="mx-2 my-2">{{ item.product.price }}</div>

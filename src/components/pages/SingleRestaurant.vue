@@ -16,28 +16,60 @@ export default {
   },
   methods:{
 
-    addToCart(id){
-        let quantity = document.getElementById(`${id}-quantity`);
+    addToCart(product){
 
-        console.log(quantity);
+        let wasFound = false;
+        let wrongCompany = false;
 
-        const item = {
-            "id": id,
+       if( localStorage.getItem("cart") ){
+            this.store.shoppingCart = JSON.parse(localStorage.getItem('cart')); 
+        }
+
+        let quantity = document.getElementById(`${product.id}-quantity`).value;
+
+        console.log(this.store.shoppingCart);
+
+        this.store.shoppingCart.forEach(item => {
+            
+            if(item.product.id == product.id) {
+
+                item.quantity = parseInt(item.quantity);
+
+                item.quantity += parseInt(quantity);
+
+                wasFound = true;
+
+                return
+
+            }else if(product.company_id != item.product.company_id ){
+                
+                wrongCompany = true;
+                return
+
+            }
+
+        });
+
+        if(wasFound == false && wrongCompany == false){
+            const item = {
+            "product": product,
             "quantity": quantity,
-        };
-        this.store.shoppingCart.push(item);
+            };
 
-        console.log(this.store.shoppingCart)
+            this.store.shoppingCart.push(item);
+        }
+
+        localStorage.setItem('cart', JSON.stringify(this.store.shoppingCart));
     },  
 
   },
   created(){
-    console.log(this.$route.params.slug);
+    this.store.shoppingCart = localStorage.getItem('cart') || [];
+
     axios.get('http://127.0.0.1:8000/api/companies/' + this.$route.params.slug)
     .then(response => {
 
         this.restaurant = response.data;
-        console.log(this.restaurant);
 
     })
     .catch(error => {
@@ -86,7 +118,7 @@ export default {
                             {{ product.price }}
                         </p>
                         <input type="number" name="quantity" :id="product.id + '-quantity'" min="1">
-                    <button @click="addToCart(product.id)"
+                    <button @click="addToCart(product)"
                             class="btn btn-primary my-2">
                                 Aggiungi al carrello
                     </button>

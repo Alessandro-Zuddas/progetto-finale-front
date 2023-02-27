@@ -21,7 +21,6 @@ export default {
     .then(result => {
 
       this.store.typologies = result.data;
-      console.log(this.store.typologies);
 
     });
 
@@ -29,7 +28,6 @@ export default {
     .then(result => {
 
       this.store.companies = result.data;
-      console.log(this.store.companies);
 
     });
   }

@@ -52,7 +52,7 @@
 <template>
     <div class="ms-container container shadow py-5">
         <div class="row">
-            <div class="ms-col-aside">
+            <div class="ms-col-aside col-3">
                 <div class="ms-title-container pb-4">
                     <h2 class="ms-2">Categorie:</h2>
                 </div>
@@ -62,7 +62,7 @@
                 </label>
             </div>
             
-            <div class="ms-col-big">
+            <div class="ms-col-big col-9">
                 <div class="card mx-2 my-4 shadow" style="width: 18rem;" v-for="restaurant in filteredCompanies">
                     <img :src="restaurant.image" class="card-img-top ms-company-img" :alt="restaurant.company_name" v-if="restaurant.image">
                     <img src="https://via.placeholder.com/150" class="card-img-top ms-company-img" :alt="restaurant.company_name" v-else>
@@ -102,7 +102,7 @@
     }
     
     .ms-col-aside{
-        width: 20vw;
+        // width: 20vw;
         height: 85vh;
         display: flex;
         flex-direction: column;
@@ -110,7 +110,7 @@
     }
 
     .ms-col-big{
-        width: 60vw;
+        // width: 60vw;
         height: 85vh;
         display: flex;
         justify-content: center;

@@ -112,7 +112,11 @@ export default {
             <div class="ms-product py-4 d-flex justify-content-center">
                 <div class="card mx-2 my-2" style="width: 18rem;" v-for="product in restaurant.products">
                     <div class="card-body">
-                        <h5 class="card-title">{{ product.name }}</h5>
+                        <div class="ms-img-container">
+                            <img :src="product.image_url" :alt="product.name" v-if="product.image_url">
+                            <img :src="product.image" :alt="product.name" v-else>
+                        </div>
+                        <h5 class="card-title my-2">{{ product.name }}</h5>
                         <p class="card-text">
                             <strong>Descrizione:</strong> <br>
                             {{ product.description }} <br>
@@ -136,13 +140,14 @@ export default {
 
 .ms-aside{
     width: 30vw;
-    height: 80vh;
+    height: 100vh;
     border-right: 1px solid black;
 }
 
 .ms-products-container{
     width: 70vw;
-    height: 80vh;
+    height: 100vh;
+    overflow-y: auto;
 }
 
 .ms-product{
@@ -150,10 +155,17 @@ export default {
 }
 
 .ms-company-img{
-    max-width: 28.125rem;
+    max-width: 100%;
     max-height: 28.125rem;
     border-radius: 1.5625rem;
     overflow-y: auto;
 }
 
+.ms-img-container{
+    img{
+        max-width: 100%;
+        height: 6.25rem;
+        border-radius: 5%;
+    }
+}
 </style>

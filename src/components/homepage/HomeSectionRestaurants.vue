@@ -42,9 +42,6 @@
                     console.log(error)
                 })
             },
-            showSingleRestaurant(){
-                //Logica show singolo ristorante
-            }
         },
         created() {
             this.fetchRestaurants();

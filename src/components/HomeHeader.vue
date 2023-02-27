@@ -30,9 +30,9 @@ export default {
                 <div class="col text-end my-2" v-else>
                     <a class="mx-2 btn btn-primary" href="http://127.0.0.1:8000/login">Accedi</a>
                     <a class="mx-2 btn btn-secondary" href="http://127.0.0.1:8000/register">Registrati</a>
-                    <router-link class="col ms-nav-links" :to="{ name: 'restaurants' }">
+                    <!-- <router-link class="col ms-nav-links" :to="{ name: 'restaurants' }">
                         <strong>Ristoranti</strong>
-                    </router-link>
+                    </router-link> -->
                 </div>
             </div>
         </div>

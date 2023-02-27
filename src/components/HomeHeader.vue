@@ -34,10 +34,21 @@ export default {
                         <strong>Ristoranti</strong>
                     </router-link> -->
                 </div>
+                <button class=" col-1 btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Carrello</button>
             </div>
         </div>
     </div>
-  
+    <!-- Carrello -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasRightLabel">Carrello</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        ...
+    </div>
+    </div>
+    <!-- /Carrello -->
 </template>
 
 <style lang="scss" scoped>

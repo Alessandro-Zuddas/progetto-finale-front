@@ -46,7 +46,7 @@ export default {
               <a href="#"
                 ><img
                   class="ms-img-badge w-50"
-                  src="../../../assets/img/badge-app-store.png"
+                  src="../assets/img/badge-app-store.png"
                   alt="app-store"
               /></a>
             </li>
@@ -54,7 +54,7 @@ export default {
               <a href="#"
                 ><img
                   class="ms-img-badge w-50"
-                  src="../../../assets/img/badge-google-play.png"
+                  src="../assets/img/badge-google-play.png"
                   alt="google-play"
               /></a>
               <!-- /DA MODIFICARE -->

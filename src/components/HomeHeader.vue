@@ -47,7 +47,9 @@ export default {
     <div class="offcanvas-body">
        <ul>
             <li v-for="item in this.store.shoppingCart">
-                {{ item.product.name }}
+                <div>{{ item.product.name }}</div>
+                <div>{{ item.product.price }}</div>
+                <div>{{ item.product.quantity }}</div>
             </li>
        </ul>
     </div>

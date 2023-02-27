@@ -17,6 +17,10 @@ export default {
     }
   },
   created(){
+    
+    if( localStorage.getItem("cart") ){
+            this.store.shoppingCart = JSON.parse(localStorage.getItem('cart')); 
+        }
     axios.get("http://127.0.0.1:8000/api/typologies")
     .then(result => {
 

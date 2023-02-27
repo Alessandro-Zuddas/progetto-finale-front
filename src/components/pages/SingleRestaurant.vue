@@ -119,7 +119,7 @@ export default {
                             <strong>Prezzo:</strong> <br>
                             {{ product.price }}
                         </p>
-                        <input type="number" name="quantity" :id="product.id + '-quantity'" min="1">
+                        <input type="number" name="quantity" :id="product.id + '-quantity'" min="1" value="1">
                     <button @click="addToCart(product)"
                             class="btn btn-primary my-2">
                                 Aggiungi al carrello

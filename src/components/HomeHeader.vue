@@ -10,6 +10,19 @@ export default {
       store, 
     }
   },
+  methods: {
+    calculateTotalPrice(){
+
+        this.store.totalPrice = 0;
+
+        this.store.shoppingCart.forEach(product => {
+            
+            let productPrice = product.quantity * product.product.price;
+            this.store.totalPrice += productPrice;
+
+        });
+    }
+  },
 };
 </script>
 
@@ -34,7 +47,9 @@ export default {
                         <strong>Ristoranti</strong>
                     </router-link> -->
                 </div>
-                <button class=" col-1 btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Carrello</button>
+                <button @click="calculateTotalPrice()" class=" col-1 btn btn-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                    <i class="fa-solid fa-basket-shopping ms-cart-icon"></i>
+                </button>
             </div>
         </div>
     </div>
@@ -45,13 +60,15 @@ export default {
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-       <ul>
-            <li v-for="item in this.store.shoppingCart">
-                <div>{{ item.product.name }}</div>
-                <div>{{ item.product.price }}</div>
-                <div>{{ item.product.quantity }}</div>
-            </li>
-       </ul>
+        <h1>Dettagli dell'ordine:</h1>
+        <div class="ms-cart-product d-flex" v-for="item in this.store.shoppingCart">
+            <div class="mx-2 my-2">- 
+                <strong>{{ item.product.name }}:</strong>
+            </div>
+            <div class="mx-2 my-2">{{ item.product.price }}</div>
+            <div class="mx-2 my-2">x {{ item.quantity }}</div>
+        </div>
+        <h1 class="ms-total-price my-4">Totale: {{ this.store.totalPrice }} €</h1>
     </div>
     </div>
     <!-- /Carrello -->
@@ -70,6 +87,14 @@ export default {
 
 .ms-nav-links:hover{
     transform: scale(1.5);
+}
+
+.ms-cart-icon{
+    font-size: 1.375rem;
+}
+
+.ms-cart-product{
+    border-bottom: 1px solid black;
 }
 
 </style>

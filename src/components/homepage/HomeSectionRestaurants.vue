@@ -50,25 +50,25 @@
 </script>
 
 <template>
-    <div class="container-fluid">
+    <div class="container-fluid py-5">
         <div class="row">
             <div class="ms-col-aside">
-                <div class="ms-title-container">
-                    <h2 class="ms-2">Seleziona una categoria:</h2>
+                <div class="ms-title-container pb-4">
+                    <h2 class="ms-2">Categorie:</h2>
                 </div>
-                <label :for=" typology.slug " class="ms-2 text-light ms-check-restaurant" v-for="typology in this.store.typologies">
+                <label :for=" typology.slug " class="ms-2 text-secondary ms-check-restaurant" v-for="typology in this.store.typologies">
                     <input type="checkbox" :value=" typology.slug " :id=" typology.slug " class="me-1" v-model="this.selectedTypes">
                     {{ typology.name }}
                 </label>
             </div>
             
             <div class="ms-col-big">
-                <div class="card mx-2 my-2" style="width: 18rem;" v-for="restaurant in filteredCompanies">
+                <div class="card mx-2 my-4 shadow" style="width: 18rem;" v-for="restaurant in filteredCompanies">
                     <img :src="restaurant.image" class="card-img-top ms-company-img" :alt="restaurant.company_name" v-if="restaurant.image">
                     <img src="https://via.placeholder.com/150" class="card-img-top ms-company-img" :alt="restaurant.company_name" v-else>
                     <div class="card-body">
                         <h5 class="card-title">{{ restaurant.company_name }}</h5>
-                        <p class="card-text">{{ restaurant.address }}</p>
+                        <p class="card-text text-secondary ms-address">{{ restaurant.address }}</p>
                         <p class="card-text">
                             <strong>N. telefono:</strong> <br>
                             {{ restaurant.telephone }}
@@ -83,7 +83,7 @@
                         </p>
                         <router-link
                         :to="{ name: 'single-restaurant', params: { slug: restaurant.slug } }"
-                        class="btn btn-primary">
+                        class="btn ms-button">
                             Ordina ora!
                         </router-link>
                     </div>
@@ -96,28 +96,21 @@
 <style lang="scss" scoped>
 
     .container-fluid{
-        background-color: rgba(23, 196, 185, 1);
-        // background: linear-gradient(
-        //     to bottom right,
-        //     rgba(0, 126, 137, 1) 0%,
-        //     rgba(25, 190, 181, 1) 84%,
-        //     rgba(23, 196, 185, 1) 100%
-        // );
+        margin-top: 100px;
         padding: .625rem 10px;
+        background: rgba(255, 255, 255, 0.7);
     }
-
+    
     .ms-col-aside{
-        width: 25vw;
+        width: 20vw;
         height: 85vh;
         display: flex;
         flex-direction: column;
         overflow-y: auto;
-        border: 1px solid white;
-        border-radius: 15px;
     }
 
     .ms-col-big{
-        width: 75vw;
+        width: 80vw;
         height: 85vh;
         display: flex;
         justify-content: center;
@@ -129,12 +122,25 @@
 
     .card{
         max-height: 37.5rem;
+        border: none;
+        .ms-company-img{
+            height: 9.375rem;
+        }
+        .ms-address{
+            font-size: 13px;
+        }
     }
 
     .ms-title-container{
         background-color: white;
         border-radius: 15px;
         margin-top: .3125rem;
+    }
+
+    .ms-button{
+       background-color:  rgba(23, 196, 185, 1);
+       color: #fff;
+       width:100%;
     }
 
     .ms-check-restaurant{

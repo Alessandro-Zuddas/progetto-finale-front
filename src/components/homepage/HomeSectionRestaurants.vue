@@ -129,6 +129,11 @@
 
     .card{
         max-height: 37.5rem;
+
+        .ms-company-img{
+            width:100%;
+            height: 9.375rem;
+        }
     }
 
     .ms-title-container{

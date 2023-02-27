@@ -69,14 +69,14 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ restaurant.company_name }}</h5>
                         <p class="card-text text-secondary ms-address">{{ restaurant.address }}</p>
-                        <p class="card-text">
+                        <!-- <p class="card-text">
                             <strong>N. telefono:</strong> <br>
                             {{ restaurant.telephone }}
                         </p>
                         <p class="card-text">
                             <strong>Orario di apertura:</strong> <br>
                             {{ restaurant.opening_hours }}
-                        </p>
+                        </p> -->
                         <p class="card-text">
                             <strong>Ordine minimo:</strong>
                             {{ restaurant.minimum_order }} €

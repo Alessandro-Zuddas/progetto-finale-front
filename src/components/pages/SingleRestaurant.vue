@@ -19,6 +19,7 @@ export default {
     .then(response => {
 
         this.restaurant = response.data;
+        console.log(this.restaurant);
 
     })
     .catch(error => {
@@ -36,8 +37,26 @@ export default {
 
         </div>
         <div class="ms-products-container">
-
-        </div>
+        
+          <div class="ms-product d-flex">
+            <div class="card mx-2 my-2" style="width: 18rem;" v-for="product in restaurant.products">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">
+                        <strong>Descrizione:</strong> <br>
+                        {{ product.description }}
+                        <strong>Prezzo:</strong> <br>
+                        {{ product.price }}
+                    </p>
+                    <input type="number" name="" id="quantity" >
+                   <button
+                        class="btn btn-primary">
+                            Aggiungi al carrello
+                </button>
+                </div>
+          </div>
+         </div>
+      </div>
     </div>
 
 </template>
@@ -53,7 +72,6 @@ export default {
 .ms-products-container{
     width: 70vw;
     height: 80vh;
-    background-color: aqua;
 }
 
 </style>

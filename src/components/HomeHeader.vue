@@ -37,7 +37,7 @@ export default {
     deleteItem(id){
         this.store.shoppingCart.forEach(product => {
             if(product.product.id==id){
-                this.store.shoppingCart.splice(id, 1);
+                this.store.shoppingCart.splice(id-1, 1);
                 return
             }
         })

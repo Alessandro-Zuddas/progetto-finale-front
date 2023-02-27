@@ -4,6 +4,7 @@ export const store = reactive({
     typologies: [],
     companies: [],
     shoppingCart: [],
+    totalPrice: 0,
     email: "",
     name: "",
     id:"",

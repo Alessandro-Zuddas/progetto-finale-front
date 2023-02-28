@@ -126,7 +126,7 @@ export default {
             </h6>
         </div>
         <div class="ms-products-container">
-            <div class="ms-product py-4 d-flex justify-content-center">
+            <div class="ms-product mx-5 py-3 d-flex justify-content-start">
                 <div class="card mx-2 my-2" style="width: 18rem;" v-for="product in restaurant.products">
                     <div class="card-body">
                         <div class="ms-img-container">
@@ -140,10 +140,10 @@ export default {
                             <strong>Prezzo:</strong> <br>
                             {{ product.price }}
                         </p>
-                        <div>
-                            <button @click="$event=>incrementQuantity(product.id)">+</button>
+                        <div class="ms-input">
+                            <button @click="$event=>incrementQuantity(product.id)"><strong>+</strong></button>
                             <input type="number" :value="productsQuantity[product.id]" :id="product.id+'-quantity'" />
-                            <button @click="$event=>decrementQuantity(product.id)">-</button>
+                            <button @click="$event=>decrementQuantity(product.id)"><strong>-</strong></button>
                         </div>
                         <button @click="addToCart(product)"
                                 class="btn btn-primary my-2">
@@ -173,6 +173,7 @@ export default {
 
 .ms-product{
     flex-wrap: wrap;
+    margin: auto;
 }
 
 .ms-company-img{
@@ -183,10 +184,36 @@ export default {
 }
 
 .ms-img-container{
+    text-align: center;
     img{
-        max-width: 100%;
+        max-width: 50%;
         height: 6.25rem;
         border-radius: 5%;
+    }
+}
+
+.ms-input{
+    display: flex;
+    input, button{
+        text-align: center;
+        width: 2.1875rem;
+        height: 1.875rem;
+        border: 1px solid lightgray;
+    }
+    button{
+        background-color: rgb(238, 238, 238);
+        padding: 0 0 1px 0;
+        font-size: large;
+    }
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
+    /* Firefox */
+    input[type=number] {
+    -moz-appearance: textfield;
     }
 }
 </style>

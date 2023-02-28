@@ -113,6 +113,11 @@ export default {
                 </div>
             </div>
             <h1 class="ms-total-price my-4">Totale: {{ this.store.totalPrice }} €</h1>
+            <router-link
+                        :to="{ name: 'check-out'}"
+                        class="btn ms-button">
+                            Checkout
+            </router-link>
         </div>
         <div v-else>
             <h1>Il carrello è vuoto!</h1>

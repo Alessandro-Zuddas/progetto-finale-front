@@ -114,7 +114,7 @@ export default {
             localStorage.setItem('productsQuantity', JSON.stringify(this.productsQuantity));
         }else{
             this.productsQuantity=JSON.parse(localStorage.getItem('productsQuantity'));
-
+            console.log(this.productsQuantity,"else")
         }
     
     })

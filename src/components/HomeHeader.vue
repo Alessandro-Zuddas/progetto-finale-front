@@ -75,9 +75,9 @@ export default {
                     <span>{{ this.store.name }}</span>
                     <a class="mx-2 btn btn-primary" :href="this.store.companyurl">Backoffice</a>
                 </div>
-                <div class="col text-end my-2" v-else>
-                    <a class="mx-2 btn btn-primary" href="http://127.0.0.1:8000/login">Accedi</a>
-                    <a class="mx-2 btn btn-secondary" href="http://127.0.0.1:8000/register">Registrati</a>
+                <div class="col d-flex justify-content-end text-light my-2" v-else>
+                    <a class="nav-link mx-2" href="http://127.0.0.1:8000/login">Accedi</a>
+                    <a class="nav-link mx-2" href="http://127.0.0.1:8000/register">Registrati</a>
                     <!-- <router-link class="col ms-nav-links" :to="{ name: 'restaurants' }">
                         <strong>Ristoranti</strong>
                     </router-link> -->
@@ -129,7 +129,9 @@ export default {
 .ms-logo-home{
     width: 200px;
 }
-
+.nav-link:hover{
+    color:  rgba(23, 196, 185, 1);
+}
 .ms-nav-links, span{
     color: white;
     text-decoration: none;

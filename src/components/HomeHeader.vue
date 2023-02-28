@@ -17,9 +17,10 @@ export default {
 
         this.store.shoppingCart.forEach(product => {
             
-            let productPrice = product.quantity * product.product.price;
-            this.store.totalPrice += productPrice;
+            let productPrice = parseFloat( product.quantity * product.product.price);
+            let cartPrice = parseFloat(this.store.totalPrice);
 
+            this.store.totalPrice += productPrice;
         });
     },
     removeOneItem(product){
@@ -93,7 +94,9 @@ export default {
         <div v-if="this.store.shoppingCart.length > 0">
             <h1>Dettagli dell'ordine:</h1>
             <div class="ms-cart-product d-flex align-items-center" v-for="item in this.store.shoppingCart">
-                <div class=" d-inline" @click="deleteItem(item.product.id)">X</div>
+                <div class=" d-inline" @click="deleteItem(item.product.id)">
+                    <strong>x</strong>
+                </div>
                 <div class="mx-2 my-2 d-inline">- 
                     <strong>{{ item.product.name }}:</strong>
                 </div>

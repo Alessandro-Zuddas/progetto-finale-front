@@ -79,13 +79,18 @@ export default {
                 
                 setTimeout(() => {
                     this.addedToCart = false;
-                }, 2500);
+                }, 3000);
 
                 return
 
             }else if(product.company_id != item.product.company_id ){
                 
                 wrongCompany = true;
+
+                setTimeout(() => {
+                    this.addedToCart = false;
+                }, 3000);
+
                 return
 
             }

@@ -39,12 +39,15 @@ export default {
     incrementQuantity(id) {
         
         this.productsQuantity[id]+=1;
+        localStorage.setItem('productsQuantity', JSON.stringify(this.productsQuantity));
     },
 
     decrementQuantity(id) {
         if (this.productsQuantity[id] > 1) {
           this.productsQuantity[id]=this.productsQuantity[id]-1;
+          localStorage.setItem('productsQuantity', JSON.stringify(this.productsQuantity));
         }
+
     },
 
     addToCart(product){
@@ -56,7 +59,7 @@ export default {
             this.store.shoppingCart = JSON.parse(localStorage.getItem('cart')); 
         }
 
-        let quantity = document.getElementById(`${product.id}-quantity`).value;
+        let quantity = this.productsQuantity[product.id];
 
         console.log(this.store.shoppingCart);
 
@@ -103,10 +106,17 @@ export default {
     .then(response => {
 
         this.restaurant = response.data;
-        this.restaurant.products.forEach(product => {
-        this.productsQuantity[product.id]= 1;
-        console.log(this.productsQuantity)
-    });
+        if(!localStorage.getItem('productsQuantity')){
+            this.restaurant.products.forEach(product => {
+            this.productsQuantity[product.id]= 1;
+        });
+            console.log(this.productsQuantity)
+            localStorage.setItem('productsQuantity', JSON.stringify(this.productsQuantity));
+        }else{
+            this.productsQuantity=JSON.parse(localStorage.getItem('productsQuantity'));
+
+        }
+    
     })
     .catch(error => {
         console.log(error)
@@ -158,10 +168,11 @@ export default {
                             <strong>Prezzo:</strong> <br>
                             {{ product.price }}
                         </p>
-                        <div class="ms-input">
-                            <button @click="$event=>incrementQuantity(product.id)"><strong>+</strong></button>
-                            <input type="number" :value="productsQuantity[product.id]" :id="product.id+'-quantity'" />
-                            <button @click="$event=>decrementQuantity(product.id)"><strong>-</strong></button>
+                        <div>
+                            <strong>Quantità:</strong> <br>
+                            <span class="me-2" @click="$event=>incrementQuantity(product.id)"><strong>+</strong></span>
+                            <span class="me-2">{{ productsQuantity[product.id] }}</span>
+                            <span @click="$event=>decrementQuantity(product.id)"><strong>-</strong></span>
                         </div>
                         <button @click="addToCart(product), calculateTotalPrice()" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
                                 class="btn btn-primary my-2">
@@ -210,28 +221,4 @@ export default {
     }
 }
 
-.ms-input{
-    display: flex;
-    input, button{
-        text-align: center;
-        width: 2.1875rem;
-        height: 1.875rem;
-        border: 1px solid lightgray;
-    }
-    button{
-        background-color: rgb(238, 238, 238);
-        padding: 0 0 1px 0;
-        font-size: large;
-    }
-    /* Chrome, Safari, Edge, Opera */
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-    }
-    /* Firefox */
-    input[type=number] {
-    -moz-appearance: textfield;
-    }
-}
 </style>

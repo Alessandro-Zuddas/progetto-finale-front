@@ -85,9 +85,9 @@ export default {
                         <strong>Ristoranti</strong>
                     </router-link> -->
                 </div>
-                <button @click="calculateTotalPrice()" class=" col-1 btn ms-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                <div @click="calculateTotalPrice()" class=" col-1 ms-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                     <i class="fa-solid fa-basket-shopping ms-cart-icon"></i>
-                </button>
+                </div>
             </div>
         </div>
     </div>
@@ -145,12 +145,12 @@ export default {
 .ms-cart-icon{
     font-size: 1.375rem;
 }
+.ms-cart-icon:hover{
+    color: rgba(23, 196, 185, 1);
+}
 .ms-button{
        background-color: transparent;
        color: #fff;
-}
-.ms-button:hover{
-    color: rgba(23, 196, 185, 1);
 }
 .ms-cart-product{
     border-bottom: 1px solid black;

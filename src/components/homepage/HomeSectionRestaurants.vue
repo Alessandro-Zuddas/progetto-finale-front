@@ -154,4 +154,8 @@
         border-bottom: 1px solid white;
     }
 
+    input[type=checkbox] {
+        accent-color: rgba(23, 196, 185, 1);
+    }
+
 </style>

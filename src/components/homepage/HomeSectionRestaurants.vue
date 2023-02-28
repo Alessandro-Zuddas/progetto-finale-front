@@ -52,11 +52,11 @@
 <template>
     <div class="ms-container container shadow py-5">
         <div class="row">
-            <div class="ms-col-aside col-3">
-                <div class="ms-title-container pb-4">
+            <div class="ms-col-aside col-3 ">
+                <div class="ms-title-container ms-3 pb-4">
                     <h2 class="ms-2">Categorie:</h2>
                 </div>
-                <label :for=" typology.slug " class="ms-2 text-secondary ms-check-restaurant" v-for="typology in this.store.typologies">
+                <label :for=" typology.slug " class="ms-2 text-secondary ms-check-restaurant ms-5" v-for="typology in this.store.typologies">
                     <input type="checkbox" :value=" typology.slug " :id=" typology.slug " class="me-1" v-model="this.selectedTypes">
                     {{ typology.name }}
                 </label>
@@ -111,6 +111,7 @@
         // width: 20vw;
         height: 85vh;
         display: flex;
+        justify-content: center;
         flex-direction: column;
         overflow-y: auto;
     }

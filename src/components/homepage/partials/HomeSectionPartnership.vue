@@ -15,7 +15,7 @@ export default {
             tu puoi dedicarti a offrire i migliori piatti e prodotti.
           </p>
           <button class="ms-button rounded p-2">
-            Inizia ora <i class="fa-solid fa-arrow-right"></i>
+            Inizia ora <i class="ms-icon ms-2 fa-solid fa-arrow-right"></i>
           </button>
         </div>
       </div>
@@ -27,7 +27,7 @@ export default {
             convenzioni e sconti riservati a te.
           </p>
           <button class="ms-button rounded p-2">
-            Inizia ora <i class="fa-solid fa-arrow-right"></i>
+            Inizia ora <i class="ms-icon ms-2 fa-solid fa-arrow-right"></i>
           </button>
         </div>
       </div>
@@ -61,6 +61,9 @@ export default {
 
     .ms-button {
       border: none;
+      .ms-icon{
+        color: rgba(23, 196, 185, 1);
+      }
     }
   }
 }

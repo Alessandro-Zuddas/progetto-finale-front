@@ -20,14 +20,12 @@ export default {
             let productPrice = parseFloat( product.quantity * product.product.price);
             let cartPrice = parseFloat(this.store.totalPrice);
 
-            // Funziona toFixed() ma non logica
-            // this.store.totalPrice = parseFloat(this.store.totalPrice += productPrice).toFixed(2);
-            // parseFloat(this.store.totalPrice);
-            // /Funziona toFixed() ma non logica                                                       
+            console.log(productPrice, "Product Price")
+            console.log(cartPrice, "Cart Price")
 
-            // Funziona logica ma non toFixed()
-            parseFloat(this.store.totalPrice += productPrice).toFixed(2);
-            // /Funziona logica ma non toFixed()
+            this.store.totalPrice = parseFloat(this.store.totalPrice += productPrice).toFixed(2);
+
+            this.store.totalPrice = parseFloat(this.store.totalPrice);
         });
     },
     removeOneItem(product){

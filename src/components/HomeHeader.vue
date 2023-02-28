@@ -33,11 +33,16 @@ export default {
     },
     addOneItem(product){
         product.quantity = parseInt(product.quantity) + 1;
+
+        localStorage.setItem("cart", JSON.stringify(this.store.shoppingCart));
     },
     deleteItem(id){
         this.store.shoppingCart.forEach(product => {
             if(product.product.id==id){
-                this.store.shoppingCart.splice(id-1, 1);
+
+                let currentId = this.store.shoppingCart.indexOf(product);
+                this.store.shoppingCart.splice(currentId, 1);
+
                 return
             }
         })

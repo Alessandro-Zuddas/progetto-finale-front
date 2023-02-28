@@ -101,6 +101,13 @@ export default {
             console.log(error.response.data.errors);
             // Effettua altre operazioni in caso di errore
             });
+            console.log(Object.keys(this.store.shoppingCart).map(key => ({
+                    product: { id: this.store.shoppingCart[key].product.id },
+                    quantity: this.store.shoppingCart[key].quantity
+                })))
+            this.store.shoppingCart=[];
+            localStorage.setItem('cart', []);
+            this.$router.push({ path: '/' });
         }
   },
 }

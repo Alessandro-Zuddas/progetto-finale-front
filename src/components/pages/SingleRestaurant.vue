@@ -16,6 +16,7 @@ export default {
         restaurant: {},
         store,
         addedToCart: false,
+        addToCartError: false,
     }
   },
   methods:{
@@ -54,8 +55,6 @@ export default {
 
     addToCart(product){
 
-        this.addedToCart = true;
-
         let wasFound = false;
         let wrongCompany = false;
 
@@ -77,11 +76,15 @@ export default {
 
                 wasFound = true;
 
+                this.addedToCart = true;
+
                 return
 
             }else if(product.company_id != item.product.company_id ){
                 
                 wrongCompany = true;
+
+                this.addToCartError = true;
 
                 return
 
@@ -92,6 +95,10 @@ export default {
         
         setTimeout(() => {
             this.addedToCart = false;
+        }, 3000),
+
+        setTimeout(() => {
+            this.addToCartError = false;
         }, 3000)
         
         );
@@ -193,7 +200,21 @@ export default {
                 </div>
 
                 <div v-show="this.addedToCart == true" class="ms-add-message my-3 mx-3 position-fixed bottom-0 end-0 p-3">
-                    <p>Prodotto aggiunto al carrello!</p>
+                    <div class="toast-header">
+                        <strong class="me-auto ms-message-title">Prodotto aggiunto!</strong>
+                    </div>
+                    <div class="toast-body ms-message-desc">
+                        Continua ad aggiungere prodotti o vai al checkout!
+                    </div>
+                </div>
+
+                <div v-show="this.addToCartError == true" class="ms-add-message-wrong my-3 mx-3 position-fixed bottom-0 end-0 p-3">
+                    <div class="toast-header">
+                        <strong class="me-auto ms-message-title">Ops!</strong>
+                    </div>
+                    <div class="toast-body ms-message-desc">
+                        Non puoi ordinare da due ristoranti diversi!
+                    </div>
                 </div>
 
             </div>
@@ -243,5 +264,20 @@ export default {
     padding: 10px 10px;
     border-radius: 10px;
     background-color: lightgreen;
+}
+
+.ms-add-message-wrong{
+    font-size: 22px;
+    padding: 10px 10px;
+    border-radius: 10px;
+    background-color: lightcoral;
+}
+
+.ms-message-title{
+    font-size: 18px;
+}
+
+.ms-message-desc{
+    font-size: 16px;
 }
 </style>

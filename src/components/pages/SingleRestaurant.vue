@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { store } from "../../store";
 
+
 export default {
   name: "SingleRestaurant",
 
@@ -14,6 +15,8 @@ export default {
         productsQuantity: {},
         restaurant: {},
         store,
+        addedToCart: false,
+        addToCartError: false,
     }
   },
   methods:{
@@ -73,16 +76,32 @@ export default {
 
                 wasFound = true;
 
+                this.addedToCart = true;
+
                 return
 
             }else if(product.company_id != item.product.company_id ){
                 
                 wrongCompany = true;
+
+                this.addToCartError = true;
+
                 return
 
             }
 
-        });
+        },
+
+        
+        setTimeout(() => {
+            this.addedToCart = false;
+        }, 2500),
+
+        setTimeout(() => {
+            this.addToCartError = false;
+        }, 2300)
+        
+        );
 
         if(wasFound == false && wrongCompany == false){
             const item = {
@@ -94,7 +113,7 @@ export default {
         }
 
         localStorage.setItem('cart', JSON.stringify(this.store.shoppingCart));
-    },  
+    }, 
 
   },
   created(){
@@ -106,23 +125,22 @@ export default {
     .then(response => {
 
         this.restaurant = response.data;
-        if(!localStorage.getItem('productsQuantity')){
-            this.restaurant.products.forEach(product => {
-            this.productsQuantity[product.id]= 1;
+        this.productsQuantity=JSON.parse(localStorage.getItem('productsQuantity'));
+        this.restaurant.products.forEach(product => {
+            if(!this.productsQuantity.hasOwnProperty(product.id)){
+            
+                this.productsQuantity[product.id]= 1;
+            
+                console.log(this.productsQuantity[product.id])
+                localStorage.setItem('productsQuantity', JSON.stringify(this.productsQuantity));
+            }
         });
-            console.log(this.productsQuantity)
-            localStorage.setItem('productsQuantity', JSON.stringify(this.productsQuantity));
-        }else{
-            this.productsQuantity=JSON.parse(localStorage.getItem('productsQuantity'));
-
-        }
     
     })
     .catch(error => {
         console.log(error)
     })
-   
-  }
+  },
 
 };
 </script>
@@ -130,7 +148,7 @@ export default {
 <template>
 
     <div class="container-fluid d-flex p-0">
-        <div class="ms-aside py-4 px-4">
+        <div class="ms-aside py-4 px-4 d-flex flex-column">
             <div class="text-center mb-4">
                 <img :src="this.restaurant.image" class="ms-company-img" :alt="this.restaurant.company_name" v-if="this.restaurant.image">
                 <img src="https://via.placeholder.com/150" class="card-img-top ms-company-img" :alt="this.restaurant.company_name" v-else>
@@ -148,18 +166,19 @@ export default {
                 {{ this.restaurant.opening_hours }}.
             </h6>
             <h6 class="my-3">
-                <i class="fa-regular fa-sack-dollar mx-2"></i>
-                <strong>Ordine minimo:</strong>
+                <i class="fa-solid fa-euro-sign mx-2"></i>
+                <strong class="ms-1">Ordine minimo:</strong>
                 {{ this.restaurant.minimum_order }} €.
             </h6>
         </div>
         <div class="ms-products-container">
             <div class="ms-product mx-5 py-3 d-flex justify-content-start">
-                <div class="card mx-2 my-2" style="width: 18rem;" v-for="product in restaurant.products">
+                <!-- Singolo Piatto -->
+                <div class="card text-bg-light mx-3 my-2 shadow" style="width: 18rem;" v-for="product in restaurant.products">
                     <div class="card-body">
                         <div class="ms-img-container">
-                            <img :src="product.image_url" :alt="product.name" v-if="product.image_url">
-                            <img :src="product.image" :alt="product.name" v-else>
+                            <img class="img-fluid card-img-top" :src="product.image_url" :alt="product.name" v-if="product.image_url">
+                            <img class="img-fluid card-img-top" :src="product.image" :alt="product.name" v-else>
                         </div>
                         <h5 class="card-title my-2">{{ product.name }}</h5>
                         <p class="card-text">
@@ -168,20 +187,40 @@ export default {
                             <strong>Prezzo:</strong> <br>
                             {{ product.price }}
                         </p>
-                        <div>
-                            <strong>Quantità:</strong> <br>
-                            <span class="me-2" @click="$event=>incrementQuantity(product.id)"><strong>+</strong></span>
-                            <span class="me-2">{{ productsQuantity[product.id] }}</span>
-                            <span @click="$event=>decrementQuantity(product.id)"><strong>-</strong></span>
+                        <strong>Quantità:</strong>
+                        <div class="ms-btn-quantity">
+                            <span class="mx-2 px-2" @click="$event=>incrementQuantity(product.id)"><strong><i class="fa-solid fa-plus"></i></strong></span>
+                            <span class="mx-2">{{ productsQuantity[product.id] }}</span>
+                            <span class="mx-2 px-2" @click="$event=>decrementQuantity(product.id)"><strong><i class="fa-solid fa-minus"></i></strong></span>
                         </div>
-                        <button @click="addToCart(product), calculateTotalPrice()" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-                                class="btn btn-primary my-2">
-                                    Aggiungi al carrello
+                        <button @click="addToCart(product), calculateTotalPrice()"
+                                class="btn ms-btn my-2">
+                                   <strong>Aggiungi al carrello</strong>
                         </button>
                     </div>
                 </div>
+
+                <div v-show="this.addedToCart == true" class="ms-add-message my-3 mx-3 position-fixed bottom-0 end-0 p-3">
+                    <div class="toast-header">
+                        <strong class="me-auto ms-message-title">Prodotto aggiunto!</strong>
+                    </div>
+                    <div class="toast-body ms-message-desc">
+                        Continua ad aggiungere prodotti o vai al checkout!
+                    </div>
+                </div>
+
+                <div v-show="this.addToCartError == true" class="ms-add-message-wrong my-3 mx-3 position-fixed bottom-0 end-0 p-3">
+                    <div class="toast-header">
+                        <strong class="me-auto ms-message-title">Ops!</strong>
+                    </div>
+                    <div class="toast-body ms-message-desc">
+                        Non puoi ordinare da due ristoranti diversi!
+                    </div>
+                </div>
+
             </div>
         </div>
+
     </div>
 
 </template>
@@ -215,10 +254,77 @@ export default {
 .ms-img-container{
     text-align: center;
     img{
-        max-width: 50%;
-        height: 6.25rem;
+        height: 12.5rem;
         border-radius: 5%;
     }
 }
 
+.ms-btn{
+    background-color: rgba(23, 196, 185, 1);
+    color: #fff;
+}
+
+.ms-btn-quantity{
+    padding: 5px;
+    max-width: fit-content;
+    span{
+        display: inline-block;
+        cursor: pointer;
+        text-align: center;
+        padding: 0 .3125rem !important;
+        border-radius: 50%;
+
+        :hover{
+            background-color: rgba(23, 196, 185, 0.2);
+        }
+    }
+}
+.ms-add-message{
+    font-size: 22px;
+    padding: 10px 10px;
+    border-radius: 10px;
+    background-color: lightgreen;
+
+    animation: fadeOut 1s;
+    animation-delay: 1.5s;
+}
+
+.ms-add-message-wrong{
+    font-size: 22px;
+    padding: 10px 10px;
+    border-radius: 10px;
+    background-color: lightcoral;
+
+    animation: fadeOut 1s;
+    animation-delay: 1.5s;
+}
+
+.ms-message-title{
+    font-size: 18px;
+}
+
+.ms-message-desc{
+    font-size: 16px;
+}
+
+@keyframes fadeOut {
+    0%{
+        opacity: 1;
+    }
+    20%{
+        opacity: 0.80;
+    }
+    40%{
+        opacity: 0.60;
+    }
+    60%{
+        opacity: 0.40;
+    }
+    80%{
+        opacity: 0.20;
+    }
+    100%{
+        opacity: 0;
+    }
+}
 </style>

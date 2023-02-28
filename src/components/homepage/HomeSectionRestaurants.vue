@@ -52,11 +52,11 @@
 <template>
     <div class="ms-container container shadow py-5">
         <div class="row">
-            <div class="ms-col-aside col-3">
-                <div class="ms-title-container pb-4">
+            <div class="ms-col-aside col-3 ">
+                <div class="ms-title-container ms-3 pb-4">
                     <h2 class="ms-2">Categorie:</h2>
                 </div>
-                <label :for=" typology.slug " class="ms-2 text-secondary ms-check-restaurant" v-for="typology in this.store.typologies">
+                <label :for=" typology.slug " class="ms-5 text-secondary ms-check-restaurant" v-for="typology in this.store.typologies">
                     <input type="checkbox" :value=" typology.slug " :id=" typology.slug " class="me-1" v-model="this.selectedTypes">
                     {{ typology.name }}
                 </label>
@@ -73,14 +73,6 @@
                         <span class="badge ms-badge mb-3" v-for="typology in restaurant.typologies"> 
                             {{ typology.name }}
                         </span>
-                        <!-- <p class="card-text">
-                            <strong>N. telefono:</strong> <br>
-                            {{ restaurant.telephone }}
-                        </p>
-                        <p class="card-text">
-                            <strong>Orario di apertura:</strong> <br>
-                            {{ restaurant.opening_hours }}
-                        </p> -->
                         <p class="card-text">
                             <strong>Ordine minimo:</strong>
                             {{ restaurant.minimum_order }} €
@@ -111,6 +103,7 @@
         // width: 20vw;
         height: 85vh;
         display: flex;
+        justify-content: center;
         flex-direction: column;
         overflow-y: auto;
     }
@@ -159,6 +152,10 @@
     .ms-check-restaurant{
         padding: 10px;
         border-bottom: 1px solid white;
+    }
+
+    input[type=checkbox] {
+        accent-color: rgba(23, 196, 185, 1);
     }
 
 </style>

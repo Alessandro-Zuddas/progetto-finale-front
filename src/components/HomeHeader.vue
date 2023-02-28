@@ -20,9 +20,6 @@ export default {
             let productPrice = parseFloat( product.quantity * product.product.price);
             let cartPrice = parseFloat(this.store.totalPrice);
 
-            console.log(productPrice, "Product Price")
-            console.log(cartPrice, "Cart Price")
-
             this.store.totalPrice = parseFloat(this.store.totalPrice += productPrice).toFixed(2);
 
             this.store.totalPrice = parseFloat(this.store.totalPrice);
@@ -69,25 +66,25 @@ export default {
     <div class="container-fluid bg-black">
         <div class="container">
             <div class="row justify-content-between align-items-center">
-                <div class="col my-2">
+                <div class="col my-4">
                     <router-link :to="{ name: 'homepage' }">
                         <img class="ms-logo-home" src="https://logodownload.org/wp-content/uploads/2019/09/deliveroo-logo-6.png" alt="Logo Deliveroo">
                     </router-link>
                 </div>
-                <div class="col text-end my-2" v-if="this.store.email">
-                    <span>{{ this.store.name }}</span>
-                    <a class="mx-2 btn btn-primary" :href="this.store.companyurl">Backoffice</a>
+                <div class="col d-flex justify-content-end my-4" v-if="this.store.email">
+                    <span class="ms-name">{{ this.store.name }}</span>
+                    <a class="nav-link mx-3 text-light" :href="this.store.companyurl">Area riservata</a>
                 </div>
-                <div class="col text-end my-2" v-else>
-                    <a class="mx-2 btn btn-primary" href="http://127.0.0.1:8000/login">Accedi</a>
-                    <a class="mx-2 btn btn-secondary" href="http://127.0.0.1:8000/register">Registrati</a>
+                <div class="col d-flex justify-content-end text-light my-2" v-else>
+                    <a class="nav-link mx-2" href="http://127.0.0.1:8000/login">Accedi</a>
+                    <a class="nav-link mx-2" href="http://127.0.0.1:8000/register">Registrati</a>
                     <!-- <router-link class="col ms-nav-links" :to="{ name: 'restaurants' }">
                         <strong>Ristoranti</strong>
                     </router-link> -->
                 </div>
-                <button @click="calculateTotalPrice()" class=" col-1 btn ms-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                <div @click="calculateTotalPrice()" class=" col-1 ms-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                     <i class="fa-solid fa-basket-shopping ms-cart-icon"></i>
-                </button>
+                </div>
             </div>
         </div>
     </div>
@@ -133,6 +130,9 @@ export default {
     width: 200px;
 }
 
+.nav-link:hover , .ms-name{
+    color:  rgba(23, 196, 185, 1);
+}
 .ms-nav-links, span{
     color: white;
     text-decoration: none;
@@ -145,12 +145,12 @@ export default {
 .ms-cart-icon{
     font-size: 1.375rem;
 }
+.ms-cart-icon:hover{
+    color: rgba(23, 196, 185, 1);
+}
 .ms-button{
        background-color: transparent;
        color: #fff;
-}
-.ms-button:hover{
-    color: rgba(23, 196, 185, 1);
 }
 .ms-cart-product{
     border-bottom: 1px solid black;

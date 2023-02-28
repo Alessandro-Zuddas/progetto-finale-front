@@ -73,14 +73,6 @@
                         <span class="badge ms-badge mb-3" v-for="typology in restaurant.typologies"> 
                             {{ typology.name }}
                         </span>
-                        <!-- <p class="card-text">
-                            <strong>N. telefono:</strong> <br>
-                            {{ restaurant.telephone }}
-                        </p>
-                        <p class="card-text">
-                            <strong>Orario di apertura:</strong> <br>
-                            {{ restaurant.opening_hours }}
-                        </p> -->
                         <p class="card-text">
                             <strong>Ordine minimo:</strong>
                             {{ restaurant.minimum_order }} €

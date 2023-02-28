@@ -20,7 +20,12 @@ export default {
             let productPrice = parseFloat( product.quantity * product.product.price);
             let cartPrice = parseFloat(this.store.totalPrice);
 
-            this.store.totalPrice += productPrice;
+            console.log(productPrice, "Product Price")
+            console.log(cartPrice, "Cart Price")
+
+            this.store.totalPrice = parseFloat(this.store.totalPrice += productPrice).toFixed(2);
+
+            this.store.totalPrice = parseFloat(this.store.totalPrice);
         });
     },
     removeOneItem(product){
@@ -38,11 +43,13 @@ export default {
         localStorage.setItem("cart", JSON.stringify(this.store.shoppingCart));
     },
     deleteItem(id){
+
         this.store.shoppingCart.forEach(product => {
             if(product.product.id==id){
 
                 let currentId = this.store.shoppingCart.indexOf(product);
                 this.store.shoppingCart.splice(currentId, 1);
+                this.calculateTotalPrice();
 
                 return
             }
@@ -78,7 +85,7 @@ export default {
                         <strong>Ristoranti</strong>
                     </router-link> -->
                 </div>
-                <button @click="calculateTotalPrice()" class=" col-1 btn btn-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                <button @click="calculateTotalPrice()" class=" col-1 btn ms-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                     <i class="fa-solid fa-basket-shopping ms-cart-icon"></i>
                 </button>
             </div>
@@ -139,9 +146,11 @@ export default {
     font-size: 1.375rem;
 }
 .ms-button{
-       background-color:  rgba(23, 196, 185, 1);
+       background-color: transparent;
        color: #fff;
-       width:100%;
+}
+.ms-button:hover{
+    color: rgba(23, 196, 185, 1);
 }
 .ms-cart-product{
     border-bottom: 1px solid black;

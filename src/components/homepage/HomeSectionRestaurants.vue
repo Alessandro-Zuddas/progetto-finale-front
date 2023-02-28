@@ -67,8 +67,12 @@
                     <img :src="restaurant.image" class="card-img-top ms-company-img" :alt="restaurant.company_name" v-if="restaurant.image">
                     <img src="https://via.placeholder.com/150" class="card-img-top ms-company-img" :alt="restaurant.company_name" v-else>
                     <div class="card-body">
+                       
                         <h5 class="card-title">{{ restaurant.company_name }}</h5>
                         <p class="card-text text-secondary ms-address">{{ restaurant.address }}</p>
+                        <span class="badge ms-badge mb-3" v-for="typology in restaurant.typologies"> 
+                            {{ typology.name }}
+                        </span>
                         <!-- <p class="card-text">
                             <strong>N. telefono:</strong> <br>
                             {{ restaurant.telephone }}
@@ -81,6 +85,8 @@
                             <strong>Ordine minimo:</strong>
                             {{ restaurant.minimum_order }} €
                         </p>
+                
+                        
                         <router-link
                         :to="{ name: 'single-restaurant', params: { slug: restaurant.slug } }"
                         class="btn ms-button">
@@ -121,13 +127,20 @@
     }
 
     .card{
-        max-height: 37.5rem;
+        max-height: 400px;
         border: none;
         .ms-company-img{
             height: 9.375rem;
         }
         .ms-address{
             font-size: 13px;
+        }
+        .ms-badge{
+            color: rgba(23, 196, 185, 1);
+            font-weight: lighter;
+            padding:5px;
+            margin-right:5px;
+            border: 1px solid lightgray ;
         }
     }
 

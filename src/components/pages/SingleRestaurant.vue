@@ -9,12 +9,46 @@ export default {
 
   },
   data(){
+    
     return{
+        productsQuantity: {},
         restaurant: {},
         store,
     }
   },
   methods:{
+
+    calculateTotalPrice(){
+
+        this.store.totalPrice = 0;
+
+        this.store.shoppingCart.forEach(product => {
+            
+            let productPrice = parseFloat( product.quantity * product.product.price);
+            let cartPrice = parseFloat(this.store.totalPrice);
+
+            console.log(productPrice, "Product Price")
+            console.log(cartPrice, "Cart Price")
+
+            this.store.totalPrice = parseFloat(this.store.totalPrice += productPrice).toFixed(2);
+
+            this.store.totalPrice = parseFloat(this.store.totalPrice);
+        });
+    },
+
+    incrementQuantity(id) {
+        
+        this.productsQuantity[id]+=1;
+        localStorage.setItem('productsQuantity', JSON.stringify(this.productsQuantity));
+    },
+
+    decrementQuantity(id) {
+        if (this.productsQuantity[id] > 1) {
+          this.productsQuantity[id]=this.productsQuantity[id]-1;
+          localStorage.setItem('productsQuantity', JSON.stringify(this.productsQuantity));
+        }
+
+    },
 
     addToCart(product){
 
@@ -25,7 +59,7 @@ export default {
             this.store.shoppingCart = JSON.parse(localStorage.getItem('cart')); 
         }
 
-        let quantity = document.getElementById(`${product.id}-quantity`).value;
+        let quantity = this.productsQuantity[product.id];
 
         console.log(this.store.shoppingCart);
 
@@ -72,11 +106,22 @@ export default {
     .then(response => {
 
         this.restaurant = response.data;
+        if(!localStorage.getItem('productsQuantity')){
+            this.restaurant.products.forEach(product => {
+            this.productsQuantity[product.id]= 1;
+        });
+            console.log(this.productsQuantity)
+            localStorage.setItem('productsQuantity', JSON.stringify(this.productsQuantity));
+        }else{
+            this.productsQuantity=JSON.parse(localStorage.getItem('productsQuantity'));
 
+        }
+    
     })
     .catch(error => {
         console.log(error)
     })
+   
   }
 
 };
@@ -109,7 +154,7 @@ export default {
             </h6>
         </div>
         <div class="ms-products-container">
-            <div class="ms-product py-4 d-flex justify-content-center">
+            <div class="ms-product mx-5 py-3 d-flex justify-content-start">
                 <div class="card mx-2 my-2" style="width: 18rem;" v-for="product in restaurant.products">
                     <div class="card-body">
                         <div class="ms-img-container">
@@ -123,11 +168,16 @@ export default {
                             <strong>Prezzo:</strong> <br>
                             {{ product.price }}
                         </p>
-                        <input type="number" name="quantity" :id="product.id + '-quantity'" min="1" value="1">
-                    <button @click="addToCart(product)"
-                            class="btn btn-primary my-2">
-                                Aggiungi al carrello
-                    </button>
+                        <div>
+                            <strong>Quantità:</strong> <br>
+                            <span class="me-2" @click="$event=>incrementQuantity(product.id)"><strong>+</strong></span>
+                            <span class="me-2">{{ productsQuantity[product.id] }}</span>
+                            <span @click="$event=>decrementQuantity(product.id)"><strong>-</strong></span>
+                        </div>
+                        <button @click="addToCart(product), calculateTotalPrice()" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                                class="btn btn-primary my-2">
+                                    Aggiungi al carrello
+                        </button>
                     </div>
                 </div>
             </div>
@@ -152,6 +202,7 @@ export default {
 
 .ms-product{
     flex-wrap: wrap;
+    margin: auto;
 }
 
 .ms-company-img{
@@ -162,10 +213,12 @@ export default {
 }
 
 .ms-img-container{
+    text-align: center;
     img{
-        max-width: 100%;
+        max-width: 50%;
         height: 6.25rem;
         border-radius: 5%;
     }
 }
+
 </style>

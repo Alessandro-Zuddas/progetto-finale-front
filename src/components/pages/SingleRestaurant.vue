@@ -125,13 +125,14 @@ export default {
     .then(response => {
 
         this.restaurant = response.data;
-        this.productsQuantity=JSON.parse(localStorage.getItem('productsQuantity'));
+        console.log(this.restaurant)
+        if(localStorage.getItem('productsQuantity')){
+            this.productsQuantity=JSON.parse(localStorage.getItem('productsQuantity'));
+        }
         this.restaurant.products.forEach(product => {
             if(!this.productsQuantity.hasOwnProperty(product.id)){
             
                 this.productsQuantity[product.id]= 1;
-            
-                console.log(this.productsQuantity[product.id])
                 localStorage.setItem('productsQuantity', JSON.stringify(this.productsQuantity));
             }
         });

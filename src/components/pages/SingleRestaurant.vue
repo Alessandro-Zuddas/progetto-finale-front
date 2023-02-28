@@ -95,11 +95,11 @@ export default {
         
         setTimeout(() => {
             this.addedToCart = false;
-        }, 3000),
+        }, 2500),
 
         setTimeout(() => {
             this.addToCartError = false;
-        }, 3000)
+        }, 2500)
         
         );
 
@@ -264,6 +264,9 @@ export default {
     padding: 10px 10px;
     border-radius: 10px;
     background-color: lightgreen;
+
+    animation: fadeOut 1s;
+    animation-delay: 1.5s;
 }
 
 .ms-add-message-wrong{
@@ -271,6 +274,9 @@ export default {
     padding: 10px 10px;
     border-radius: 10px;
     background-color: lightcoral;
+
+    animation: fadeOut 1s;
+    animation-delay: 1.5s;
 }
 
 .ms-message-title{
@@ -279,5 +285,26 @@ export default {
 
 .ms-message-desc{
     font-size: 16px;
+}
+
+@keyframes fadeOut {
+    0%{
+        opacity: 1;
+    }
+    20%{
+        opacity: 0.80;
+    }
+    40%{
+        opacity: 0.60;
+    }
+    60%{
+        opacity: 0.40;
+    }
+    80%{
+        opacity: 0.20;
+    }
+    100%{
+        opacity: 0;
+    }
 }
 </style>

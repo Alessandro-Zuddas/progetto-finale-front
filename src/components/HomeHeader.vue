@@ -20,7 +20,14 @@ export default {
             let productPrice = parseFloat( product.quantity * product.product.price);
             let cartPrice = parseFloat(this.store.totalPrice);
 
-            this.store.totalPrice += productPrice;
+            // Funziona toFixed() ma non logica
+            // this.store.totalPrice = parseFloat(this.store.totalPrice += productPrice).toFixed(2);
+            // parseFloat(this.store.totalPrice);
+            // /Funziona toFixed() ma non logica                                                       
+
+            // Funziona logica ma non toFixed()
+            parseFloat(this.store.totalPrice += productPrice).toFixed(2);
+            // /Funziona logica ma non toFixed()
         });
     },
     removeOneItem(product){
@@ -38,11 +45,13 @@ export default {
         localStorage.setItem("cart", JSON.stringify(this.store.shoppingCart));
     },
     deleteItem(id){
+
         this.store.shoppingCart.forEach(product => {
             if(product.product.id==id){
 
                 let currentId = this.store.shoppingCart.indexOf(product);
                 this.store.shoppingCart.splice(currentId, 1);
+                this.calculateTotalPrice();
 
                 return
             }

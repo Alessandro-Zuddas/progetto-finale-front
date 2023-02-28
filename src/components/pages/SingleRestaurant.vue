@@ -148,7 +148,7 @@ export default {
 <template>
 
     <div class="container-fluid d-flex p-0">
-        <div class="ms-aside py-4 px-4">
+        <div class="ms-aside py-4 px-4 d-flex flex-column">
             <div class="text-center mb-4">
                 <img :src="this.restaurant.image" class="ms-company-img" :alt="this.restaurant.company_name" v-if="this.restaurant.image">
                 <img src="https://via.placeholder.com/150" class="card-img-top ms-company-img" :alt="this.restaurant.company_name" v-else>
@@ -166,8 +166,8 @@ export default {
                 {{ this.restaurant.opening_hours }}.
             </h6>
             <h6 class="my-3">
-                <i class="fa-regular fa-sack-dollar mx-2"></i>
-                <strong>Ordine minimo:</strong>
+                <i class="fa-solid fa-euro-sign mx-2"></i>
+                <strong class="ms-1">Ordine minimo:</strong>
                 {{ this.restaurant.minimum_order }} €.
             </h6>
         </div>

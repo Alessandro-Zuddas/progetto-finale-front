@@ -76,10 +76,6 @@ export default {
                 item.quantity += parseInt(quantity);
 
                 wasFound = true;
-                
-                setTimeout(() => {
-                    this.addedToCart = false;
-                }, 3000);
 
                 return
 
@@ -87,15 +83,16 @@ export default {
                 
                 wrongCompany = true;
 
-                setTimeout(() => {
-                    this.addedToCart = false;
-                }, 3000);
-
                 return
 
             }
 
-        }
+        },
+
+        
+        setTimeout(() => {
+            this.addedToCart = false;
+        }, 3000)
         
         );
 
@@ -195,7 +192,7 @@ export default {
                     </div>
                 </div>
 
-                <div v-show="this.addedToCart == true" class="ms-add-message my-4">
+                <div v-show="this.addedToCart == true" class="ms-add-message my-3 mx-3 position-fixed bottom-0 end-0 p-3">
                     <p>Prodotto aggiunto al carrello!</p>
                 </div>
 

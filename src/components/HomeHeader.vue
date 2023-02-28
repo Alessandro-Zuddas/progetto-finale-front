@@ -20,9 +20,6 @@ export default {
             let productPrice = parseFloat( product.quantity * product.product.price);
             let cartPrice = parseFloat(this.store.totalPrice);
 
-            console.log(productPrice, "Product Price")
-            console.log(cartPrice, "Cart Price")
-
             this.store.totalPrice = parseFloat(this.store.totalPrice += productPrice).toFixed(2);
 
             this.store.totalPrice = parseFloat(this.store.totalPrice);

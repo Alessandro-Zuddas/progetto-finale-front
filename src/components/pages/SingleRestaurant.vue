@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { store } from "../../store";
 
+
 export default {
   name: "SingleRestaurant",
 
@@ -14,6 +15,7 @@ export default {
         productsQuantity: {},
         restaurant: {},
         store,
+        addedToCart: false,
     }
   },
   methods:{
@@ -49,6 +51,8 @@ export default {
 
     addToCart(product){
 
+        this.addedToCart = true;
+
         let wasFound = false;
         let wrongCompany = false;
 
@@ -69,6 +73,10 @@ export default {
                 item.quantity += parseInt(quantity);
 
                 wasFound = true;
+                
+                setTimeout(() => {
+                    this.addedToCart = false;
+                }, 2500);
 
                 return
 
@@ -79,7 +87,9 @@ export default {
 
             }
 
-        });
+        }
+        
+        );
 
         if(wasFound == false && wrongCompany == false){
             const item = {
@@ -91,7 +101,7 @@ export default {
         }
 
         localStorage.setItem('cart', JSON.stringify(this.store.shoppingCart));
-    },  
+    }, 
 
   },
   created(){
@@ -111,8 +121,7 @@ export default {
     .catch(error => {
         console.log(error)
     })
-   
-  }
+  },
 
 };
 </script>
@@ -163,14 +172,20 @@ export default {
                             <input type="number" :value="productsQuantity[product.id]" :id="product.id+'-quantity'" />
                             <button @click="$event=>decrementQuantity(product.id)">-</button>
                         </div>
-                        <button @click="addToCart(product), calculateTotalPrice()" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                        <button @click="addToCart(product), calculateTotalPrice()"
                                 class="btn btn-primary my-2">
                                     Aggiungi al carrello
                         </button>
                     </div>
                 </div>
+
+                <div v-show="this.addedToCart == true" class="ms-add-message my-4">
+                    <p>Prodotto aggiunto al carrello!</p>
+                </div>
+
             </div>
         </div>
+
     </div>
 
 </template>
@@ -206,5 +221,12 @@ export default {
         height: 6.25rem;
         border-radius: 5%;
     }
+}
+
+.ms-add-message{
+    font-size: 22px;
+    padding: 10px 10px;
+    border-radius: 10px;
+    background-color: lightgreen;
 }
 </style>

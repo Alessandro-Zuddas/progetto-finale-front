@@ -41,12 +41,15 @@ export default {
     incrementQuantity(id) {
         
         this.productsQuantity[id]+=1;
+        localStorage.setItem('productsQuantity', JSON.stringify(this.productsQuantity));
     },
 
     decrementQuantity(id) {
         if (this.productsQuantity[id] > 1) {
           this.productsQuantity[id]=this.productsQuantity[id]-1;
+          localStorage.setItem('productsQuantity', JSON.stringify(this.productsQuantity));
         }
+
     },
 
     addToCart(product){
@@ -60,7 +63,7 @@ export default {
             this.store.shoppingCart = JSON.parse(localStorage.getItem('cart')); 
         }
 
-        let quantity = document.getElementById(`${product.id}-quantity`).value;
+        let quantity = this.productsQuantity[product.id];
 
         console.log(this.store.shoppingCart);
 
@@ -113,10 +116,17 @@ export default {
     .then(response => {
 
         this.restaurant = response.data;
-        this.restaurant.products.forEach(product => {
-        this.productsQuantity[product.id]= 1;
-        console.log(this.productsQuantity)
-    });
+        if(!localStorage.getItem('productsQuantity')){
+            this.restaurant.products.forEach(product => {
+            this.productsQuantity[product.id]= 1;
+        });
+            console.log(this.productsQuantity)
+            localStorage.setItem('productsQuantity', JSON.stringify(this.productsQuantity));
+        }else{
+            this.productsQuantity=JSON.parse(localStorage.getItem('productsQuantity'));
+            console.log(this.productsQuantity,"else")
+        }
+    
     })
     .catch(error => {
         console.log(error)
@@ -153,7 +163,7 @@ export default {
             </h6>
         </div>
         <div class="ms-products-container">
-            <div class="ms-product py-4 d-flex justify-content-center">
+            <div class="ms-product mx-5 py-3 d-flex justify-content-start">
                 <div class="card mx-2 my-2" style="width: 18rem;" v-for="product in restaurant.products">
                     <div class="card-body">
                         <div class="ms-img-container">
@@ -168,9 +178,10 @@ export default {
                             {{ product.price }}
                         </p>
                         <div>
-                            <button @click="$event=>incrementQuantity(product.id)">+</button>
-                            <input type="number" :value="productsQuantity[product.id]" :id="product.id+'-quantity'" />
-                            <button @click="$event=>decrementQuantity(product.id)">-</button>
+                            <strong>Quantità:</strong> <br>
+                            <span class="me-2" @click="$event=>incrementQuantity(product.id)"><strong>+</strong></span>
+                            <span class="me-2">{{ productsQuantity[product.id] }}</span>
+                            <span @click="$event=>decrementQuantity(product.id)"><strong>-</strong></span>
                         </div>
                         <button @click="addToCart(product), calculateTotalPrice()"
                                 class="btn btn-primary my-2">
@@ -206,6 +217,7 @@ export default {
 
 .ms-product{
     flex-wrap: wrap;
+    margin: auto;
 }
 
 .ms-company-img{
@@ -216,8 +228,9 @@ export default {
 }
 
 .ms-img-container{
+    text-align: center;
     img{
-        max-width: 100%;
+        max-width: 50%;
         height: 6.25rem;
         border-radius: 5%;
     }

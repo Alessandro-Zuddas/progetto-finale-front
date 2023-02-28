@@ -18,6 +18,24 @@ export default {
   },
   methods:{
 
+    calculateTotalPrice(){
+
+        this.store.totalPrice = 0;
+
+        this.store.shoppingCart.forEach(product => {
+            
+            let productPrice = parseFloat( product.quantity * product.product.price);
+            let cartPrice = parseFloat(this.store.totalPrice);
+
+            console.log(productPrice, "Product Price")
+            console.log(cartPrice, "Cart Price")
+
+            this.store.totalPrice = parseFloat(this.store.totalPrice += productPrice).toFixed(2);
+
+            this.store.totalPrice = parseFloat(this.store.totalPrice);
+        });
+    },
+
     incrementQuantity(id) {
         
         this.productsQuantity[id]+=1;
@@ -145,7 +163,7 @@ export default {
                             <input type="number" :value="productsQuantity[product.id]" :id="product.id+'-quantity'" />
                             <button @click="$event=>decrementQuantity(product.id)">-</button>
                         </div>
-                        <button @click="addToCart(product)"
+                        <button @click="addToCart(product), calculateTotalPrice()" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
                                 class="btn btn-primary my-2">
                                     Aggiungi al carrello
                         </button>

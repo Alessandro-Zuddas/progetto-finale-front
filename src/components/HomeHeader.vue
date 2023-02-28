@@ -66,12 +66,12 @@ export default {
     <div class="container-fluid bg-black">
         <div class="container">
             <div class="row justify-content-between align-items-center">
-                <div class="col my-2">
+                <div class="col my-4">
                     <router-link :to="{ name: 'homepage' }">
                         <img class="ms-logo-home" src="https://logodownload.org/wp-content/uploads/2019/09/deliveroo-logo-6.png" alt="Logo Deliveroo">
                     </router-link>
                 </div>
-                <div class="col text-end my-2" v-if="this.store.email">
+                <div class="col text-end my-4" v-if="this.store.email">
                     <span>{{ this.store.name }}</span>
                     <a class="mx-2 btn btn-primary" :href="this.store.companyurl">Backoffice</a>
                 </div>

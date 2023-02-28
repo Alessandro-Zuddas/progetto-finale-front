@@ -71,9 +71,9 @@ export default {
                         <img class="ms-logo-home" src="https://logodownload.org/wp-content/uploads/2019/09/deliveroo-logo-6.png" alt="Logo Deliveroo">
                     </router-link>
                 </div>
-                <div class="col text-end my-4" v-if="this.store.email">
-                    <span>{{ this.store.name }}</span>
-                    <a class="mx-2 btn btn-primary" :href="this.store.companyurl">Backoffice</a>
+                <div class="col d-flex justify-content-end my-4" v-if="this.store.email">
+                    <span class="ms-name">{{ this.store.name }}</span>
+                    <a class="nav-link mx-3 text-light" :href="this.store.companyurl">Area riservata</a>
                 </div>
                 <div class="col d-flex justify-content-end text-light my-2" v-else>
                     <a class="nav-link mx-2" href="http://127.0.0.1:8000/login">Accedi</a>
@@ -129,7 +129,8 @@ export default {
 .ms-logo-home{
     width: 200px;
 }
-.nav-link:hover{
+
+.nav-link:hover , .ms-name{
     color:  rgba(23, 196, 185, 1);
 }
 .ms-nav-links, span{

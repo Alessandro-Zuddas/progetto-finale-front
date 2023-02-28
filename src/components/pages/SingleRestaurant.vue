@@ -174,7 +174,7 @@ export default {
         <div class="ms-products-container">
             <div class="ms-product mx-5 py-3 d-flex justify-content-start">
                 <!-- Singolo Piatto -->
-                <div class="card text-bg-light mx-2 my-2" style="width: 18rem;" v-for="product in restaurant.products">
+                <div class="card text-bg-light mx-3 my-2 shadow" style="width: 18rem;" v-for="product in restaurant.products">
                     <div class="card-body">
                         <div class="ms-img-container">
                             <img class="img-fluid card-img-top" :src="product.image_url" :alt="product.name" v-if="product.image_url">
@@ -187,15 +187,15 @@ export default {
                             <strong>Prezzo:</strong> <br>
                             {{ product.price }}
                         </p>
-                        <div>
-                            <strong>Quantità:</strong> <br>
-                            <span class="me-2" @click="$event=>incrementQuantity(product.id)"><strong>+</strong></span>
-                            <span class="me-2">{{ productsQuantity[product.id] }}</span>
-                            <span @click="$event=>decrementQuantity(product.id)"><strong>-</strong></span>
+                        <strong>Quantità:</strong>
+                        <div class="ms-btn-quantity">
+                            <span class="mx-2 px-2" @click="$event=>incrementQuantity(product.id)"><strong><i class="fa-solid fa-plus"></i></strong></span>
+                            <span class="mx-2">{{ productsQuantity[product.id] }}</span>
+                            <span class="mx-2 px-2" @click="$event=>decrementQuantity(product.id)"><strong><i class="fa-solid fa-minus"></i></strong></span>
                         </div>
                         <button @click="addToCart(product), calculateTotalPrice()"
-                                class="btn btn-primary my-2">
-                                    Aggiungi al carrello
+                                class="btn ms-btn my-2">
+                                   <strong>Aggiungi al carrello</strong>
                         </button>
                     </div>
                 </div>
@@ -254,12 +254,31 @@ export default {
 .ms-img-container{
     text-align: center;
     img{
-        max-width: 15.625rem;
-        max-height: 9.375rem;
+        height: 12.5rem;
         border-radius: 5%;
     }
 }
 
+.ms-btn{
+    background-color: rgba(23, 196, 185, 1);
+    color: #fff;
+}
+
+.ms-btn-quantity{
+    padding: 5px;
+    max-width: fit-content;
+    span{
+        display: inline-block;
+        cursor: pointer;
+        text-align: center;
+        padding: 0 .3125rem !important;
+        border-radius: 50%;
+
+        :hover{
+            background-color: rgba(23, 196, 185, 0.2);
+        }
+    }
+}
 .ms-add-message{
     font-size: 22px;
     padding: 10px 10px;

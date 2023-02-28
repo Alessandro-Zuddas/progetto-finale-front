@@ -99,7 +99,7 @@ export default {
 
         setTimeout(() => {
             this.addToCartError = false;
-        }, 2500)
+        }, 2300)
         
         );
 

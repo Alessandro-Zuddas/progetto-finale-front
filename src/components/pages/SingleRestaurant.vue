@@ -121,16 +121,16 @@ export default {
     .then(response => {
 
         this.restaurant = response.data;
-        if(!localStorage.getItem('productsQuantity')){
-            this.restaurant.products.forEach(product => {
-            this.productsQuantity[product.id]= 1;
+        this.productsQuantity=JSON.parse(localStorage.getItem('productsQuantity'));
+        this.restaurant.products.forEach(product => {
+            if(!this.productsQuantity.hasOwnProperty(product.id)){
+            
+                this.productsQuantity[product.id]= 1;
+            
+                console.log(this.productsQuantity[product.id])
+                localStorage.setItem('productsQuantity', JSON.stringify(this.productsQuantity));
+            }
         });
-            console.log(this.productsQuantity)
-            localStorage.setItem('productsQuantity', JSON.stringify(this.productsQuantity));
-        }else{
-            this.productsQuantity=JSON.parse(localStorage.getItem('productsQuantity'));
-            console.log(this.productsQuantity,"else")
-        }
     
     })
     .catch(error => {
@@ -169,11 +169,12 @@ export default {
         </div>
         <div class="ms-products-container">
             <div class="ms-product mx-5 py-3 d-flex justify-content-start">
-                <div class="card mx-2 my-2" style="width: 18rem;" v-for="product in restaurant.products">
+                <!-- Singolo Piatto -->
+                <div class="card text-bg-light mx-2 my-2" style="width: 18rem;" v-for="product in restaurant.products">
                     <div class="card-body">
                         <div class="ms-img-container">
-                            <img :src="product.image_url" :alt="product.name" v-if="product.image_url">
-                            <img :src="product.image" :alt="product.name" v-else>
+                            <img class="img-fluid card-img-top" :src="product.image_url" :alt="product.name" v-if="product.image_url">
+                            <img class="img-fluid card-img-top" :src="product.image" :alt="product.name" v-else>
                         </div>
                         <h5 class="card-title my-2">{{ product.name }}</h5>
                         <p class="card-text">
@@ -194,7 +195,7 @@ export default {
                         </button>
                     </div>
                 </div>
-
+                <!-- /Singolo Piatto -->
                 <div v-show="this.addedToCart == true" class="ms-add-message my-4">
                     <p>Prodotto aggiunto al carrello!</p>
                 </div>
@@ -235,8 +236,8 @@ export default {
 .ms-img-container{
     text-align: center;
     img{
-        max-width: 50%;
-        height: 6.25rem;
+        max-width: 15.625rem;
+        max-height: 9.375rem;
         border-radius: 5%;
     }
 }

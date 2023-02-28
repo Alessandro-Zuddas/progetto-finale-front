@@ -137,6 +137,7 @@
         }
         .ms-badge{
             color: rgba(23, 196, 185, 1);
+            font-weight: lighter;
             padding:5px;
             margin-right:5px;
             border: 1px solid lightgray ;

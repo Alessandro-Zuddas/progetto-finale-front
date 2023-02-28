@@ -9,12 +9,25 @@ export default {
 
   },
   data(){
+    
     return{
+        productsQuantity: {},
         restaurant: {},
         store,
     }
   },
   methods:{
+
+    incrementQuantity(id) {
+        
+        this.productsQuantity[id]+=1;
+    },
+
+    decrementQuantity(id) {
+        if (this.productsQuantity[id] > 1) {
+          this.productsQuantity[id]=this.productsQuantity[id]-1;
+        }
+    },
 
     addToCart(product){
 
@@ -72,11 +85,15 @@ export default {
     .then(response => {
 
         this.restaurant = response.data;
-
+        this.restaurant.products.forEach(product => {
+        this.productsQuantity[product.id]= 1;
+        console.log(this.productsQuantity)
+    });
     })
     .catch(error => {
         console.log(error)
     })
+   
   }
 
 };
@@ -123,11 +140,15 @@ export default {
                             <strong>Prezzo:</strong> <br>
                             {{ product.price }}
                         </p>
-                        <input type="number" name="quantity" :id="product.id + '-quantity'" min="1" value="1">
-                    <button @click="addToCart(product)"
-                            class="btn btn-primary my-2">
-                                Aggiungi al carrello
-                    </button>
+                        <div>
+                            <button @click="$event=>incrementQuantity(product.id)">+</button>
+                            <input type="number" :value="productsQuantity[product.id]" :id="product.id+'-quantity'" />
+                            <button @click="$event=>decrementQuantity(product.id)">-</button>
+                        </div>
+                        <button @click="addToCart(product)"
+                                class="btn btn-primary my-2">
+                                    Aggiungi al carrello
+                        </button>
                     </div>
                 </div>
             </div>

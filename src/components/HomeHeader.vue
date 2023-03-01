@@ -8,6 +8,7 @@ export default {
   data(){
     return {
       store, 
+      wasRemoved: false,
     }
   },
   methods: {
@@ -41,6 +42,8 @@ export default {
     },
     deleteItem(id){
 
+        this.wasRemoved = true;
+
         this.store.shoppingCart.forEach(product => {
             if(product.product.id==id){
 
@@ -56,6 +59,10 @@ export default {
         }else{
             localStorage.setItem('cart', []);
         }
+
+        setTimeout(() => {
+            this.wasRemoved = false;
+        }, 2300)
     }
   },
 };
@@ -67,8 +74,9 @@ export default {
         <div class="container">
             <div class="row justify-content-between align-items-center">
                 <div class="col my-4">
-                    <router-link :to="{ name: 'homepage' }">
-                        <img class="ms-logo-home" src="https://logodownload.org/wp-content/uploads/2019/09/deliveroo-logo-6.png" alt="Logo Deliveroo">
+                    <router-link class="ms-router" :to="{ name: 'homepage' }">
+                        <img class="ms-logo-home" src="../assets/img/Deliveboo-Logo-1.png" alt="Logo Deliveroo">
+                        <span class="ms-logo-name"> deliveboo</span>
                     </router-link>
                 </div>
                 <div class="col d-flex justify-content-end my-4" v-if="this.store.email">
@@ -112,13 +120,24 @@ export default {
             <h1 class="ms-total-price my-4">Totale: {{ this.store.totalPrice }} €</h1>
             <router-link
                         :to="{ name: 'check-out'}"
-                        class="btn btn-success">
+                        class="btn btn-success"
+                        >
                             Checkout
             </router-link>
         </div>
         <div v-else>
             <h1>Il carrello è vuoto!</h1>
         </div>
+
+        <div v-show="this.wasRemoved == true" class="ms-add-message my-3 mx-4 position-fixed bottom-0 end-1 p-3">
+            <div class="toast-header">
+                <strong class="me-auto ms-message-title">Prodotto rimosso correttamente!</strong>
+            </div>
+            <div class="toast-body ms-message-desc">
+                Modifica l'ordine o vai al checkout!
+            </div>
+        </div>
+
     </div>
     </div>
     <!-- /Carrello -->
@@ -126,32 +145,48 @@ export default {
 
 <style lang="scss" scoped>
 
-.ms-logo-home{
-    width: 200px;
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&display=swap');
+
+.container{
+    font-family: 'PT Sans', sans-serif;
+}
+
+.ms-router{
+    text-decoration:none !important;
+    display: flex;
+    align-items: center;
+    .ms-logo-home{
+        width: 5rem;
+    }
+
+    .ms-logo-name{
+        color:  rgba(23, 196, 185, 1);
+        font-size:40px;
+    }
 }
 
 .nav-link:hover , .ms-name{
     color:  rgba(23, 196, 185, 1);
 }
+
 .ms-nav-links, span{
     color: white;
     text-decoration: none;
 }
 
-.ms-nav-links:hover{
-    transform: scale(1.5);
-}
-
 .ms-cart-icon{
     font-size: 1.375rem;
 }
+
 .ms-cart-icon:hover{
     color: rgba(23, 196, 185, 1);
 }
+
 .ms-button{
        background-color: transparent;
        color: #fff;
 }
+
 .ms-cart-product{
     border-bottom: 1px solid black;
 }
@@ -161,6 +196,45 @@ export default {
     border-radius: 50%;
     border: none;
     aspect-ratio: 1;
+}
+
+.ms-add-message{
+    font-size: 22px;
+    padding: 10px 10px;
+    border-radius: 10px;
+    background-color: lightgreen;
+
+    animation: fadeOut 1s;
+    animation-delay: 1.5s;
+}
+
+.ms-message-title{
+    font-size: 18px;
+}
+
+.ms-message-desc{
+    font-size: 16px;
+}
+
+@keyframes fadeOut {
+    0%{
+        opacity: 1;
+    }
+    20%{
+        opacity: 0.80;
+    }
+    40%{
+        opacity: 0.60;
+    }
+    60%{
+        opacity: 0.40;
+    }
+    80%{
+        opacity: 0.20;
+    }
+    100%{
+        opacity: 0;
+    }
 }
 
 </style>

@@ -70,13 +70,13 @@ export default {
             
             if(item.product.id == product.id) {
 
+                this.addedToCart = true;
+                
                 item.quantity = parseInt(item.quantity);
 
                 item.quantity += parseInt(quantity);
 
                 wasFound = true;
-
-                this.addedToCart = true;
 
                 return
 
@@ -91,11 +91,10 @@ export default {
             }
 
         },
-
         
         setTimeout(() => {
             this.addedToCart = false;
-        }, 2500),
+        }, 2300),
 
         setTimeout(() => {
             this.addToCartError = false;
@@ -176,7 +175,7 @@ export default {
             <div class="ms-product mx-5 py-3 d-flex justify-content-start">
                 <!-- Singolo Piatto -->
                 <div class="card text-bg-light mx-3 my-2 shadow" style="width: 18rem;" v-for="product in restaurant.products">
-                    <div class="card-body">
+                    <div class="card-body d-flex flex-column">
                         <div class="ms-img-container">
                             <img class="img-fluid card-img-top" :src="product.image_url" :alt="product.name" v-if="product.image_url">
                             <img class="img-fluid card-img-top" :src="product.image" :alt="product.name" v-else>
@@ -194,10 +193,12 @@ export default {
                             <span class="mx-2">{{ productsQuantity[product.id] }}</span>
                             <span class="mx-2 px-2" @click="$event=>decrementQuantity(product.id)"><strong><i class="fa-solid fa-minus"></i></strong></span>
                         </div>
-                        <button @click="addToCart(product), calculateTotalPrice()"
-                                class="btn ms-btn my-2">
-                                   <strong>Aggiungi al carrello</strong>
-                        </button>
+                        <div class="mt-auto">
+                            <button @click="addToCart(product), calculateTotalPrice()"
+                                    class="btn ms-btn my-2">
+                                       <strong>Aggiungi al carrello</strong>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -272,11 +273,9 @@ export default {
         display: inline-block;
         cursor: pointer;
         text-align: center;
-        padding: 0 .3125rem !important;
-        border-radius: 50%;
 
         :hover{
-            background-color: rgba(23, 196, 185, 0.2);
+            color: rgba(23, 196, 185, 0.8);
         }
     }
 }

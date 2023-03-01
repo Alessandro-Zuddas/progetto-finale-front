@@ -8,5 +8,7 @@ export const store = reactive({
     email: "",
     name: "",
     id:"",
+    telephone:"",
+    address:"",
     companyurl:"http://127.0.0.1:8000/admin/companies/"
 })

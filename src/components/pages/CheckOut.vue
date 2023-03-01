@@ -11,29 +11,44 @@ export default {
         email:"",
         telephone:"",
         address:"",
+        submit:false,
+        paid:false
     }
   },
     created(){
+        localStorage.setItem('paid',false);
+        console.log(localStorage.getItem('paid'));
+        this.paid=localStorage.getItem('paid');
+        console.log(this.paid);
         if(localStorage.getItem('email')){
             this.name=localStorage.getItem('name');
             this.email=localStorage.getItem('email')
+            if(localStorage.getItem('address')){
+                this.address=localStorage.getItem('address')
+                if(localStorage.getItem('telephone')){
+                    this.telephone=localStorage.getItem('telephone')
+                }
+            }
         }
-
         this.calculateTotalPrice()
     },
     mounted(){
         let button = document.getElementById('submit-button');
-
         braintree.dropin.create({
         authorization: 'sandbox_g42y39zw_348pk9cgf3bgyw2b',
         selector: '#dropin-container',
         locale: 'it_IT',
         }, function (err, instance) {
-        button.addEventListener('click', function () {
-            instance.requestPaymentMethod(function (err, payload) {
-
-                console.log("Dentro errore paymenent", err, payload);
-
+        button.addEventListener('click',function() {
+            instance.requestPaymentMethod(function(err, payload){
+                if(payload){
+                    console.log(localStorage.getItem('paid'));
+                    localStorage.setItem('paid',true);
+                    console.log(localStorage.getItem('paid'));
+                }else{
+                    console.log("Dentro errore paymenent", err, payload);
+                    console.log(localStorage.getItem('paid'));
+                }
             });
         })
         });
@@ -87,33 +102,41 @@ export default {
             }
         },
         pushOrder(){
-            console.log(this.store.shoppingCart)
-            axios.post('http://127.0.0.1:8000/api/orders', {
-                name: this.name,
-                email: this.email,
-                address: this.address,
-                telephone: this.telephone,
-                products: Object.keys(this.store.shoppingCart).map(key => ({
-                    product: { id: this.store.shoppingCart[key].product.id },
-                    quantity: this.store.shoppingCart[key].quantity
+            console.log(localStorage.getItem('paid'));
+            
+            if(localStorage.getItem('paid')=='true'){
+                axios.post('http://127.0.0.1:8000/api/orders', {
+                    name: this.store.name,
+                    email: this.store.email,
+                    address: this.store.address,
+                    telephone: this.store.telephone,
+                    products: Object.keys(this.store.shoppingCart).map(key => ({
+                        product: { id: this.store.shoppingCart[key].product.id },
+                        quantity: this.store.shoppingCart[key].quantity
                 })),
-                total_price: this.store.totalPrice
-            })
-            .then(response => {
-            console.log(response.data.message);
-            // Effettua altre operazioni in caso di successo
-            })
-            .catch(error => {
-            console.log(error.response.data.errors);
-            // Effettua altre operazioni in caso di errore
-            });
-            console.log(Object.keys(this.store.shoppingCart).map(key => ({
-                    product: { id: this.store.shoppingCart[key].product.id },
-                    quantity: this.store.shoppingCart[key].quantity
-                })))
-            this.store.shoppingCart=[];
-            localStorage.setItem('cart', []);
-            this.$router.push({ path: '/' });
+                    total_price: this.store.totalPrice
+                })
+                .then(response => {
+                    console.log(response.data.message);
+                // Effettua altre operazioni in caso di successo
+                })
+                .catch(error => {
+                    console.log(error.response.data.errors);
+                // Effettua altre operazioni in caso di errore
+                });
+                localStorage.setItem('paid',false);
+            }
+        },
+        submittingForm(){
+            this.store.email=this.email
+            this.store.name=this.name
+            this.store.address=this.address
+            this.store.telephone=this.telephone
+            localStorage.setItem('email', this.store.email);
+            localStorage.setItem('name', this.store.name);
+            localStorage.setItem('address', this.store.address);
+            localStorage.setItem('telephone', this.store.telephone);
+            this.submit=true;
         }
   },
 }
@@ -152,7 +175,7 @@ export default {
             <!-- /Carrello -->
         </div>
         <div >
-            <form class="card ms-5 px-4 py-2 my-5" @submit.prevent @submit="pushOrder()">
+            <form class="card ms-5 px-4 py-2 my-5" @submit.prevent @submit="submittingForm()">
                 <div class="mb-3">
                     <label for="name" class="form-label">Inserisci il nome*</label>
                     <input type="text" class="form-control" id="name" required v-model="name">
@@ -170,10 +193,34 @@ export default {
                     <label for="address" class="form-label">Inserisci l'indirizzo*</label>
                     <input type="text" class="form-control" id="address" required v-model="address">
                 </div>
-                <div id="dropin-container"></div>
-                <button id="submit-button" type="submit" class="button button--small button--green">Purchase</button>
+                <button type="submit" class="btn btn-success w-auto me-auto">Conferma</button>
             </form>
+            <div v-if="submit" class="mx-5">
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Procedi al pagamento
+                </button>
+            </div>
         </div>
+    </div>
+        <!-- Button trigger modal -->
+   
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Pagamento</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div id="dropin-container"></div>
+        </div>
+        <div class="modal-footer">
+        </div>
+            <button id="submit-button" class="button button--small button--green mb-3 w-50 mx-auto" @click="pushOrder()">Purchase</button>
+        </div>
+    </div>
     </div>
 </template>
 

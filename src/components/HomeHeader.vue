@@ -120,7 +120,8 @@ export default {
             <h1 class="ms-total-price my-4">Totale: {{ this.store.totalPrice }} €</h1>
             <router-link
                         :to="{ name: 'check-out'}"
-                        class="btn btn-success">
+                        class="btn btn-success"
+                        >
                             Checkout
             </router-link>
         </div>

@@ -30,7 +30,7 @@ export default {
         </div>
         <div class="col-6 ms-image-container">
           <img
-            class="ms-image-map"
+            class="ms-image-map img-fluid"
             src="../../../assets/img/Map.png"
             alt="Map"
           />
@@ -75,7 +75,7 @@ export default {
   position: relative;
 
   .ms-image-map {
-    width: 526px;
+    width: 100%;
   }
 
   .ms-notification-container {

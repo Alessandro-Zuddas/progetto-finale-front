@@ -10,5 +10,7 @@ export const store = reactive({
     id:"",
     telephone:"",
     address:"",
-    companyurl:"http://127.0.0.1:8000/admin/companies/"
+    companyurl:"http://127.0.0.1:8000/admin/companies/",
+    orderNumber:0,
+    orderCart:[]
 })

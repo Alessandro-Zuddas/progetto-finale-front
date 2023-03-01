@@ -32,7 +32,7 @@ export default {
     .then(result => {
 
       this.store.companies = result.data;
-
+      localStorage.setItem("companies",JSON.stringify(this.store.companies))
     });
   }
 };

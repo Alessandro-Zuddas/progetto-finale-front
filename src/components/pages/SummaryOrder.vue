@@ -8,21 +8,56 @@ export default {
   name: "SummaryOrder",
   data(){
     return{
-        
+        store,
+        company:{},
+        cart:[],
     }
   },
+  created(){
+    this.store.orderNumber=localStorage.getItem('orderNumber')
+    this.store.companies=JSON.parse(localStorage.getItem('companies'));
+    console.log(this.store.companies)
+    this.calculateTotalPrice();
+    if(this.store.shoppingCart.length>0){
+        this.cart=this.store.shoppingCart;
+    }else{
+        this.cart=JSON.parse(localStorage.getItem('orderCart'));
+    }
+    this.company=this.store.companies.data.find(element => element.id == this.cart[0].product.company_id);
+    this.store.shoppingCart=[];
+    localStorage.setItem('cart',[]);
+    localStorage.setItem("orderCart", JSON.stringify(this.cart));
+  },
+  methods:{
+    calculateTotalPrice(){
+
+        this.store.totalPrice = 0;
+
+        this.store.shoppingCart.forEach(product => {
+            
+            let productPrice = parseFloat( product.quantity * product.product.price);
+            let cartPrice = parseFloat(this.store.totalPrice);
+
+            this.store.totalPrice = parseFloat(this.store.totalPrice += productPrice).toFixed(2);
+
+            this.store.totalPrice = parseFloat(this.store.totalPrice);
+
+        });
+    },
+  }
 }
 </script>
 <template>
-    <div class="container">
+    <div class="container py-5">
         <div class="row">
             <h1>Riepilogo ordine</h1>
             <div class="col-3">
-                Immagine ristorante
-                <h2>Nome ristorante</h2>
+                <img class="img-fluid" :src="company.image_url" alt="company.name" v-if="company.image_url">
+                <img class="img-fluid" :src="company.image" alt="company.name" v-else>
+                <h2>{{ company.company_name }}</h2>
             </div>
             <div class="col-7">
-                <h3><strong>Ordine n°:</strong> 000111</h3>
+                <h3><strong>Ordine n°:</strong> {{store.orderNumber}}</h3>
                 <table class="table">
                     <thead>
                         <tr>
@@ -32,15 +67,14 @@ export default {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th>Lasagna al ragù</th>
-                            <th>x 1</th>
-                            <th>9.99 €</th>
+                        <tr v-for="element in cart">
+                            <th>{{element.product.name}}</th>
+                            <th>x{{ element.quantity }}</th>
+                            <th>{{element.product.price}} €</th>
                         </tr>
                     </tbody>
                 </table>
-                <p><strong>Totale:</strong> 50.50€</p>
-                <button>Acquista ora</button>
+                <p><strong>Totale:</strong> {{ store.totalPrice }}€</p>
             </div>
         </div>
     </div>

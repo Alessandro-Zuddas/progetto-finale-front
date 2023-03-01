@@ -3,7 +3,7 @@ import axios from 'axios';
 import { store } from "../../store";
 
 export default {
-  name: "SingleRestaurant",
+  name: "CheckOut",
   data(){
     return{
         store,
@@ -117,7 +117,9 @@ export default {
                     total_price: this.store.totalPrice
                 })
                 .then(response => {
-                    console.log(response.data.message);
+                    console.log(response.data[1]);
+                    this.store.orderNumber=response.data[1];
+                    localStorage.setItem('orderNumber',this.store.orderNumber);
                 // Effettua altre operazioni in caso di successo
                 })
                 .catch(error => {
@@ -125,6 +127,7 @@ export default {
                 // Effettua altre operazioni in caso di errore
                 });
                 localStorage.setItem('paid',false);
+                this.$router.push({ path: '/summary-order' });
             }
         },
         submittingForm(){

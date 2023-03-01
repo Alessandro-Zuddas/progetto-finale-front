@@ -67,10 +67,9 @@ export default {
         console.log(this.store.shoppingCart);
 
         this.store.shoppingCart.forEach(item => {
-
             
             if(item.product.id == product.id) {
-                
+
                 this.addedToCart = true;
                 
                 item.quantity = parseInt(item.quantity);

@@ -156,7 +156,7 @@ export default {
     display: flex;
     align-items: center;
     .ms-logo-home{
-        width: 5rem;
+        width: 3.75rem;
     }
 
     .ms-logo-name{

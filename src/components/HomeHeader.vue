@@ -12,6 +12,9 @@ export default {
     }
   },
   methods: {
+    closeOffCanvas(){
+        this.$router.push({path:'/check-out'})
+    },
     calculateTotalPrice(){
 
         this.store.totalPrice = 0;
@@ -118,11 +121,7 @@ export default {
                 </div>
             </div>
             <h1 class="ms-total-price my-4">Totale: {{ this.store.totalPrice }} €</h1>
-            <router-link
-                :to="{ name: 'check-out'}"
-                class="btn ms-cart-btn">
-                Checkout
-            </router-link>
+            <div class="btn ms-cart-btn " data-bs-dismiss="offcanvas" @click="closeOffCanvas()" >Checkout</div>
         </div>
         <div v-else>
             <h1>Il carrello è vuoto!</h1>

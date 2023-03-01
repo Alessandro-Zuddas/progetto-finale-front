@@ -127,7 +127,7 @@ export default {
             <h1>Il carrello è vuoto!</h1>
         </div>
 
-        <div v-show="this.wasRemoved == true" class="ms-add-message my-3 mx-4 position-fixed bottom-0 end-1 p-3">
+        <div v-show="this.wasRemoved == true" class="ms-add-message my-3 mx-4 position-fixed bottom-0 start-0 p-3">
             <div class="toast-header">
                 <strong class="me-auto ms-message-title">Prodotto rimosso correttamente!</strong>
             </div>
@@ -194,11 +194,18 @@ export default {
     color:  rgba(23, 196, 185, 1);
 }
 .ms-cart-product{
-    flex-grow: 1;
+    // flex-grow: 1;
     border-bottom: 1px solid black;
 }
+
+.offcanvas-body{
+    position: relative;
+}
+
 .ms-total-price{
-    height:70px
+    position: absolute;
+    bottom: 8%;
+    max-height: 70px
 }
 .ms-quantity-button{
     color:  rgba(23, 196, 185, 1);
@@ -211,9 +218,14 @@ export default {
     color:#fff;
 }
 .ms-trash-icon:hover{
-color:#e30e0e;
+    color:#e30e0e;
 }
 .ms-cart-btn{
+    position: absolute;
+    bottom: 3%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+    width: 90%;
     background-color:  rgba(23, 196, 185, 1);
     color:#fff
 }

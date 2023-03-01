@@ -18,19 +18,25 @@ export default {
             this.name=localStorage.getItem('name');
             this.email=localStorage.getItem('email')
         }
-        var button = document.querySelector('#submit-button');
+
+        this.calculateTotalPrice()
+    },
+    mounted(){
+        let button = document.getElementById('submit-button');
 
         braintree.dropin.create({
         authorization: 'sandbox_g42y39zw_348pk9cgf3bgyw2b',
-        selector: '#dropin-container'
+        selector: '#dropin-container',
+        locale: 'it_IT',
         }, function (err, instance) {
         button.addEventListener('click', function () {
             instance.requestPaymentMethod(function (err, payload) {
-            // Submit payload.nonce to your server
+
+                console.log("Dentro errore paymenent", err, payload);
+
             });
         })
         });
-        this.calculateTotalPrice()
     },
     methods: {
         calculateTotalPrice(){

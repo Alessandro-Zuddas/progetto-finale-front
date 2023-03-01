@@ -102,16 +102,17 @@ export default {
     <div class="offcanvas-body">
         <div class="ms-cart d-flex align-items-star flex-column " v-if="this.store.shoppingCart.length > 0">
             <h1 class="ms-cart-1">Dettagli dell'ordine:</h1>
+            <hr>
             <div class="ms-cart-product d-flex align-items-start" v-for="item in this.store.shoppingCart">
-                <div class="ms-singleproduct d-flex align-items-center">
-                    <div class=" mx-2 my-2"> 
+                <div class="ms-singleproduct row d-flex align-items-center">
+                    <div class="col-10 mx-2 my-2"> 
                         <strong>{{ item.product.name }}:</strong>
                     </div>
-                    <div class="mx-2 my-2">{{ item.product.price }}</div>
-                    <div class="mx-2 my-2">
+                    <div class="col-2 mx-2 my-2">{{ item.product.price }}</div>
+                    <div class="col mx-2 my-2">
                         <button class="ms-quantity-button" @click="removeOneItem(item), calculateTotalPrice()"><strong>-</strong></button> x {{ item.quantity }} <button class="ms-quantity-button" @click="addOneItem(item), calculateTotalPrice()"><strong>+</strong></button>
                     </div>
-                    <div class="ms-trash-icon px-3" @click="deleteItem(item.product.id)">
+                    <div class="col ms-trash-icon px-3" @click="deleteItem(item.product.id)">
                         <i class="fa-solid fa-trash-can"></i>
                     </div>
                 </div>
@@ -188,7 +189,7 @@ export default {
     height: 100%;
 }
 .ms-cart-1{
-  height:70px
+  max-height: 70px
 }
 .ms-product-delate:hover{
     color:  rgba(23, 196, 185, 1);

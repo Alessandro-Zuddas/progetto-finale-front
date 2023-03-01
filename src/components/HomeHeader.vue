@@ -67,8 +67,9 @@ export default {
         <div class="container">
             <div class="row justify-content-between align-items-center">
                 <div class="col my-4">
-                    <router-link :to="{ name: 'homepage' }">
-                        <img class="ms-logo-home" src="https://logodownload.org/wp-content/uploads/2019/09/deliveroo-logo-6.png" alt="Logo Deliveroo">
+                    <router-link class="ms-router" :to="{ name: 'homepage' }">
+                        <img class="ms-logo-home" src="../assets/img/Deliveboo-Logo-1.png" alt="Logo Deliveroo">
+                        <span class="ms-logo-name"> deliveboo</span>
                     </router-link>
                 </div>
                 <div class="col d-flex justify-content-end my-4" v-if="this.store.email">
@@ -126,32 +127,48 @@ export default {
 
 <style lang="scss" scoped>
 
-.ms-logo-home{
-    width: 200px;
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&display=swap');
+
+.container{
+    font-family: 'PT Sans', sans-serif;
+}
+
+.ms-router{
+    text-decoration:none !important;
+    display: flex;
+    align-items: center;
+    .ms-logo-home{
+        width: 5rem;
+    }
+
+    .ms-logo-name{
+        color:  rgba(23, 196, 185, 1);
+        font-size:40px;
+    }
 }
 
 .nav-link:hover , .ms-name{
     color:  rgba(23, 196, 185, 1);
 }
+
 .ms-nav-links, span{
     color: white;
     text-decoration: none;
 }
 
-.ms-nav-links:hover{
-    transform: scale(1.5);
-}
-
 .ms-cart-icon{
     font-size: 1.375rem;
 }
+
 .ms-cart-icon:hover{
     color: rgba(23, 196, 185, 1);
 }
+
 .ms-button{
        background-color: transparent;
        color: #fff;
 }
+
 .ms-cart-product{
     border-bottom: 1px solid black;
 }

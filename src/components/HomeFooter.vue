@@ -9,7 +9,7 @@ export default {
     <div class="container">
       <div class="d-flex flex-nowrap justify-content-center">
         <div class="col-3 p-3 mx-2 my-3 ms-container">
-          <h4 class="text-light">Scopri Deliveroo</h4>
+          <h4 class="text-light">Scopri Deliveboo</h4>
           <ul class="list-unstyled">
             <li><a href="#">Investitori</a></li>
             <li><a href="#">Chi siamo</a></li>
@@ -39,7 +39,7 @@ export default {
           </ul>
         </div>
         <div class="col-3 p-3 mx-2 my-3 ms-container">
-          <h4 class="text-light">Porta Deliveroo con te</h4>
+          <h4 class="text-light">Porta Deliveboo con te</h4>
           <ul class="list-unstyled">
             <li>
               <!-- DA MODIFICARE -->

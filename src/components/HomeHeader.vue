@@ -73,7 +73,7 @@ export default {
     <div class="container-fluid bg-black">
         <div class="container">
             <div class="row justify-content-between align-items-center">
-                <div class="col my-4">
+                <div class="col my-2">
                     <router-link class="ms-router" :to="{ name: 'homepage' }">
                         <img class="ms-logo-home" src="../assets/img/Deliveboo-Logo-1.png" alt="Logo Deliveroo">
                         <span class="ms-logo-name"> deliveboo</span>

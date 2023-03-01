@@ -8,6 +8,7 @@ export default {
   data(){
     return {
       store, 
+      wasRemoved: false,
     }
   },
   methods: {
@@ -41,6 +42,8 @@ export default {
     },
     deleteItem(id){
 
+        this.wasRemoved = true;
+
         this.store.shoppingCart.forEach(product => {
             if(product.product.id==id){
 
@@ -56,6 +59,10 @@ export default {
         }else{
             localStorage.setItem('cart', []);
         }
+
+        setTimeout(() => {
+            this.wasRemoved = false;
+        }, 2300)
     }
   },
 };
@@ -120,6 +127,16 @@ export default {
         <div v-else>
             <h1>Il carrello è vuoto!</h1>
         </div>
+
+        <div v-show="this.wasRemoved == true" class="ms-add-message my-3 mx-4 position-fixed bottom-0 end-1 p-3">
+            <div class="toast-header">
+                <strong class="me-auto ms-message-title">Prodotto rimosso correttamente!</strong>
+            </div>
+            <div class="toast-body ms-message-desc">
+                Modifica l'ordine o vai al checkout!
+            </div>
+        </div>
+
     </div>
     </div>
     <!-- /Carrello -->
@@ -178,6 +195,45 @@ export default {
     border-radius: 50%;
     border: none;
     aspect-ratio: 1;
+}
+
+.ms-add-message{
+    font-size: 22px;
+    padding: 10px 10px;
+    border-radius: 10px;
+    background-color: lightgreen;
+
+    animation: fadeOut 1s;
+    animation-delay: 1.5s;
+}
+
+.ms-message-title{
+    font-size: 18px;
+}
+
+.ms-message-desc{
+    font-size: 16px;
+}
+
+@keyframes fadeOut {
+    0%{
+        opacity: 1;
+    }
+    20%{
+        opacity: 0.80;
+    }
+    40%{
+        opacity: 0.60;
+    }
+    60%{
+        opacity: 0.40;
+    }
+    80%{
+        opacity: 0.20;
+    }
+    100%{
+        opacity: 0;
+    }
 }
 
 </style>

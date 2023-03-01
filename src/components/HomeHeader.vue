@@ -86,9 +86,6 @@ export default {
                 <div class="col d-flex justify-content-end text-light my-2" v-else>
                     <a class="nav-link mx-2" href="http://127.0.0.1:8000/login">Accedi</a>
                     <a class="nav-link mx-2" href="http://127.0.0.1:8000/register">Registrati</a>
-                    <!-- <router-link class="col ms-nav-links" :to="{ name: 'restaurants' }">
-                        <strong>Ristoranti</strong>
-                    </router-link> -->
                 </div>
                 <div @click="calculateTotalPrice()" class=" col-1 ms-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                     <i class="fa-solid fa-basket-shopping ms-cart-icon"></i>

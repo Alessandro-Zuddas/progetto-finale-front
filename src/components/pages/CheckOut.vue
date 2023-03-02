@@ -12,7 +12,8 @@ export default {
         telephone:"",
         address:"",
         submit:false,
-        paid:false
+        paid:false,
+        cartCompany:{}
     }
   },
     created(){
@@ -33,6 +34,7 @@ export default {
         this.calculateTotalPrice()
     },
     mounted(){
+        this.store.companies = JSON.parse(localStorage.getItem('companies')); 
         let button = document.getElementById('submit-button');
         braintree.dropin.create({
         authorization: 'sandbox_g42y39zw_348pk9cgf3bgyw2b',
@@ -52,6 +54,11 @@ export default {
             });
         })
         });
+        if(this.store.shoppingCart.length>0){
+            
+            this.cartCompany=this.store.companies.data.find(element => element.id == this.store.shoppingCart[0].product.company_id);
+            console.log(this.cartCompany.minimum_order)
+        }
     },
     methods: {
         calculateTotalPrice(){
@@ -178,7 +185,7 @@ export default {
             <!-- /Carrello -->
         </div>
         <div >
-            <form class="card ms-5 px-4 py-2 my-5" @submit.prevent @submit="submittingForm()" v-show="!submit">
+            <form class="card ms-5 px-4 py-2 mt-5" @submit.prevent @submit="submittingForm()" v-show="!submit">
                 <div class="mb-3">
                     <label for="name" class="form-label">Inserisci il nome*</label>
                     <input type="text" class="form-control" id="name" required v-model="name">
@@ -196,8 +203,11 @@ export default {
                     <label for="address" class="form-label">Inserisci l'indirizzo*</label>
                     <input type="text" class="form-control" id="address" required v-model="address">
                 </div>
-                <button type="submit" class="btn btn-success w-auto me-auto">Conferma</button>
+                <button type="submit" class="btn btn-success w-auto me-auto" :disabled="parseFloat(store.totalPrice)<=parseFloat(cartCompany.minimum_order)">Conferma</button>
             </form>
+            <div class="alert alert-danger ms-5 mt-2" role="alert" v-show="parseFloat(cartCompany.minimum_order) > parseFloat(store.totalPrice)">
+                Il prezzo del carrello deve superare l'ordine minimo del ristorante per poter ordinare.
+            </div>
             <div v-show="submit" class="mx-5">
                 <div id="dropin-container"></div>
                 <button id="submit-button" class="button button--small button--green mb-3 w-50 mx-auto" @click="pushOrder()">Purchase</button>

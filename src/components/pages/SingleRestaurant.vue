@@ -150,7 +150,7 @@ export default {
 <template>
 
     <div class="container-fluid d-flex p-0">
-        <div class="ms-aside py-4 px-4 d-flex flex-column">
+        <div class="ms-aside py-4 px-4 d-flex flex-column shadow">
             <div class="text-center mb-4">
                 <img :src="this.restaurant.image" class="ms-company-img" :alt="this.restaurant.company_name" v-if="this.restaurant.image">
                 <img src="https://via.placeholder.com/150" class="card-img-top ms-company-img" :alt="this.restaurant.company_name" v-else>
@@ -176,7 +176,7 @@ export default {
         <div class="ms-products-container">
             <div class="ms-product mx-5 py-3 d-flex justify-content-start">
                 <!-- Singolo Piatto -->
-                <div class="card text-bg-light mx-3 my-2 shadow" style="width: 18rem;" v-for="product in restaurant.products">
+                <div class="card text-bg-light mx-3 my-2 shadow border-none" style="width: 18rem;" v-for="product in restaurant.products">
                     <div class="card-body d-flex flex-column">
                         <div class="ms-img-container">
                             <img class="img-fluid card-img-top" :src="product.image_url" :alt="product.name" v-if="product.image_url">
@@ -197,7 +197,7 @@ export default {
                         </div>
                         <div class="mt-auto">
                             <button @click="addToCart(product), calculateTotalPrice()"
-                                    class="btn ms-btn my-2">
+                                    class="btn ms-btn my-2 w-100">
                                        <strong>Aggiungi al carrello</strong>
                             </button>
                         </div>
@@ -234,7 +234,6 @@ export default {
 .ms-aside{
     width: 30vw;
     height: 100vh;
-    border-right: 1px solid black;
 }
 
 .ms-products-container{
@@ -246,7 +245,8 @@ export default {
 .ms-product{
     flex-wrap: wrap;
     margin: auto;
-}
+    
+}   
 
 .ms-company-img{
     max-width: 100%;

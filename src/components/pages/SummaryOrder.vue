@@ -11,9 +11,11 @@ export default {
         store,
         company:{},
         cart:[],
+        currentTotalPrice: 0,
     }
   },
   created(){
+    this.currentTotalPrice = this.store.totalPrice;
     this.store.orderNumber=localStorage.getItem('orderNumber')
     this.store.companies=JSON.parse(localStorage.getItem('companies'));
     console.log(this.store.companies)
@@ -27,6 +29,8 @@ export default {
     this.store.shoppingCart=[];
     localStorage.setItem('cart',[]);
     localStorage.setItem("orderCart", JSON.stringify(this.cart));
+    localStorage.setItem("currentPrice", this.currentTotalPrice);
+    this.currentTotalPrice = localStorage.getItem("currentPrice");
   },
   methods:{
     calculateTotalPrice(){
@@ -48,9 +52,11 @@ export default {
 }
 </script>
 <template>
-    <div class="container py-5">
+    <div class="container ms-order-container">
         <div class="row">
-            <h1>Riepilogo ordine</h1>
+            <div class="ms-order-recap-title py-2 mb-4">
+                <h1>Riepilogo ordine:</h1>
+            </div>
             <div class="col-3">
                 <img class="img-fluid" :src="company.image_url" alt="company.name" v-if="company.image_url">
                 <img class="img-fluid" :src="company.image" alt="company.name" v-else>
@@ -74,9 +80,25 @@ export default {
                         </tr>
                     </tbody>
                 </table>
-                <p><strong>Totale:</strong> {{ store.totalPrice }}€</p>
+                <p><strong>Totale:</strong> {{ this.currentTotalPrice }}€</p>
             </div>
         </div>
     </div>
 </template>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+.ms-order-container{
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border-left: 1px solid;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+    border-color: rgba(23, 196, 185, 1);
+    border-radius: 10px;
+}
+
+.ms-order-recap-title{
+    background-color: rgba(23, 196, 185, 1);
+}
+
+</style>

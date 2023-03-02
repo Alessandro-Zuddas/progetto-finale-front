@@ -130,10 +130,10 @@ export default {
                         <h3><strong>{{ item.product.name }}:</strong></h3>
                     </div>
                     <div class="col-2 mx-2 my-2">{{ item.product.price }}</div>
-                    <div class="col mx-2 my-2">
+                    <div class="col-6 mx-2 my-2">
                         <button class="ms-quantity-button" @click="removeOneItem(item), calculateTotalPrice()"><strong>-</strong></button> x {{ item.quantity }} <button class="ms-quantity-button" @click="addOneItem(item), calculateTotalPrice()"><strong>+</strong></button>
                     </div>
-                    <div class="col ms-trash-icon px-3" @click="deleteItem(item.product.id)">
+                    <div class="col-5 text-end ms-trash-icon px-3" @click="deleteItem(item.product.id)">
                         <i class="fa-solid fa-trash-can"></i>
                     </div>
                 </div>

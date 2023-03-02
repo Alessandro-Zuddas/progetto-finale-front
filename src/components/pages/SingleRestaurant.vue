@@ -197,7 +197,7 @@ export default {
                         </div>
                         <div class="mt-auto">
                             <button @click="addToCart(product), calculateTotalPrice()"
-                                    class="btn ms-btn my-2">
+                                    class="btn ms-btn my-2 w-100">
                                        <strong>Aggiungi al carrello</strong>
                             </button>
                         </div>

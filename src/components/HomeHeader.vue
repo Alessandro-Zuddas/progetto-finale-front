@@ -81,7 +81,7 @@ export default {
 <template>
 
     <div class="container-fluid bg-black">
-        <div class="container">
+        <div class="container container-md">
             <div class="row justify-content-between align-items-center">
                 <div class="col my-2">
                     <router-link class="ms-router" :to="{ name: 'homepage' }">
@@ -89,7 +89,7 @@ export default {
                         <span class="ms-logo-name"> deliveboo</span>
                     </router-link>
                 </div>
-                <div class="col d-flex justify-content-end my-4" v-if="this.store.email">
+                <div class="col d-none d-md-flex justify-content-end my-4" v-if="this.store.email">
                    
                     <span class="ms-name me-3">{{ this.store.name }}</span>
                    
@@ -98,11 +98,49 @@ export default {
                         <span class="nav-link mx-3 text-light"><i class="fa-solid fa-house"></i></span>
                     </router-link>
                 </div>
-                <div class="col d-flex justify-content-end text-light my-2" v-else>
+                <div class="col d-none d-md-flex justify-content-end text-light my-2" v-else>
                     <a class="nav-link mx-2" href="http://127.0.0.1:8000/login">Accedi</a>
                     <a class="nav-link mx-2" href="http://127.0.0.1:8000/register">Registrati</a>
                 </div>
-                <div @click="calculateTotalPrice()" class=" col-1 ms-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+
+                <div class="col d-md-none d-flex justify-content-end text-light my-2">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-bars"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li v-if="this.store.email">
+                                <li>
+                                    <span class="dropdown-item ms-name me-3">{{ this.store.name }}</span>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" :href="this.store.companyurl">Area riservata</a>
+                                </li>
+                                <li>
+                                    <router-link class="dropdown-item ms-router" :to="{ name: 'homepage' }">
+                                        <span class="text-black">Home Page</span>
+                                    </router-link>
+                                </li>
+                            </li>
+                            <li v-else>
+                                <li>
+                                    <a class="dropdown-item" href="http://127.0.0.1:8000/login">Accedi</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="http://127.0.0.1:8000/register">Registrati</a>
+                                </li>
+                                <li>
+                                    <router-link class="dropdown-item ms-router" :to="{ name: 'homepage' }">
+                                        <span class="text-black">Home Page</span>
+                                        <!-- <i class="fa-solid fa-house"></i> -->
+                                    </router-link>
+                                </li>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div @click="calculateTotalPrice()" class="mx-1 mx-md-0 col-1 ms-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                     <i class="fa-solid fa-basket-shopping ms-cart-icon"></i>
                 </div>
             </div>

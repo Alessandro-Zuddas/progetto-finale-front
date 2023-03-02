@@ -51,7 +51,8 @@
 </script>
 
 <template>
-    <div class="ms-container container shadow py-5">
+    <!-- Visibile da desktop -->
+    <div class="ms-container d-none d-lg-block container shadow py-5">
         <div class="row">
             <div class="ms-col-aside col-3 d-flex align-items-center">
                 <div class="ms-title-container my-4 pb-4">
@@ -61,7 +62,7 @@
                         <label :for=" typology.slug " :class="`ms-check-background ms-check-restaurant ms-check-restaurant-${typology.id}`">
                             <input type="checkbox" :value=" typology.slug " :id=" typology.slug " class="me-1" v-model="this.selectedTypes" style="zoom:1.2;">
                             <div class="ms-category-title">
-                                <h3>{{ typology.name }}</h3>
+                                <h4>{{ typology.name }}</h4>
                             </div>
                         </label>
                 </div>
@@ -94,9 +95,62 @@
             </div>
         </div>
     </div>
+    <!-- /Visibile da desktop -->
+
+    <!-- Visibile da tablet a scendere -->
+    <div class="ms-container d-lg-none d-block  container shadow py-5">
+        <div class="row px-4">
+            <div class="col-12 d-flex align-items-center">
+                <div class="ms-title-container my-4 pb-4">
+                    <h2 class="ms-category-text-responsive">Scegli le categorie:</h2>
+                </div>
+                <div class="row flex-nowrap">
+                    <div :class="`ms-check-background-responsive ms-background-${typology.id}`" v-for="typology in this.store.typologies">
+                        <label :for=" typology.slug " :class="`ms-check-background ms-check-restaurant ms-check-restaurant-${typology.id}`">
+                            <input type="checkbox" :value=" typology.slug " :id=" typology.slug " class="me-1" v-model="this.selectedTypes" style="zoom:1.2;">
+                            <div class="ms-category-title-responsive">
+                                <h4>{{ typology.name }}</h4>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="ms-col-big col-12">
+                <div class="card mx-2 my-4 shadow" style="width: 18rem;" v-for="restaurant in filteredCompanies">
+                    <img :src="restaurant.image" class="card-img-top ms-company-img" :alt="restaurant.company_name" v-if="restaurant.image">
+                    <img src="https://via.placeholder.com/150" class="card-img-top ms-company-img" :alt="restaurant.company_name" v-else>
+                    <div class="card-body">
+                       
+                        <h5 class="card-title">{{ restaurant.company_name }}</h5>
+                        <p class="card-text text-secondary ms-address">{{ restaurant.address }}</p>
+                        <span class="badge ms-badge mb-3" v-for="typology in restaurant.typologies"> 
+                            {{ typology.name }}
+                        </span>
+                        <p class="card-text">
+                            <strong>Ordine minimo:</strong>
+                            {{ restaurant.minimum_order }} €
+                        </p>
+                
+                        
+                        <router-link
+                        :to="{ name: 'single-restaurant', params: { slug: restaurant.slug } }"
+                        class="btn ms-button">
+                            Ordina ora!
+                        </router-link>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div>
+    <!-- /Visibile da tablet a scendere -->
 </template>
 
 <style lang="scss" scoped>
+
+    .col-12{
+        overflow-x: auto;
+    }
 
     .ms-container{
         position: relative;
@@ -144,12 +198,22 @@
     .ms-title-container{
         background-color: white;
         border-radius: 15px;
-        margin-top: s;
     }
 
     .ms-category-text{
         position: absolute;
         top: 3%;
+        left: 0;
+        z-index: 100;
+        width: 100%;
+        padding-left: 20px;
+        padding-bottom: 10px;
+        background-color: #fff;
+    }
+
+    .ms-category-text-responsive{
+        position: absolute;
+        top: 0.6%;
         left: 0;
         z-index: 100;
         width: 100%;
@@ -189,6 +253,21 @@
         cursor: pointer;
     }
 
+    .ms-check-background-responsive{
+        position: relative;
+        width: 90%;
+        height: 90px;
+        padding: 10px 10px;
+        margin-bottom: 8px;
+        border-radius: 10px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        overflow-y: hidden;
+        overflow-x: auto;
+        cursor: pointer;
+    }
+
     .ms-category-title{
         // display: flex;
         // align-items: center;
@@ -196,6 +275,19 @@
         position: absolute;
         top: 20%;
         left: 30%;
+        color: white;
+        padding: 0 4px;
+        background-color: rgba(0, 0, 0, 0.709);
+        border-radius: 10px;
+    }
+
+    .ms-category-title-responsive{
+        // display: flex;
+        // align-items: center;
+        // justify-content: center;
+        position: absolute;
+        top: 28%;
+        left: 35%;
         color: white;
         padding: 0 4px;
         background-color: rgba(0, 0, 0, 0.709);

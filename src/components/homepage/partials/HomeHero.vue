@@ -8,11 +8,11 @@ export default {
 
     <div class="container-fluid">
         <div class="row">
-            <div class="ms-hero-img ms-hero-one col-6 px-0 bg-black"></div>
+            <div class="d-none d-md-block ms-hero-img ms-hero-one col-6 px-0 bg-black"></div>
 
-            <div class="ms-hero-img ms-hero-two col-6 px-0 bg-black"></div>
+            <div class="ms-hero-img ms-hero-two col-md-6 col-12 px-0 bg-black"></div>
 
-            <div class="ms-input-col px-0 d-flex flex-column align-items-center justify-content-center">
+            <div class="ms-input-col px-0 d-flex flex-column align-items-center justify-content-center my-5 my-l-0">
                 <h1 class="text-center text-light my-4">I piatti dei ristoranti che ami, a domicilio</h1>
                 <!-- <form class="ms-search-form" action="">
                     <input class="ms-input-home px-2" type="text" placeholder="Cerca un ristorante">

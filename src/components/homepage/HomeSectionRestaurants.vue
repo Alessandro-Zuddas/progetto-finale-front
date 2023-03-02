@@ -54,7 +54,7 @@
         <div class="row">
             <div class="ms-col-aside col-3 d-flex align-items-center">
                 <div class="ms-title-container my-4 pb-4">
-                    <h2 class="ms-category-text">Categorie:</h2>
+                    <h2 class="ms-category-text">Segli tra le categorie:</h2>
                 </div>
                 <div :class="`ms-check-background ms-background-${typology.id}`" v-for="typology in this.store.typologies">
                         <label :for=" typology.slug " :class="`ms-check-background ms-check-restaurant ms-check-restaurant-${typology.id}`">
@@ -170,11 +170,6 @@
 
     input[type=checkbox] {
         display: none;
-    }
-
-    input[type=checkbox]:checked > label{
-        accent-color: rgba(23, 196, 185, 1);
-        font-weight: bold;
     }
 
     .ms-check-background{

@@ -7,7 +7,6 @@
             return {
                 selectedTypes: [],
                 filteredCompanies: [],
-                isActive: false,
                 store,
             };
         },

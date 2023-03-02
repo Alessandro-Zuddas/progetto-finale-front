@@ -260,7 +260,6 @@ export default {
 .ms-company-img{
     max-width: 100%;
     max-height: 28.125rem;
-    border-radius: 1rem;
     padding-bottom: 20px;
     overflow-y: auto;
 }

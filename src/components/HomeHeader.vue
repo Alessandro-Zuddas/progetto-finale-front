@@ -95,7 +95,7 @@ export default {
                    
                     <a class="nav-link mx-3 text-light" :href="this.store.companyurl">Area riservata</a>
                     <router-link class="ms-router" :to="{ name: 'homepage' }">
-                        <span class="nav-link mx-3 text-light"><i class="fa-solid fa-house"></i></span>
+                        <span class="nav-link mx-3 text-light"><i class="fa-solid fa-house ms-icon"></i></span>
                     </router-link>
                 </div>
                 <div class="col d-flex justify-content-end text-light my-2" v-else>
@@ -195,7 +195,7 @@ export default {
     }
 }
 
-.nav-link:hover , .ms-name{
+.nav-link:hover , .ms-name, .ms-icon:hover{
     color:  rgba(23, 196, 185, 1);
 }
 

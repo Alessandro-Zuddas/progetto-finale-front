@@ -147,6 +147,9 @@ export default {
             localStorage.setItem('address', this.store.address);
             localStorage.setItem('telephone', this.store.telephone);
             this.submit = true;
+        },
+        falseSubmit(){
+            this.submit = false;
         }
     },
 }
@@ -220,7 +223,7 @@ export default {
                 <button id="submit-button" class="button button--small button--green mb-3 w-50 mx-auto"
                     @click="pushOrder()">Purchase</button>
                 <!-- Bottone torna al form -->
-                <button class="ms-btn button button--small mb-3 w-20 mx-3">Indietro</button>
+                <button type="button" class="ms-btn button button--small mb-3 w-20 mx-3" @click="falseSubmit()">Indietro</button>
             </div>
         </div>
     </div>

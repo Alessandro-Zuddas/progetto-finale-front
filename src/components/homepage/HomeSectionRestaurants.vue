@@ -37,6 +37,7 @@
                 .then(response => {
 
                     this.filteredCompanies=response.data.data
+
                 })
                 .catch(error => {
                     console.log(error)
@@ -143,7 +144,7 @@
     .ms-title-container{
         background-color: white;
         border-radius: 15px;
-        margin-top: .3125rem;
+        margin-top: s;
     }
 
     .ms-category-text{
@@ -169,7 +170,10 @@
     }
 
     input[type=checkbox] {
-        display: none;
+        position: absolute;
+        top: 38%;
+        left: 20%;
+        accent-color: rgba(23, 196, 185, 1);
     }
 
     .ms-check-background{
@@ -177,7 +181,7 @@
         width: 100%;
         height: 68px;
         padding: 10px 10px;
-        margin-bottom: 9px;
+        margin-bottom: 8px;
         border-radius: 10px;
         background-repeat: no-repeat;
         background-size: cover;
@@ -186,13 +190,20 @@
     }
 
     .ms-category-title{
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        // display: flex;
+        // align-items: center;
+        // justify-content: center;
+        position: absolute;
+        top: 20%;
+        left: 30%;
         color: white;
         padding: 0 4px;
         background-color: rgba(0, 0, 0, 0.709);
         border-radius: 10px;
+    }
+
+    .active{
+        color: rgba(23, 196, 185, 1);
     }
 
     .ms-check-restaurant-1{

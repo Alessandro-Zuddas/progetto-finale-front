@@ -175,6 +175,7 @@ export default {
     background-color:rgba(23, 196, 185, 1) ;
     color:#fff;
 }
+
 .ms-router{
     text-decoration:none !important;
     display: flex;

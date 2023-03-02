@@ -182,24 +182,23 @@ export default {
         <div class="ms-products-container">
             <div class="ms-product mx-5 py-3 d-flex justify-content-start">
                 <!-- Singolo Piatto -->
-                <div class="card text-bg-light mx-3 my-2 shadow border-none" style="width: 18rem;" v-for="product in restaurant.products">
-                    <div class="card-body d-flex flex-column">
-                        <div class="ms-img-container">
-                            <img class="img-fluid card-img-top" :src="product.image_url" :alt="product.name" v-if="product.image_url">
-                            <img class="img-fluid card-img-top" :src="product.image" :alt="product.name" v-else>
+                <div class=" mx-3 my-3 shadow" style="width: 18rem;" v-for="product in restaurant.products">
+                    <div class="ms-img-container">
+                            <img class="" :src="product.image_url" :alt="product.name" v-if="product.image_url">
+                            <img class=" card-img-top" :src="product.image" :alt="product.name" v-else>
                         </div>
-                        <h5 class="card-title my-2">{{ product.name }}</h5>
-                        <p class="card-text">
-                            <strong>Descrizione:</strong> <br>
-                            {{ product.description }} <br>
-                            <strong>Prezzo:</strong> <br>
-                            {{ product.price }}
-                        </p>
+                    <div class="card-body d-flex flex-column p-3">
+                        
+                        <h3 class="ms-card-title my-2"><strong>{{ product.name }}</strong></h3>
+                        <p class="ms-card-description"><strong>Descrizione:</strong> {{ product.description }} </p>
+                        <p class="ms-card-price">  <strong>Prezzo:</strong> {{ product.price }}</p>
+                        
                         <strong v-if="store.shoppingCart.find(element => element.product.id == product.id)">Quantità:</strong>
-                        <div class="ms-btn-quantity" v-if="store.shoppingCart.find(element => element.product.id == product.id)">
-                            <span class="mx-2 px-2" @click="$event=>incrementQuantity(product.id)"><strong><i class="fa-solid fa-plus"></i></strong></span>
-                            <span class="mx-2">{{ findQuantity(product.id) }}</span>
-                            <span class="mx-2 px-2" @click="$event=>decrementQuantity(product.id)"><strong><i class="fa-solid fa-minus"></i></strong></span>
+                        <div class="ms-btn-quantity m-auto" v-if="store.shoppingCart.find(element => element.product.id == product.id)">
+                            <span class="mx-2 px-2 ms-button" @click="$event=>decrementQuantity(product.id)"><strong><i class="text-danger fa-solid fa-minus"></i></strong></span>
+                            <span class="mx-2">x {{ findQuantity(product.id) }}</span>
+                            <span class="mx-2 px-2 ms-button" @click="$event=>incrementQuantity(product.id)"><strong><i class="text-success fa-solid fa-plus"></i></strong></span>
+                           
                         </div>
                         <div class="mt-auto" v-show="!store.shoppingCart.find(element => element.product.id == product.id)">
                             <button @click="addToCart(product), calculateTotalPrice()"
@@ -261,35 +260,49 @@ export default {
     max-width: 100%;
     max-height: 28.125rem;
     padding-bottom: 20px;
-    overflow-y: auto;
+    // overflow-y: auto;
 }
 
 .ms-img-container{
-    text-align: center;
+    height: 200px;
     img{
         height: 12.5rem;
-        border-radius: 5%;
     }
 }
 
+.ms-card-title{
+    height: 60px;
+    text-align: center;
+}
+.ms-card-description{
+    height: 60px;
+}
+.ms-card-price{
+    height: 30px;
+}
 .ms-btn{
     background-color: rgba(23, 196, 185, 1);
     color: #fff;
 }
-
-.ms-btn-quantity{
-    padding: 5px;
-    max-width: fit-content;
-    span{
-        display: inline-block;
-        cursor: pointer;
-        text-align: center;
-
-        :hover{
-            color: rgba(23, 196, 185, 0.8);
-        }
-    }
+.ms-button{
+   cursor:pointer;
 }
+.ms-btn:hover{
+    background-color: #01ac9e;
+}
+// .ms-btn-quantity{
+//     padding: 5px;
+//     max-width: fit-content;
+//     span{
+//         display: inline-block;
+//         cursor: pointer;
+//         text-align: center;
+
+//         :hover{
+//             color: rgba(23, 196, 185, 0.8);
+//         }
+//     }
+// }
 .ms-add-message{
     font-size: 22px;
     padding: 10px 10px;

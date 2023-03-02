@@ -154,7 +154,7 @@ export default {
             <div class="text-center mb-4">
                 <img :src="this.restaurant.image" class="ms-company-img" :alt="this.restaurant.company_name" v-if="this.restaurant.image">
                 <img src="https://via.placeholder.com/150" class="ms-company-img" :alt="this.restaurant.company_name" v-else>
-                <h1 class="my-1">{{ this.restaurant.company_name }}</h1>
+                <h1 class="my-1"><strong>{{ this.restaurant.company_name }}</strong></h1>
                 <small class="text-muted">{{ this.restaurant.address }}</small>
             </div>
             <h4 class="my-3 text-center">

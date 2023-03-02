@@ -104,9 +104,11 @@ export default {
 
         if(wasFound == false && wrongCompany == false){
             const item = {
-            "product": product,
-            "quantity": quantity,
+                "product": product,
+                "quantity": quantity,
             };
+
+            this.addedToCart = true;
 
             this.store.shoppingCart.push(item);
         }

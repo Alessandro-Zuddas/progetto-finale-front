@@ -83,7 +83,11 @@ export default {
                     </router-link>
                 </div>
                 <div class="col d-flex justify-content-end my-4" v-if="this.store.email">
-                    <span class="ms-name">{{ this.store.name }}</span>
+                   
+                    <span class="ms-name me-3">{{ this.store.name }}</span>
+                    <router-link class="ms-router" :to="{ name: 'homepage' }">
+                        <span class="nav-link mx-3 text-light">Homepage</span>
+                    </router-link>
                     <a class="nav-link mx-3 text-light" :href="this.store.companyurl">Area riservata</a>
                 </div>
                 <div class="col d-flex justify-content-end text-light my-2" v-else>

@@ -131,9 +131,9 @@ export default {
                     </div>
                 </div>
                 <div class="row d-flex align-items-center">
-                    <div class="col-4 fs-3 my-2">{{ item.product.price }} €</div>
+                    <div class="col-4 fs-3 my-2 ms-3">{{ item.product.price }} €</div>
                     <div class="col-5 fs-3 my-2">
-                        <button class="ms-quantity-button" @click="removeOneItem(item), calculateTotalPrice()"><strong>-</strong></button> x {{ item.quantity }} <button class="ms-quantity-button" @click="addOneItem(item), calculateTotalPrice()"><strong>+</strong></button>
+                        <button class="ms-quantity-button-red" @click="removeOneItem(item), calculateTotalPrice()"><strong>-</strong></button> x {{ item.quantity }} <button class="ms-quantity-button-green" @click="addOneItem(item), calculateTotalPrice()"><strong>+</strong></button>
                     </div>
                     <div class="col-2 fs-3 text-end ms-trash-icon px-3" @click="deleteItem(item.product.id)">
                         <i class="fa-solid fa-trash-can"></i>
@@ -239,15 +239,15 @@ export default {
     background-color: #fff;
 }
 
-.ms-quantity-button{
-    color:  rgba(23, 196, 185, 1);
-    padding: 3px 8px;
+.ms-quantity-button-red{
+    color:#e30e0e;
     background-color: transparent;
-    border:1px solid lightgray;
+    border:none;
 }
-.ms-quantity-button:hover{
-    background-color: rgba(23, 196, 185, 1);
-    color:#fff;
+.ms-quantity-button-green{
+    color: lightgreen !important;
+    background-color: transparent;
+    border:none;
 }
 .ms-trash-icon:hover{
     color:#e30e0e;

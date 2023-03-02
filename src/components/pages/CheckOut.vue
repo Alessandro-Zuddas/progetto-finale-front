@@ -251,8 +251,8 @@ export default {
 }
 
 .fa-plus{
-        color: lightgreen !important;
-    }
+    color: lightgreen !important;
+}
 .ms-quantity-button{
     padding: .1875rem .375rem;
 }

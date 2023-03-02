@@ -3,71 +3,71 @@ import axios from 'axios';
 import { store } from "../../store";
 
 export default {
-  name: "CheckOut",
-  data(){
-    return{
-        store,
-        name:"",
-        email:"",
-        telephone:"",
-        address:"",
-        submit:false,
-        paid:false,
-        cartCompany:{}
-    }
-  },
-    created(){
-        localStorage.setItem('paid',false);
+    name: "CheckOut",
+    data() {
+        return {
+            store,
+            name: "",
+            email: "",
+            telephone: "",
+            address: "",
+            submit: false,
+            paid: false,
+            cartCompany: {}
+        }
+    },
+    created() {
+        localStorage.setItem('paid', false);
         console.log(localStorage.getItem('paid'));
-        this.paid=localStorage.getItem('paid');
+        this.paid = localStorage.getItem('paid');
         console.log(this.paid);
-        if(localStorage.getItem('email')){
-            this.name=localStorage.getItem('name');
-            this.email=localStorage.getItem('email')
-            if(localStorage.getItem('address')){
-                this.address=localStorage.getItem('address')
-                if(localStorage.getItem('telephone')){
-                    this.telephone=localStorage.getItem('telephone')
+        if (localStorage.getItem('email')) {
+            this.name = localStorage.getItem('name');
+            this.email = localStorage.getItem('email')
+            if (localStorage.getItem('address')) {
+                this.address = localStorage.getItem('address')
+                if (localStorage.getItem('telephone')) {
+                    this.telephone = localStorage.getItem('telephone')
                 }
             }
         }
         this.calculateTotalPrice()
     },
-    mounted(){
-        this.store.companies = JSON.parse(localStorage.getItem('companies')); 
+    mounted() {
+        this.store.companies = JSON.parse(localStorage.getItem('companies'));
         let button = document.getElementById('submit-button');
         braintree.dropin.create({
-        authorization: 'sandbox_g42y39zw_348pk9cgf3bgyw2b',
-        selector: '#dropin-container',
-        locale: 'it_IT',
+            authorization: 'sandbox_g42y39zw_348pk9cgf3bgyw2b',
+            selector: '#dropin-container',
+            locale: 'it_IT',
         }, function (err, instance) {
-        button.addEventListener('click',function() {
-            instance.requestPaymentMethod(function(err, payload){
-                if(payload){
-                    console.log(localStorage.getItem('paid'));
-                    localStorage.setItem('paid',true);
-                    console.log(localStorage.getItem('paid'));
-                }else{
-                    console.log("Dentro errore paymenent", err, payload);
-                    console.log(localStorage.getItem('paid'));
-                }
-            });
-        })
+            button.addEventListener('click', function () {
+                instance.requestPaymentMethod(function (err, payload) {
+                    if (payload) {
+                        console.log(localStorage.getItem('paid'));
+                        localStorage.setItem('paid', true);
+                        console.log(localStorage.getItem('paid'));
+                    } else {
+                        console.log("Dentro errore paymenent", err, payload);
+                        console.log(localStorage.getItem('paid'));
+                    }
+                });
+            })
         });
-        if(this.store.shoppingCart.length>0){
-            
-            this.cartCompany=this.store.companies.data.find(element => element.id == this.store.shoppingCart[0].product.company_id);
+        if (this.store.shoppingCart.length > 0) {
+
+            this.cartCompany = this.store.companies.data.find(element => element.id == this.store.shoppingCart[0].product.company_id);
             console.log(this.cartCompany.minimum_order)
         }
     },
     methods: {
-        calculateTotalPrice(){
+        calculateTotalPrice() {
 
             this.store.totalPrice = 0;
 
             this.store.shoppingCart.forEach(product => {
-                
-                let productPrice = parseFloat( product.quantity * product.product.price);
+
+                let productPrice = parseFloat(product.quantity * product.product.price);
                 let cartPrice = parseFloat(this.store.totalPrice);
 
                 this.store.totalPrice = parseFloat(this.store.totalPrice += productPrice).toFixed(2);
@@ -76,24 +76,24 @@ export default {
 
             });
         },
-        removeOneItem(product){
+        removeOneItem(product) {
             product.quantity = parseInt(product.quantity) - 1;
 
-            if(product.quantity == 0){
+            if (product.quantity == 0) {
                 this.deleteItem(product.product.id);
             }
 
             localStorage.setItem("cart", JSON.stringify(this.store.shoppingCart));
         },
-        addOneItem(product){
+        addOneItem(product) {
             product.quantity = parseInt(product.quantity) + 1;
 
             localStorage.setItem("cart", JSON.stringify(this.store.shoppingCart));
         },
-        deleteItem(id){
+        deleteItem(id) {
 
             this.store.shoppingCart.forEach(product => {
-                if(product.product.id==id){
+                if (product.product.id == id) {
 
                     let currentId = this.store.shoppingCart.indexOf(product);
                     this.store.shoppingCart.splice(currentId, 1);
@@ -102,16 +102,16 @@ export default {
                     return
                 }
             })
-            if( this.store.shoppingCart.length>1){
+            if (this.store.shoppingCart.length > 1) {
                 localStorage.setItem('cart', JSON.stringify(this.store.shoppingCart));
-            }else{
+            } else {
                 localStorage.setItem('cart', []);
             }
         },
-        pushOrder(){
+        pushOrder() {
             console.log(localStorage.getItem('paid'));
-            
-            if(localStorage.getItem('paid')=='true'){
+
+            if (localStorage.getItem('paid') == 'true') {
                 axios.post('http://127.0.0.1:8000/api/orders', {
                     name: this.store.name,
                     email: this.store.email,
@@ -120,44 +120,43 @@ export default {
                     products: Object.keys(this.store.shoppingCart).map(key => ({
                         product: { id: this.store.shoppingCart[key].product.id },
                         quantity: this.store.shoppingCart[key].quantity
-                })),
+                    })),
                     total_price: this.store.totalPrice
                 })
-                .then(response => {
-                    console.log(response.data[1]);
-                    this.store.orderNumber=response.data[1];
-                    localStorage.setItem('orderNumber',this.store.orderNumber);
-                // Effettua altre operazioni in caso di successo
-                })
-                .catch(error => {
-                    console.log(error.response.data.errors);
-                // Effettua altre operazioni in caso di errore
-                });
-                localStorage.setItem('paid',false);
+                    .then(response => {
+                        console.log(response.data[1]);
+                        this.store.orderNumber = response.data[1];
+                        localStorage.setItem('orderNumber', this.store.orderNumber);
+                        // Effettua altre operazioni in caso di successo
+                    })
+                    .catch(error => {
+                        console.log(error.response.data.errors);
+                        // Effettua altre operazioni in caso di errore
+                    });
+                localStorage.setItem('paid', false);
                 this.$router.push({ path: '/summary-order' });
             }
         },
-        submittingForm(){
-            this.store.email=this.email
-            this.store.name=this.name
-            this.store.address=this.address
-            this.store.telephone=this.telephone
+        submittingForm() {
+            this.store.email = this.email
+            this.store.name = this.name
+            this.store.address = this.address
+            this.store.telephone = this.telephone
             localStorage.setItem('email', this.store.email);
             localStorage.setItem('name', this.store.name);
             localStorage.setItem('address', this.store.address);
             localStorage.setItem('telephone', this.store.telephone);
-            this.submit=true;
+            this.submit = true;
         }
-  },
+    },
 }
 </script>
 
 <template>
-
     <div class="container d-flex p-0">
         <div class="ms-aside p-4">
-               <!-- Carrello -->
-            <div v-if="this.store.shoppingCart.length > 0" >
+            <!-- Carrello -->
+            <div v-if="this.store.shoppingCart.length > 0">
                 <h1>Dettagli dell'ordine:</h1>
                 <hr>
                 <div class="ms-cart-product " v-for="item in this.store.shoppingCart">
@@ -167,7 +166,10 @@ export default {
                     <div class="row d-flex align-items-center my-4 ">
                         <div class="col-3 fs-3">{{ item.product.price }}€</div>
                         <div class="col fs-3 text-center">
-                            <button class="ms-quantity-button btn" @click="removeOneItem(item), calculateTotalPrice()"><i class="ms-icon-red fa-solid fa-minus"></i></button> x {{ item.quantity }} <button class="ms-quantity-button btn" @click="addOneItem(item), calculateTotalPrice()"><i class="fa-solid fa-plus"></i></button>
+                            <button class="ms-quantity-button btn" @click="removeOneItem(item), calculateTotalPrice()"><i
+                                    class="ms-icon-red fa-solid fa-minus"></i></button> x {{ item.quantity }} <button
+                                class="ms-quantity-button btn" @click="addOneItem(item), calculateTotalPrice()"><i
+                                    class="fa-solid fa-plus"></i></button>
                         </div>
                         <div class="col-2 fs-4 text-end ms-trash-icon" @click="deleteItem(item.product.id)">
                             <i class="ms-icon fa-solid fa-trash-can"></i>
@@ -179,10 +181,8 @@ export default {
             </div>
             <div v-else>
                 <h1>Il carrello è vuoto!</h1>
-                <router-link
-                        :to="{ name: 'homepage'}"
-                        class="btn btn-primary">
-                        Torna alla home
+                <router-link :to="{ name: 'homepage' }" class="btn btn-primary">
+                    Torna alla home
                 </router-link>
             </div>
             <!-- /Carrello -->
@@ -195,7 +195,8 @@ export default {
                 </div>
                 <div class="mb-3">
                     <label for="Email" class="form-label">Inserisci l'email*</label>
-                    <input type="email" class="form-control" id="Email" aria-describedby="emailHelp" required v-model="email">
+                    <input type="email" class="form-control" id="Email" aria-describedby="emailHelp" required
+                        v-model="email">
                     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                 </div>
                 <div class="mb-3">
@@ -206,29 +207,34 @@ export default {
                     <label for="address" class="form-label">Inserisci l'indirizzo*</label>
                     <input type="text" class="form-control" id="address" required v-model="address">
                 </div>
-                <button type="submit" class="btn btn-success w-auto me-auto" :disabled="parseFloat(store.totalPrice)<=parseFloat(cartCompany.minimum_order)">Conferma</button>
+                <button type="submit" class="btn btn-success w-auto me-auto"
+                    :disabled="parseFloat(store.totalPrice) <= parseFloat(cartCompany.minimum_order)">Conferma</button>
             </form>
-            <div class="alert alert-danger ms-5 mt-2" role="alert" v-show="Math.floor(parseFloat(cartCompany.minimum_order)) > Math.floor(parseFloat(store.totalPrice))">
-                Il prezzo del carrello deve superare l'ordine minimo di {{ Math.floor(cartCompany.minimum_order) }}€ per poter ordinare.
+            <div class="alert alert-danger ms-5 mt-2" role="alert"
+                v-show="Math.floor(parseFloat(cartCompany.minimum_order)) > Math.floor(parseFloat(store.totalPrice))">
+                Il prezzo del carrello deve superare l'ordine minimo di {{ Math.floor(cartCompany.minimum_order) }}€ per
+                poter ordinare.
             </div>
             <div v-show="submit" class="mx-5">
                 <div id="dropin-container"></div>
-                <button id="submit-button" class="button button--small button--green mb-3 w-50 mx-auto" @click="pushOrder()">Purchase</button>
+                <button id="submit-button" class="button button--small button--green mb-3 w-50 mx-auto"
+                    @click="pushOrder()">Purchase</button>
+                <!-- Bottone torna al form -->
+                <button class="ms-btn button button--small mb-3 w-20 mx-3">Indietro</button>
             </div>
         </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
-
-.ms-aside{
+.ms-aside {
     width: 30vw;
     height: 120vh;
     border-right: 1px solid lightgray;
     border-left: 1px solid lightgray;
 }
 
-.ms-main-form{
+.ms-main-form {
     background-color: rgba(23, 196, 185, 0.1);
     width: 70vw;
     height: 120vh;
@@ -236,61 +242,68 @@ export default {
     border-right: 1px solid lightgray;
 }
 
-.ms-product{
+.ms-product {
     flex-wrap: wrap;
 }
 
-.ms-company-img{
+.ms-company-img {
     max-width: 28.125rem;
     max-height: 28.125rem;
     border-radius: 1.5625rem;
     overflow-y: auto;
 }
-.ms-icon-red, .ms-icon:hover{
-    color: #e30e0e;
+
+.fa-solid:hover:not(.fa-minus) {
+    color: lightcoral;
 }
 
-.fa-plus{
+.fa-minus {
+    color: lightcoral;
+}
+
+.fa-plus {
     color: lightgreen !important;
 }
-.ms-quantity-button{
+
+.ms-quantity-button {
     padding: .1875rem .375rem;
 }
-.button {
-  cursor: pointer;
-  font-weight: 500;
-  left: 3px;
-  line-height: inherit;
-  position: relative;
-  text-decoration: none;
-  text-align: center;
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 3px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  display: inline-block;
 
-  :hover{
-        background-color: rgba(23, 196, 185, 0.8);
-    }
+.ms-btn {
+    border: 1px solid lightgrey !important;
+}
+
+.button {
+    cursor: pointer;
+    font-weight: 500;
+    left: 3px;
+    line-height: inherit;
+    position: relative;
+    text-decoration: none;
+    text-align: center;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 3px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    display: inline-block;
 }
 
 .button--small {
-  padding: 10px 20px;
-  font-size: 0.875rem;
+    padding: 10px 20px;
+    font-size: 0.875rem;
 }
 
 .button--green {
-  outline: none;
-  background-color: #64d18a;
-  border-color: #64d18a;
-  color: white;
-  transition: all 200ms ease;
+    outline: none;
+    background-color: #64d18a;
+    border-color: #64d18a;
+    color: white;
+    transition: all 200ms ease;
 }
 
 .button--green:hover {
-  background-color: #8bdda8;
-  color: white;
+    background-color: #8bdda8;
+    color: white;
 }
 </style>

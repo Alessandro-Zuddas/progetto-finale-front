@@ -12,7 +12,6 @@ export default {
   data(){
     
     return{
-        productsQuantity: {},
         restaurant: {},
         store,
         addedToCart: false,
@@ -40,47 +39,59 @@ export default {
     },
 
     incrementQuantity(id) {
-        
-        this.productsQuantity[id]+=1;
-        localStorage.setItem('productsQuantity', JSON.stringify(this.productsQuantity));
+        let storeProduct=this.store.shoppingCart.find(element => element.product.id == id);
+        storeProduct.quantity+=1;
+        localStorage.setItem('cart', JSON.stringify(this.store.shoppingCart));
     },
 
     decrementQuantity(id) {
-        if (this.productsQuantity[id] > 1) {
-          this.productsQuantity[id]=this.productsQuantity[id]-1;
-          localStorage.setItem('productsQuantity', JSON.stringify(this.productsQuantity));
+        let storeProduct=this.store.shoppingCart.find(element => element.product.id == id);
+        if (storeProduct.quantity > 1) {
+            storeProduct.quantity--;
+            localStorage.setItem('cart', JSON.stringify(this.store.shoppingCart));
+        }else{
+            this.deleteItem(id);
+        }
+    },
+    deleteItem(id){
+
+        this.wasRemoved = true;
+
+        this.store.shoppingCart.forEach(product => {
+            if(product.product.id==id){
+
+                let currentId = this.store.shoppingCart.indexOf(product);
+                this.store.shoppingCart.splice(currentId, 1);
+                this.calculateTotalPrice();
+
+                return
+            }
+        })
+        if( this.store.shoppingCart.length>1){
+            localStorage.setItem('cart', JSON.stringify(this.store.shoppingCart));
+        }else{
+            localStorage.setItem('cart', []);
         }
 
+        setTimeout(() => {
+            this.wasRemoved = false;
+        }, 2300)
     },
-
+    findQuantity(id){
+        let cartProduct=this.store.shoppingCart.find(element => element.product.id == id);
+        return cartProduct.quantity
+    },
     addToCart(product){
-
-        let wasFound = false;
         let wrongCompany = false;
 
        if( localStorage.getItem("cart") ){
             this.store.shoppingCart = JSON.parse(localStorage.getItem('cart')); 
         }
 
-        let quantity = this.productsQuantity[product.id];
-
         console.log(this.store.shoppingCart);
 
         this.store.shoppingCart.forEach(item => {
-            
-            if(item.product.id == product.id) {
-
-                this.addedToCart = true;
-                
-                item.quantity = parseInt(item.quantity);
-
-                item.quantity += parseInt(quantity);
-
-                wasFound = true;
-
-                return
-
-            }else if(product.company_id != item.product.company_id ){
+            if(product.company_id != item.product.company_id ){
                 
                 wrongCompany = true;
 
@@ -89,7 +100,6 @@ export default {
                 return
 
             }
-
         },
         
         setTimeout(() => {
@@ -102,10 +112,10 @@ export default {
         
         );
 
-        if(wasFound == false && wrongCompany == false){
+        if(wrongCompany == false){
             const item = {
                 "product": product,
-                "quantity": quantity,
+                "quantity": 1,
             };
 
             this.addedToCart = true;
@@ -127,16 +137,6 @@ export default {
 
         this.restaurant = response.data;
         console.log(this.restaurant)
-        if(localStorage.getItem('productsQuantity')){
-            this.productsQuantity=JSON.parse(localStorage.getItem('productsQuantity'));
-        }
-        this.restaurant.products.forEach(product => {
-            if(!this.productsQuantity.hasOwnProperty(product.id)){
-            
-                this.productsQuantity[product.id]= 1;
-                localStorage.setItem('productsQuantity', JSON.stringify(this.productsQuantity));
-            }
-        });
     
     })
     .catch(error => {
@@ -195,13 +195,13 @@ export default {
                             <strong>Prezzo:</strong> <br>
                             {{ product.price }}
                         </p>
-                        <strong>Quantità:</strong>
-                        <div class="ms-btn-quantity">
+                        <strong v-if="store.shoppingCart.find(element => element.product.id == product.id)">Quantità:</strong>
+                        <div class="ms-btn-quantity" v-if="store.shoppingCart.find(element => element.product.id == product.id)">
                             <span class="mx-2 px-2" @click="$event=>incrementQuantity(product.id)"><strong><i class="fa-solid fa-plus"></i></strong></span>
-                            <span class="mx-2">{{ productsQuantity[product.id] }}</span>
+                            <span class="mx-2">{{ findQuantity(product.id) }}</span>
                             <span class="mx-2 px-2" @click="$event=>decrementQuantity(product.id)"><strong><i class="fa-solid fa-minus"></i></strong></span>
                         </div>
-                        <div class="mt-auto">
+                        <div class="mt-auto" v-show="!store.shoppingCart.find(element => element.product.id == product.id)">
                             <button @click="addToCart(product), calculateTotalPrice()"
                                     class="btn ms-btn my-2 w-100">
                                        <strong>Aggiungi al carrello</strong>

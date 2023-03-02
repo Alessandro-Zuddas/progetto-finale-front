@@ -7,8 +7,8 @@ export default {
 <template>
   <section>
     <div class="container">
-      <div class="d-flex flex-nowrap justify-content-center">
-        <div class="col-3 p-3 mx-2 my-3 ms-container">
+      <div class="row justify-content-center">
+        <div class="col-5 col-md-2 p-3 mx-2 my-3 ms-container">
           <h4 class="text-light">Scopri Deliveboo</h4>
           <ul class="list-unstyled">
             <li><a href="#">Investitori</a></li>
@@ -22,7 +22,7 @@ export default {
             <li><a href="#">Diventa nostro partner</a></li>
           </ul>
         </div>
-        <div class="col-3 p-3 mx-2 my-3 ms-container">
+        <div class="col-5 col-md-2 p-3 mx-2 my-3 ms-container">
           <h4 class="text-light">Note legali</h4>
           <ul class="list-unstyled">
             <li><a href="#">Termini & Condizioni</a></li>
@@ -30,7 +30,7 @@ export default {
             <li><a href="#">Cookies</a></li>
           </ul>
         </div>
-        <div class="col-3 p-3 mx-2 my-3 ms-container">
+        <div class="col-5 col-md-2 p-3 mx-2 my-3 ms-container">
           <h4 class="text-light">Aiuto</h4>
           <ul class="list-unstyled">
             <li><a href="#">Contatti</a></li>
@@ -38,7 +38,7 @@ export default {
             <li><a href="#">Tipi di cucina</a></li>
           </ul>
         </div>
-        <div class="col-3 p-3 mx-2 my-3 ms-container">
+        <div class="col-5 col-md-2 p-3 mx-2 my-3 ms-container">
           <h4 class="text-light">Porta Deliveboo con te</h4>
           <ul class="list-unstyled">
             <li>

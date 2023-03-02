@@ -5,7 +5,8 @@ export default {
 </script>
 
 <template>
-  <section class="ms-section">
+  <!-- Viene displayata a desktop -->
+  <section class="ms-section d-none d-xxl-block">
     <div class="container p-3">
       <div class="row m-3 shadow">
         <div class="col-6 p-3 ms-text-top">
@@ -59,6 +60,58 @@ export default {
       </div>
     </div>
   </section>
+  <!-- /Viene displayata a desktop -->
+  <!-- Viene displayata a desktop -->
+  <section class="d-xxl-none d-block">
+  <div class="container p-3">
+    <div class="row m-3 shadow">
+      <div class="col-6 p-3 ms-text-top">
+        <h3>Segui gli ordini passo passo</h3>
+        <p>
+          I piatti e i prodotti che ami, consegnati in pochissimo tempo.
+          Vedrai quando il rider ha ritirato l'ordine, che potrai seguire
+          passo passo, e riceverai una notifica quando sarà quasi da te.
+        </p>
+        <div class="ms-buttons pt-3">
+          <img
+            class="ms-badge d-none d-l-inline-block"
+            src="../../../assets/img/badge-app-store.png"
+            alt="app-store"
+          />
+          <img
+            class="ms-badge d-none d-l-inline-block"
+            src="../../../assets/img/badge-google-play.png"
+            alt="google-play"
+          />
+        </div>
+      </div>
+      <div class="col-6 ms-image-container">
+        <div class="ms-notification-container shadow rounded">
+          <div
+            class="ms-title d-flex align-items-center justify-content-between"
+          >
+            <div>
+              <img
+                class="ms-logo rounded"
+                src="../../../assets/img/deliveroo-app-logo.png"
+                alt="logo"
+              />
+              <span>DELIVEROO</span>
+            </div>
+            <div>ora</div>
+          </div>
+          <div class="ms-content">
+            <strong class="ms-content-mobile">Segui il tuo ordine</strong>
+              <p>
+                Il rider sta arrivando da te! <br> Ti avviseremo quando sarà vicino.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /Viene displayata a desktop -->
 </template>
 
 <style lang="scss" scoped>

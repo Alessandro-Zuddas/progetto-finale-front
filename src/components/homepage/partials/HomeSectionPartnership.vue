@@ -6,8 +6,8 @@ export default {
 
 <template>
   <section class="ms-section container my-3">
-    <div class="row flex-nowrap column-container">
-      <div class="col-6 ms-column-1 my-2 rounded">
+    <div class="row flex-md-nowrap column-container px-md-0 px-3">
+      <div class="col-12 col-md-6 ms-column-1 my-2 rounded">
         <div class="ms-text p-3">
           <h3>Diventa nostro partner</h3>
           <p>
@@ -19,7 +19,7 @@ export default {
           </button>
         </div>
       </div>
-      <div class="col-6 ms-column-2 m-2 rounded">
+      <div class="col-12 col-md-6 ms-column-2 m-md-2 rounded">
         <div class="ms-text p-3">
           <h3>Consegna con noi</h3>
           <p>

@@ -159,18 +159,22 @@ export default {
                <!-- Carrello -->
             <div v-if="this.store.shoppingCart.length > 0" >
                 <h1>Dettagli dell'ordine:</h1>
-                <div class="ms-cart-product d-flex align-items-center" v-for="item in this.store.shoppingCart">
-                    <button class="btn ms-quantity-button d-inline" @click="deleteItem(item.product.id)">
-                        <strong><i class="fa-solid fa-trash-can"></i></strong>
-                    </button>
-                    <div class="mx-2 my-2 d-inline">- 
+                <hr>
+                <div class="ms-cart-product " v-for="item in this.store.shoppingCart">
+                    <div class="fs-3 my-2">
                         <strong>{{ item.product.name }}:</strong>
                     </div>
-                    <div class="mx-2 my-2">{{ item.product.price }}€</div>
-                    <div class="mx-2 my-2">
-                        <button class="ms-quantity-button btn" @click="removeOneItem(item), calculateTotalPrice()"><i class="fa-solid fa-minus"></i></button> x {{ item.quantity }} <button class="ms-quantity-button btn" @click="addOneItem(item), calculateTotalPrice()"><i class="fa-solid fa-plus"></i></button>
+                    <div class="row d-flex align-items-center my-4 ">
+                        <div class="col-3 fs-3">{{ item.product.price }}€</div>
+                        <div class="col fs-3 text-center">
+                            <button class="ms-quantity-button btn" @click="removeOneItem(item), calculateTotalPrice()"><i class="ms-icon-red fa-solid fa-minus"></i></button> x {{ item.quantity }} <button class="ms-quantity-button btn" @click="addOneItem(item), calculateTotalPrice()"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                        <div class="col-2 fs-4 text-end ms-trash-icon" @click="deleteItem(item.product.id)">
+                            <i class="ms-icon fa-solid fa-trash-can"></i>
+                        </div>
                     </div>
                 </div>
+                <hr>
                 <h1 class="ms-total-price my-4">Totale: {{ this.store.totalPrice }} €</h1>
             </div>
             <div v-else>
@@ -219,7 +223,7 @@ export default {
 
 .ms-aside{
     width: 30vw;
-    height: 100vh;
+    height: 120vh;
     border-right: 1px solid lightgray;
     border-left: 1px solid lightgray;
 }
@@ -227,7 +231,7 @@ export default {
 .ms-main-form{
     background-color: rgba(23, 196, 185, 0.1);
     width: 70vw;
-    height: 100vh;
+    height: 120vh;
     padding-right: 45px;
     border-right: 1px solid lightgray;
 }
@@ -242,13 +246,13 @@ export default {
     border-radius: 1.5625rem;
     overflow-y: auto;
 }
-.fa-solid{
-    color: lightcoral;
+.ms-icon-red, .ms-icon:hover{
+    color: #e30e0e;
 }
 
 .fa-plus{
-        color: lightgreen !important;
-    }
+    color: lightgreen !important;
+}
 .ms-quantity-button{
     padding: .1875rem .375rem;
 }

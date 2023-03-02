@@ -9,6 +9,14 @@ export default {
     return {
       store, 
       wasRemoved: false,
+      cartCompany:{}
+    }
+  },
+  mounted(){
+    this.store.companies = JSON.parse(localStorage.getItem('companies')); 
+    if(this.store.shoppingCart.length>0){
+            this.cartCompany=this.store.companies.data.find(element => element.id == this.store.shoppingCart[0].product.company_id);
+            console.log(this.cartCompany.minimum_order)
     }
   },
   methods: {
@@ -35,12 +43,11 @@ export default {
         if(product.quantity == 0){
             this.deleteItem(product.product.id);
         }
-
         localStorage.setItem("cart", JSON.stringify(this.store.shoppingCart));
     },
     addOneItem(product){
         product.quantity = parseInt(product.quantity) + 1;
-
+        this.cartCompany=this.store.companies.data.find(element => element.id == this.store.shoppingCart[0].product.company_id);
         localStorage.setItem("cart", JSON.stringify(this.store.shoppingCart));
     },
     deleteItem(id){
@@ -106,6 +113,9 @@ export default {
         <div class="ms-cart d-flex align-items-star flex-column " v-if="this.store.shoppingCart.length > 0">
             <h1 class="ms-cart-1">Dettagli dell'ordine:</h1>
             <hr>
+            <div class="alert alert-danger mt-2" role="alert" v-show="parseFloat(cartCompany.minimum_order) > parseFloat(store.totalPrice)">
+                Il prezzo del carrello deve superare l'ordine minimo di {{ Math.floor(cartCompany.minimum_order) }}€ per poter ordinare.
+            </div>
             <div class="ms-cart-product d-flex align-items-start" v-for="item in this.store.shoppingCart">
                 <div class="ms-singleproduct row d-flex align-items-center">
                     <div class="col-10 mx-2 my-2"> 
@@ -121,7 +131,7 @@ export default {
                 </div>
             </div>
             <h1 class="ms-total-price my-4">Totale: {{ this.store.totalPrice }} €</h1>
-            <div class="btn ms-cart-btn " data-bs-dismiss="offcanvas" @click="closeOffCanvas()" >Checkout</div>
+            <div class="btn ms-cart-btn " data-bs-dismiss="offcanvas" @click="closeOffCanvas()" v-show="parseFloat(store.totalPrice)>=parseFloat(cartCompany.minimum_order)">Checkout</div>
         </div>
         <div v-else>
             <h1>Il carrello è vuoto!</h1>

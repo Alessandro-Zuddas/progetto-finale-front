@@ -104,7 +104,10 @@ export default {
     <!-- Carrello -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
     <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasRightLabel">Carrello</h5>
+        <div class="d-flex align-items-center">
+            <i class="fa-solid fa-basket-shopping"></i>
+            <h5 class="offcanvas-title px-3" id="offcanvasRightLabel">Carrello</h5>
+        </div>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
@@ -113,20 +116,22 @@ export default {
             <hr>
             <div class="ms-cart-product d-flex align-items-start" v-for="item in this.store.shoppingCart">
                 <div class="ms-singleproduct row d-flex align-items-center">
-                    <div class="col-10 mx-2 my-2"> 
-                        <strong>{{ item.product.name }}:</strong>
+                    <div class="col my-2 "> 
+                        <h3><strong>{{ item.product.name }}:</strong></h3>
                     </div>
-                    <div class="col-2 mx-2 my-2">{{ item.product.price }}</div>
-                    <div class="col mx-2 my-2">
-                        <button class="ms-quantity-button" @click="removeOneItem(item), calculateTotalPrice()"><strong>-</strong></button> x {{ item.quantity }} <button class="ms-quantity-button" @click="addOneItem(item), calculateTotalPrice()"><strong>+</strong></button>
-                    </div>
-                    <div class="col ms-trash-icon px-3" @click="deleteItem(item.product.id)">
-                        <i class="fa-solid fa-trash-can"></i>
+                    <div class="row d-flex flex-nowrap align-items-center fs-4  my-3">
+                        <div class="col-4 ">{{ item.product.price }} €</div>
+                        <div class="col-6 ">
+                            <button class="ms-quantity-button" @click="removeOneItem(item), calculateTotalPrice()"><strong>-</strong></button> x {{ item.quantity }} <button class="ms-quantity-button" @click="addOneItem(item), calculateTotalPrice()"><strong>+</strong></button>
+                        </div>
+                        <div class="col-2 ms-trash-icon d-flex flex-nowrap text-end" @click="deleteItem(item.product.id)">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </div>
                     </div>
                 </div>
             </div>
-            <h1 class="ms-total-price my-4">Totale: {{ this.store.totalPrice }} €</h1>
-            <div class="btn ms-cart-btn " data-bs-dismiss="offcanvas" @click="closeOffCanvas()" >Checkout</div>
+            <h1 class="ms-total-price my-5">Totale: {{ this.store.totalPrice }} €</h1>
+            <div class="btn ms-cart-btn " data-bs-dismiss="offcanvas" @click="closeOffCanvas()" >Checkout</div>  
         </div>
         <div v-else>
             <h1>Il carrello è vuoto!</h1>
@@ -154,6 +159,10 @@ export default {
     font-family: 'PT Sans', sans-serif;
 }
 
+.offcanvas-header{
+    background-color:rgba(23, 196, 185, 1) ;
+    color:#fff;
+}
 .ms-router{
     text-decoration:none !important;
     display: flex;
@@ -214,9 +223,11 @@ export default {
 
 .ms-total-price{
     position: absolute;
+    background-color: #fff;
     bottom: 8%;
     max-height: 70px
 }
+
 .ms-quantity-button{
     color:  rgba(23, 196, 185, 1);
     padding: 3px 8px;

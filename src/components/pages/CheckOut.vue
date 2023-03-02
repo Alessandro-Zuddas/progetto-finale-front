@@ -204,8 +204,8 @@ export default {
                 </div>
                 <button type="submit" class="btn btn-success w-auto me-auto" :disabled="parseFloat(store.totalPrice)<=parseFloat(cartCompany.minimum_order)">Conferma</button>
             </form>
-            <div class="alert alert-danger ms-5 mt-2" role="alert" v-show="parseFloat(cartCompany.minimum_order) > parseFloat(store.totalPrice)">
-                Il prezzo del carrello deve superare l'ordine minimo del ristorante per poter ordinare.
+            <div class="alert alert-danger ms-5 mt-2" role="alert" v-show="Math.floor(parseFloat(cartCompany.minimum_order)) > Math.floor(parseFloat(store.totalPrice))">
+                Il prezzo del carrello deve superare l'ordine minimo di {{ Math.floor(cartCompany.minimum_order) }}€ per poter ordinare.
             </div>
             <div v-show="submit" class="mx-5">
                 <div id="dropin-container"></div>

@@ -118,7 +118,7 @@ export default {
         <div class="ms-cart d-flex align-items-star flex-column " v-if="this.store.shoppingCart.length > 0">
             <h1 class="ms-cart-1">Dettagli dell'ordine:</h1>
             <hr>
-            <div class="alert alert-danger mt-2" role="alert" v-show="parseFloat(cartCompany.minimum_order) > parseFloat(store.totalPrice)">
+            <div class="alert alert-danger mt-2" role="alert" v-show=" Math.floor(parseFloat(cartCompany.minimum_order)) > Math.floor(parseFloat(store.totalPrice))">
                 Il prezzo del carrello deve superare l'ordine minimo di {{ Math.floor(cartCompany.minimum_order) }}€ per poter ordinare.
             </div>
             <div class="ms-cart-product d-flex align-items-start" v-for="item in this.store.shoppingCart">

@@ -90,8 +90,13 @@ export default {
                     </router-link>
                 </div>
                 <div class="col d-flex justify-content-end my-4" v-if="this.store.email">
-                    <span class="ms-name">{{ this.store.name }}</span>
+                   
+                    <span class="ms-name me-3">{{ this.store.name }}</span>
+                   
                     <a class="nav-link mx-3 text-light" :href="this.store.companyurl">Area riservata</a>
+                    <router-link class="ms-router" :to="{ name: 'homepage' }">
+                        <span class="nav-link mx-3 text-light"><i class="fa-solid fa-house"></i></span>
+                    </router-link>
                 </div>
                 <div class="col d-flex justify-content-end text-light my-2" v-else>
                     <a class="nav-link mx-2" href="http://127.0.0.1:8000/login">Accedi</a>
@@ -163,6 +168,7 @@ export default {
     text-decoration:none !important;
     display: flex;
     align-items: center;
+
     .ms-logo-home{
         width: 3.75rem;
     }
@@ -170,6 +176,10 @@ export default {
     .ms-logo-name{
         color:  rgba(23, 196, 185, 1);
         font-size:40px;
+    }
+    
+    i{
+       font-size:20px;
     }
 }
 

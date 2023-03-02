@@ -155,21 +155,20 @@ export default {
 <template>
 
     <div class="container d-flex p-0">
-        <div class="ms-aside py-4 px-4">
+        <div class="ms-aside p-4">
                <!-- Carrello -->
             <div v-if="this.store.shoppingCart.length > 0" >
-                <h5 >Carrello</h5>
                 <h1>Dettagli dell'ordine:</h1>
                 <div class="ms-cart-product d-flex align-items-center" v-for="item in this.store.shoppingCart">
-                    <div class=" d-inline" @click="deleteItem(item.product.id)">
-                        <strong>x</strong>
-                    </div>
+                    <button class="btn ms-quantity-button d-inline" @click="deleteItem(item.product.id)">
+                        <strong><i class="fa-solid fa-trash-can"></i></strong>
+                    </button>
                     <div class="mx-2 my-2 d-inline">- 
                         <strong>{{ item.product.name }}:</strong>
                     </div>
-                    <div class="mx-2 my-2">{{ item.product.price }}</div>
+                    <div class="mx-2 my-2">{{ item.product.price }}€</div>
                     <div class="mx-2 my-2">
-                        <button class="ms-quantity-button btn btn-danger" @click="removeOneItem(item), calculateTotalPrice()">-</button> x {{ item.quantity }} <button class="ms-quantity-button btn btn-success" @click="addOneItem(item), calculateTotalPrice()">+</button>
+                        <button class="ms-quantity-button btn" @click="removeOneItem(item), calculateTotalPrice()"><i class="fa-solid fa-minus"></i></button> x {{ item.quantity }} <button class="ms-quantity-button btn" @click="addOneItem(item), calculateTotalPrice()"><i class="fa-solid fa-plus"></i></button>
                     </div>
                 </div>
                 <h1 class="ms-total-price my-4">Totale: {{ this.store.totalPrice }} €</h1>
@@ -184,8 +183,8 @@ export default {
             </div>
             <!-- /Carrello -->
         </div>
-        <div >
-            <form class="card ms-5 px-4 py-2 mt-5" @submit.prevent @submit="submittingForm()" v-show="!submit">
+        <div class="ms-main-form">
+            <form class="card ms-5 p-4 my-4" @submit.prevent @submit="submittingForm()" v-show="!submit">
                 <div class="mb-3">
                     <label for="name" class="form-label">Inserisci il nome*</label>
                     <input type="text" class="form-control" id="name" required v-model="name">
@@ -220,10 +219,18 @@ export default {
 
 .ms-aside{
     width: 30vw;
-    height: 80vh;
-    border-right: 1px solid black;
+    height: 100vh;
+    border-right: 1px solid lightgray;
+    border-left: 1px solid lightgray;
 }
 
+.ms-main-form{
+    background-color: rgba(23, 196, 185, 0.1);
+    width: 70vw;
+    height: 100vh;
+    padding-right: 45px;
+    border-right: 1px solid lightgray;
+}
 
 .ms-product{
     flex-wrap: wrap;
@@ -234,6 +241,16 @@ export default {
     max-height: 28.125rem;
     border-radius: 1.5625rem;
     overflow-y: auto;
+}
+.fa-solid{
+    color: lightcoral;
+}
+
+.fa-plus{
+        color: lightgreen !important;
+    }
+.ms-quantity-button{
+    padding: .1875rem .375rem;
 }
 .button {
   cursor: pointer;
@@ -249,6 +266,10 @@ export default {
   -webkit-appearance: none;
   -moz-appearance: none;
   display: inline-block;
+
+  :hover{
+        background-color: rgba(23, 196, 185, 0.8);
+    }
 }
 
 .button--small {

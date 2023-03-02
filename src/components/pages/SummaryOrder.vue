@@ -11,7 +11,6 @@ export default {
         store,
         company:{},
         cart:[],
-        currentTotalPrice: 0,
     }
   },
   created(){
@@ -29,8 +28,6 @@ export default {
     this.store.shoppingCart=[];
     localStorage.setItem('cart',[]);
     localStorage.setItem("orderCart", JSON.stringify(this.cart));
-    localStorage.setItem("currentPrice", this.currentTotalPrice);
-    this.currentTotalPrice = localStorage.getItem("currentPrice");
   },
   methods:{
     calculateTotalPrice(){
@@ -80,7 +77,7 @@ export default {
                         </tr>
                     </tbody>
                 </table>
-                <p><strong>Totale:</strong> {{ this.currentTotalPrice }}€</p>
+                <p><strong>Totale:</strong> {{ store.totalPrice }}€</p>
             </div>
         </div>
     </div>

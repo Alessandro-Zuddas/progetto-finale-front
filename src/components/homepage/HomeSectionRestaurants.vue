@@ -57,9 +57,11 @@
                     <h2 class="ms-category-text">Categorie:</h2>
                 </div>
                 <div :class="`ms-check-background ms-background-${typology.id}`" v-for="typology in this.store.typologies">
-                        <label :for=" typology.slug " class="ms-5 ms-check-restaurant">
+                        <label :for=" typology.slug " :class="`ms-check-background ms-check-restaurant ms-check-restaurant-${typology.id}`">
                             <input type="checkbox" :value=" typology.slug " :id=" typology.slug " class="me-1" v-model="this.selectedTypes" style="zoom:1.2;">
-                            <h3 class="ms-category-title">{{ typology.name }}</h3>
+                            <div class="ms-category-title">
+                                <h3>{{ typology.name }}</h3>
+                            </div>
                         </label>
                 </div>
             </div>
@@ -103,7 +105,6 @@
     }
     
     .ms-col-aside{
-        // width: 20vw;
         height: 85vh;
         display: flex;
         justify-content: center;
@@ -112,7 +113,6 @@
     }
 
     .ms-col-big{
-        // width: 60vw;
         height: 85vh;
         display: flex;
         justify-content: center;
@@ -148,8 +148,13 @@
 
     .ms-category-text{
         position: absolute;
-        top: 5%;
-        left: 7%;
+        top: 3%;
+        left: 0;
+        z-index: 100;
+        width: 100%;
+        padding-left: 20px;
+        padding-bottom: 10px;
+        background-color: #fff;
     }
 
     .ms-button{
@@ -164,62 +169,70 @@
     }
 
     input[type=checkbox] {
+        display: none;
+    }
+
+    input[type=checkbox]:checked > label{
         accent-color: rgba(23, 196, 185, 1);
+        font-weight: bold;
     }
 
     .ms-check-background{
         position: relative;
         width: 100%;
+        height: 68px;
         padding: 10px 10px;
-        margin-bottom: 10px;
+        margin-bottom: 9px;
         border-radius: 10px;
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
-        filter: grayscale(0.4);
         cursor: pointer;
     }
 
     .ms-category-title{
-        position: absolute;
-        top: 23%;
-        left: 32%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         color: white;
+        padding: 0 4px;
+        background-color: rgba(0, 0, 0, 0.709);
+        border-radius: 10px;
     }
 
-    .ms-background-1{
+    .ms-check-restaurant-1{
         background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfY0rG3h36m60KnjBCl7OmJD25SfJxNWeuNA&usqp=CAU);
     }
 
-    .ms-background-2{
+    .ms-check-restaurant-2{
         background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhODdAUH8YKjh48hY_9HxHdi_6PcDXWR_L2A&usqp=CAU);
     }
 
-    .ms-background-3{
+    .ms-check-restaurant-3{
         background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBDOxqL6PMsnyreIoD7CKqaJ9Ci7iY5bYvjA&usqp=CAU);
     }
 
-    .ms-background-4{
+    .ms-check-restaurant-4{
         background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsYb7Nft0RzuGJVp3ycycja0pMYATL3japiQ&usqp=CAU);
     }
 
-    .ms-background-5{
+    .ms-check-restaurant-5{
         background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6eliCoMB-1bPmMatM06o9K1EBwkm7NCRmHQ&usqp=CAU);
     }
 
-    .ms-background-6{
+    .ms-check-restaurant-6{
         background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0GbZWT5MwgKVSiCT-NeH9nRj523xb8xewWQ&usqp=CAU);
     }
 
-    .ms-background-7{
+    .ms-check-restaurant-7{
         background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjcChp6A54gDCRtJ7mLgibHBpQh3wtpWgt1A&usqp=CAU);
     }
 
-    .ms-background-8{
+    .ms-check-restaurant-8{
         background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSF04ibBToBQwlrlaVgf7VSP6hVuFxdBAlhVg&usqp=CAU);
     }
 
-    .ms-background-9{
+    .ms-check-restaurant-9{
         background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDPIlOyya6y47R46rYXuIrzDhfHJk1HtneQg&usqp=CAU);
     }
 

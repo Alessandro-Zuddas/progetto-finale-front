@@ -124,23 +124,27 @@ export default {
             <div class="alert alert-danger mt-2" role="alert" v-show=" Math.floor(parseFloat(cartCompany.minimum_order)) > Math.floor(parseFloat(store.totalPrice))">
                 Il prezzo del carrello deve superare l'ordine minimo di {{ Math.floor(cartCompany.minimum_order) }}€ per poter ordinare.
             </div>
-            <div class="ms-cart-product d-flex align-items-start" v-for="item in this.store.shoppingCart">
+            <div class="ms-cart-product" v-for="item in this.store.shoppingCart">
                 <div class="ms-singleproduct row d-flex align-items-center">
                     <div class="col my-2 "> 
                         <h3><strong>{{ item.product.name }}:</strong></h3>
                     </div>
-                    <div class="col-2 mx-2 my-2">{{ item.product.price }}€</div>
-                    <div class="col-6 mx-2 my-2">
+                </div>
+                <div class="row d-flex align-items-center">
+                    <div class="col-4 fs-3 my-2">{{ item.product.price }} €</div>
+                    <div class="col-5 fs-3 my-2">
                         <button class="ms-quantity-button" @click="removeOneItem(item), calculateTotalPrice()"><strong>-</strong></button> x {{ item.quantity }} <button class="ms-quantity-button" @click="addOneItem(item), calculateTotalPrice()"><strong>+</strong></button>
                     </div>
-                    <div class="col-5 text-end ms-trash-icon px-3" @click="deleteItem(item.product.id)">
+                    <div class="col-2 fs-3 text-end ms-trash-icon px-3" @click="deleteItem(item.product.id)">
                         <i class="fa-solid fa-trash-can"></i>
                     </div>
                 </div>
             </div>
-            <h1 class="ms-total-price my-4">Totale: {{ this.store.totalPrice }} €</h1>
-            <div class="btn ms-cart-btn " data-bs-dismiss="offcanvas" @click="closeOffCanvas()" >Checkout</div>
+            <div class="ms-cart-bottom w-100">
+            <h1 class="ms-total-price my-4 w-100 text-center ">Totale: {{ this.store.totalPrice }} €</h1>
+            <button class="btn ms-cart-btn text-center text-center" :disabled="Math.floor(parseFloat(cartCompany.minimum_order)) > Math.floor(parseFloat(store.totalPrice))" data-bs-dismiss="offcanvas" @click="closeOffCanvas()" >Checkout</button>
         </div>
+    </div>
         <div v-else>
             <h1>Il carrello è vuoto!</h1>
         </div>
@@ -218,23 +222,21 @@ export default {
 .ms-cart-1{
   max-height: 70px
 }
-.ms-product-delate:hover{
-    color:  rgba(23, 196, 185, 1);
-}
+
 .ms-cart-product{
     // flex-grow: 1;
     border-bottom: 1px solid black;
 }
 
-.offcanvas-body{
-    position: relative;
-}
-
-.ms-total-price{
-    position: absolute;
+// .offcanvas-body{
+//     position: relative;
+// }
+ 
+.ms-cart-bottom{
+    // position: absolute;
+    // bottom:0;
+    // left:0;
     background-color: #fff;
-    bottom: 8%;
-    max-height: 70px
 }
 
 .ms-quantity-button{
@@ -251,13 +253,9 @@ export default {
     color:#e30e0e;
 }
 .ms-cart-btn{
-    position: absolute;
-    bottom: 3%;
-    left: 50%;
-    transform: translate(-50% , -50%);
-    width: 90%;
+   width: 100%;
     background-color:  rgba(23, 196, 185, 1);
-    color:#fff
+    color:#fff;
 }
 .ms-cart-btn:hover{
     background-color: #01ac9e;

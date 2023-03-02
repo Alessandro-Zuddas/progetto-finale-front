@@ -153,25 +153,31 @@ export default {
         <div class="ms-aside py-4 px-4 d-flex flex-column shadow">
             <div class="text-center mb-4">
                 <img :src="this.restaurant.image" class="ms-company-img" :alt="this.restaurant.company_name" v-if="this.restaurant.image">
-                <img src="https://via.placeholder.com/150" class="card-img-top ms-company-img" :alt="this.restaurant.company_name" v-else>
+                <img src="https://via.placeholder.com/150" class="ms-company-img" :alt="this.restaurant.company_name" v-else>
                 <h1 class="my-1">{{ this.restaurant.company_name }}</h1>
-                <small class="">{{ this.restaurant.address }}</small>
+                <small class="text-muted">{{ this.restaurant.address }}</small>
             </div>
-            <h6 class="my-3">
+            <h4 class="my-3 text-center">
                 <i class="fa-solid fa-phone mx-2"></i>
                 <strong>Numero di telefono:</strong>
-                {{ this.restaurant.telephone }}.
-            </h6>
-            <h6 class="my-3">
+                <div>
+                {{ this.restaurant.telephone }}
+                </div>
+            </h4>
+            <h4 class="my-3 text-center">
                 <i class="fa-regular fa-clock mx-2"></i>
                 <strong>Orario di apertura:</strong>
-                {{ this.restaurant.opening_hours }}.
-            </h6>
-            <h6 class="my-3">
-                <i class="fa-solid fa-euro-sign mx-2"></i>
+                <div>
+                {{ this.restaurant.opening_hours }}
+                </div>
+            </h4>
+            <h4 class="my-3 text-center">
+                <i class="fa-solid fa-cart-shopping mx-2"></i>
                 <strong class="ms-1">Ordine minimo:</strong>
-                {{ this.restaurant.minimum_order }} €.
-            </h6>
+                <div >
+                {{ Math.floor(parseFloat(restaurant.minimum_order)) }} €
+                </div>
+            </h4>
         </div>
         <div class="ms-products-container">
             <div class="ms-product mx-5 py-3 d-flex justify-content-start">
@@ -233,25 +239,29 @@ export default {
 
 .ms-aside{
     width: 30vw;
-    height: 100vh;
+    height: 130vh;
+   
+    i{
+        color: rgba(23, 196, 185, 1);
+    }
 }
 
 .ms-products-container{
     width: 70vw;
-    height: 100vh;
+    height: 130vh;
     overflow-y: auto;
 }
 
 .ms-product{
     flex-wrap: wrap;
     margin: auto;
-    
 }   
 
 .ms-company-img{
     max-width: 100%;
     max-height: 28.125rem;
-    border-radius: 1.5625rem;
+    border-radius: 1rem;
+    padding-bottom: 20px;
     overflow-y: auto;
 }
 

@@ -131,18 +131,18 @@ export default {
                     </div>
                 </div>
                 <div class="row d-flex align-items-center">
-                    <div class="col-3 fs-3 my-2">{{ item.product.price }} €</div>
-                    <div class="col-6 fs-3 my-2">
+                    <div class="col-4 fs-3 my-2">{{ item.product.price }} €</div>
+                    <div class="col-5 fs-3 my-2">
                         <button class="ms-quantity-button" @click="removeOneItem(item), calculateTotalPrice()"><strong>-</strong></button> x {{ item.quantity }} <button class="ms-quantity-button" @click="addOneItem(item), calculateTotalPrice()"><strong>+</strong></button>
                     </div>
-                    <div class="col-5 text-end ms-trash-icon px-3" @click="deleteItem(item.product.id)">
+                    <div class="col-2 fs-3 text-end ms-trash-icon px-3" @click="deleteItem(item.product.id)">
                         <i class="fa-solid fa-trash-can"></i>
                     </div>
                 </div>
             </div>
             <div class="ms-cart-bottom w-100">
             <h1 class="ms-total-price my-4 w-100 text-center ">Totale: {{ this.store.totalPrice }} €</h1>
-            <button class="btn ms-cart-btn w-100 text-center text-center" :disabled="Math.floor(parseFloat(cartCompany.minimum_order)) > Math.floor(parseFloat(store.totalPrice))" data-bs-dismiss="offcanvas" @click="closeOffCanvas()" >Checkout</button>
+            <button class="btn ms-cart-btn text-center text-center" :disabled="Math.floor(parseFloat(cartCompany.minimum_order)) > Math.floor(parseFloat(store.totalPrice))" data-bs-dismiss="offcanvas" @click="closeOffCanvas()" >Checkout</button>
         </div>
     </div>
         <div v-else>
@@ -252,8 +252,7 @@ export default {
     color:#e30e0e;
 }
 .ms-cart-btn{
-   max-width: 70%;
-   
+   width: 100%;
     background-color:  rgba(23, 196, 185, 1);
     color:#fff;
 }

@@ -129,7 +129,7 @@ export default {
                     <div class="col my-2 "> 
                         <h3><strong>{{ item.product.name }}:</strong></h3>
                     </div>
-                    <div class="col-2 mx-2 my-2">{{ item.product.price }}</div>
+                    <div class="col-2 mx-2 my-2">{{ item.product.price }}€</div>
                     <div class="col-6 mx-2 my-2">
                         <button class="ms-quantity-button" @click="removeOneItem(item), calculateTotalPrice()"><strong>-</strong></button> x {{ item.quantity }} <button class="ms-quantity-button" @click="addOneItem(item), calculateTotalPrice()"><strong>+</strong></button>
                     </div>

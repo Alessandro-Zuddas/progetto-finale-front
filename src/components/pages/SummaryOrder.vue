@@ -5,54 +5,62 @@ import axios from 'axios';
 import { store } from "../../store";
 
 export default {
-  name: "SummaryOrder",
-  data(){
-    return{
-        store,
-        company:{},
-        cart:[],
-    }
-  },
-  created(){
-    this.currentTotalPrice = this.store.totalPrice;
-    this.store.orderNumber=localStorage.getItem('orderNumber')
-    this.store.companies=JSON.parse(localStorage.getItem('companies'));
-    console.log(this.store.companies)
-    this.calculateTotalPrice();
-    if(this.store.shoppingCart.length>0){
-        this.cart=this.store.shoppingCart;
-    }else{
-        this.cart=JSON.parse(localStorage.getItem('orderCart'));
-    }
-    this.company=this.store.companies.data.find(element => element.id == this.cart[0].product.company_id);
-    this.store.shoppingCart=[];
-    localStorage.setItem('cart',[]);
-    localStorage.setItem("orderCart", JSON.stringify(this.cart));
-  },
-  methods:{
-    calculateTotalPrice(){
-
-        this.store.totalPrice = 0;
-
-        this.store.shoppingCart.forEach(product => {
-            
-            let productPrice = parseFloat( product.quantity * product.product.price);
-            let cartPrice = parseFloat(this.store.totalPrice);
-
-            this.store.totalPrice = parseFloat(this.store.totalPrice += productPrice).toFixed(2);
-
-            this.store.totalPrice = parseFloat(this.store.totalPrice);
-
-        });
+    name: "SummaryOrder",
+    data() {
+        return {
+            store,
+            company: {},
+            cart: [],
+            total: 0,
+        }
     },
-  }
+    created() {
+        this.calculateTotalPrice()
+        if (localStorage.getItem('totalPrice') && localStorage.getItem('totalPrice') != '0') {
+            this.total = localStorage.getItem('totalPrice')
+        } else {
+            this.total = this.store.totalPrice
+        }
+        this.store.orderNumber = localStorage.getItem('orderNumber')
+        this.store.companies = JSON.parse(localStorage.getItem('companies'));
+        console.log(this.store.companies)
+
+        if (this.store.shoppingCart.length > 0) {
+            this.cart = this.store.shoppingCart;
+        } else {
+            this.cart = JSON.parse(localStorage.getItem('orderCart'));
+        }
+        this.company = this.store.companies.data.find(element => element.id == this.cart[0].product.company_id);
+        this.store.shoppingCart = [];
+        localStorage.setItem('cart', []);
+        localStorage.setItem("orderCart", JSON.stringify(this.cart));
+        localStorage.setItem('totalPrice', this.total)
+    },
+    methods: {
+        calculateTotalPrice() {
+
+            this.store.totalPrice = 0;
+
+            this.store.shoppingCart.forEach(product => {
+
+                let productPrice = parseFloat(product.quantity * product.product.price);
+                let cartPrice = parseFloat(this.store.totalPrice);
+
+                this.store.totalPrice = parseFloat(this.store.totalPrice += productPrice).toFixed(2);
+
+                this.store.totalPrice = parseFloat(this.store.totalPrice);
+
+            });
+        },
+    }
+
 }
 </script>
 <template>
     <div class="container ms-order-container">
         <div class="row">
             <div class="ms-order-recap-title py-2 mb-4">
-                <h1>Riepilogo ordine:</h1>
+                <h1>Ordine avvenuto con successo!</h1>
             </div>
             <div class="col-3">
                 <img class="img-fluid" :src="company.image_url" alt="company.name" v-if="company.image_url">
@@ -60,7 +68,7 @@ export default {
                 <h2>{{ company.company_name }}</h2>
             </div>
             <div class="col-7">
-                <h3><strong>Ordine n°:</strong> {{store.orderNumber}}</h3>
+                <h3><strong>Ordine n°:</strong> {{ store.orderNumber }}</h3>
                 <table class="table">
                     <thead>
                         <tr>
@@ -71,20 +79,19 @@ export default {
                     </thead>
                     <tbody>
                         <tr v-for="element in cart">
-                            <th>{{element.product.name}}</th>
+                            <th>{{ element.product.name }}</th>
                             <th>x{{ element.quantity }}</th>
-                            <th>{{element.product.price}} €</th>
+                            <th>{{ element.product.price }} €</th>
                         </tr>
                     </tbody>
                 </table>
-                <p><strong>Totale:</strong> {{ store.totalPrice }}€</p>
+                <p><strong>Totale:</strong> {{ total }}€</p>
             </div>
         </div>
     </div>
 </template>
 <style lang="scss" scoped>
-
-.ms-order-container{
+.ms-order-container {
     margin-top: 25px;
     margin-bottom: 25px;
     border-left: 1px solid;
@@ -94,8 +101,7 @@ export default {
     border-radius: 10px;
 }
 
-.ms-order-recap-title{
+.ms-order-recap-title {
     background-color: rgba(23, 196, 185, 1);
 }
-
 </style>

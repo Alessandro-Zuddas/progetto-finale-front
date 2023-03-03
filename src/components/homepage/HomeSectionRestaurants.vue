@@ -242,7 +242,7 @@
     input[type=checkbox] {
         position: absolute;
         top: 38%;
-        left: 15%;
+        left: 18%;
         accent-color: rgba(23, 196, 185, 1);
     }
 

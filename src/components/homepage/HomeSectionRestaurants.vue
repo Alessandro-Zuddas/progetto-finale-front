@@ -74,8 +74,8 @@
                     <img src="https://via.placeholder.com/150" class="card-img-top ms-company-img" :alt="restaurant.company_name" v-else>
                     <div class="card-body">
                        
-                        <h5 class="card-title">{{ restaurant.company_name }}</h5>
-                        <p class="card-text text-secondary ms-address">{{ restaurant.address }}</p>
+                        <h3 class="card-title my-3 text-center"><strong>{{ restaurant.company_name }}</strong></h3>
+                        <p class="card-text text-secondary ms-address mb-3">{{ restaurant.address }}</p>
                         <span class="badge ms-badge mb-3" v-for="typology in restaurant.typologies"> 
                             {{ typology.name }}
                         </span>
@@ -88,7 +88,7 @@
                         <router-link
                         :to="{ name: 'single-restaurant', params: { slug: restaurant.slug } }"
                         class="btn ms-button">
-                            Ordina ora!
+                        <strong> Ordina ora! </strong>
                         </router-link>
                     </div>
                 </div>                
@@ -136,7 +136,7 @@
                         <router-link
                         :to="{ name: 'single-restaurant', params: { slug: restaurant.slug } }"
                         class="btn ms-button">
-                            Ordina ora!
+                           <Strong> Ordina ora!</Strong>
                         </router-link>
                     </div>
                 </div>                
@@ -178,13 +178,14 @@
     }
 
     .card{
-        max-height: 400px;
+        max-height: 600px;
         border: none;
         .ms-company-img{
             height: 9.375rem;
         }
         .ms-address{
-            font-size: 13px;
+            font-size: 16px;
+            height: 50px;
         }
         .ms-badge{
             color: rgba(23, 196, 185, 1);
@@ -226,6 +227,11 @@
        background-color:  rgba(23, 196, 185, 1);
        color: #fff;
        width:100%;
+
+       &:hover{
+        background-color: #01ac9e;
+        color: #fff;
+       }
     }
 
     .ms-check-restaurant{

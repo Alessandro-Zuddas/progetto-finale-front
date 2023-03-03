@@ -280,7 +280,7 @@
         // align-items: center;
         // justify-content: center;
         position: absolute;
-        top: 20%;
+        top: 22%;
         left: 25%;
         color: white;
         padding: 0 4px;

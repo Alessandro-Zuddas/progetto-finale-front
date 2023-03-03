@@ -16,6 +16,7 @@ export default {
         store,
         addedToCart: false,
         addToCartError: false,
+        wasDeleted: false,
     }
   },
   methods:{
@@ -50,7 +51,13 @@ export default {
             storeProduct.quantity--;
             localStorage.setItem('cart', JSON.stringify(this.store.shoppingCart));
         }else{
+            this.wasDeleted = true;
+
             this.deleteItem(id);
+
+            setTimeout(() => {
+                this.wasDeleted = false;
+            }, 2300)
         }
     },
     deleteItem(id){
@@ -191,7 +198,7 @@ export default {
                         
                         <h3 class="ms-card-title my-2"><strong>{{ product.name }}</strong></h3>
                         <p class="ms-card-description"><strong>Descrizione:</strong> {{ product.description }} </p>
-                        <p class="ms-card-price">  <strong>Prezzo:</strong> {{ product.price }}</p>
+                        <p class="ms-card-price">  <strong>Prezzo:</strong> {{ product.price }} €</p>
                         
                         <strong v-if="store.shoppingCart.find(element => element.product.id == product.id)">Quantità:</strong>
                         <div class="ms-btn-quantity m-auto" v-if="store.shoppingCart.find(element => element.product.id == product.id)">
@@ -215,6 +222,15 @@ export default {
                     </div>
                     <div class="toast-body ms-message-desc">
                         Continua ad aggiungere prodotti o vai al checkout!
+                    </div>
+                </div>
+
+                <div v-show="this.wasDeleted == true" class="ms-delete-message my-3 mx-3 position-fixed bottom-0 end-0 p-3">
+                    <div class="toast-header">
+                        <strong class="me-auto ms-message-title">Prodotto rimosso!</strong>
+                    </div>
+                    <div class="toast-body ms-message-desc">
+                        Il prodotto è stato rimosso dal carrello!
                     </div>
                 </div>
 
@@ -308,6 +324,16 @@ export default {
     padding: 10px 10px;
     border-radius: 10px;
     background-color: lightgreen;
+
+    animation: fadeOut 1s;
+    animation-delay: 1.5s;
+}
+
+.ms-delete-message{
+    font-size: 22px;
+    padding: 10px 10px;
+    border-radius: 10px;
+    background-color: yellow;
 
     animation: fadeOut 1s;
     animation-delay: 1.5s;

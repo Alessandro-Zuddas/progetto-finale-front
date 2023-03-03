@@ -156,7 +156,7 @@ export default {
 </script>
 
 <template>
-    <div class="container d-flex p-0">
+    <div class="container d-flex">
         <div class="ms-aside p-4">
             <!-- Carrello -->
             <div v-if="this.store.shoppingCart.length > 0">
@@ -230,6 +230,11 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+
+.container{
+    padding-top: 100px;
+}
+
 .ms-aside {
     width: 30vw;
     height: 120vh;

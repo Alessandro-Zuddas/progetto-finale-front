@@ -31,7 +31,7 @@ export default {
 }
 
 .ms-hero-img{
-    height: 37.5rem;
+    height: 40.625rem;
     background-repeat: no-repeat;
     background-size: cover;
 }

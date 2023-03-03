@@ -156,7 +156,7 @@ export default {
 
 <template>
 
-    <div class="container-fluid d-flex p-0">
+    <div class="container-fluid d-flex">
         <!-- Aside da desktop -->
         <div class="ms-aside py-4 px-4 d-flex flex-column shadow d-none d-md-block">
             <div class="text-center mb-4">
@@ -354,6 +354,10 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+
+.container-fluid {
+    padding-top: 100px;
+}
 
 .ms-aside{
     width: 30vw;

@@ -80,7 +80,7 @@ export default {
 
 <template>
 
-    <div class="container-fluid bg-black">
+    <div class="container-fluid bg-black position-fixed top-0">
         <div class="container container-md">
             <div class="row justify-content-between align-items-center">
                 <div class="col my-2">
@@ -204,6 +204,11 @@ export default {
 <style lang="scss" scoped>
 
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&display=swap');
+
+.container-fluid{
+    filter: opacity(0.9);
+    z-index: 150;
+}
 
 .container{
     font-family: 'PT Sans', sans-serif;

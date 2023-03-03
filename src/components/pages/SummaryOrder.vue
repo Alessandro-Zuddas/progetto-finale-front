@@ -57,7 +57,9 @@ export default {
 }
 </script>
 <template>
-    <div class="container ms-order-container shadow">
+    
+    <div class="ms-container-fixed">
+        <div class="container ms-order-container shadow">
         <div class="row mb-3 justify-content-around flex-wrap">
             <div class="ms-order-recap-title rounded-top py-2 mb-3">
                 <h1 class="text-light mx-3">Ordine effettuato con successo!</h1>
@@ -87,17 +89,21 @@ export default {
                 </table>
                 <p><strong>Totale:</strong> {{ total }}€</p>
             </div>
-            <div class="col-4 col-md-8 col-sm-12 me-auto mx-5 mb-1">
-                <button class="btn btn-success ms-btn">
-                    <router-link class="ms-router" :to="{ name: 'homepage' }">
-                        <span class="mx-3 text-light">Torna alla Home</span>
-                    </router-link>
-                </button>
+                <div class="col-4 col-md-8 col-sm-12 me-auto mx-5 mb-1">
+                    <button class="btn btn-success ms-btn">
+                        <router-link class="ms-router" :to="{ name: 'homepage' }">
+                            <span class="mx-3 text-light">Torna alla Home</span>
+                        </router-link>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
+
 </template>
 <style lang="scss" scoped>
+
+
 .ms-order-container {
     margin-top: 25px;
     margin-bottom: 25px;
@@ -106,6 +112,10 @@ export default {
     border-bottom: 1px solid;
     border-color: rgba(23, 196, 185, 1);
     border-radius: 10px;
+}
+
+.ms-container-fixed{
+    padding-top: 100px;
 }
 
 .ms-order-recap-title {

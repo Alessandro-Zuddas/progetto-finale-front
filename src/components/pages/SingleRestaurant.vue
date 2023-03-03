@@ -157,7 +157,8 @@ export default {
 <template>
 
     <div class="container-fluid d-flex p-0">
-        <div class="ms-aside py-4 px-4 d-flex flex-column shadow">
+        <!-- Aside da desktop -->
+        <div class="ms-aside py-4 px-4 d-flex flex-column shadow d-none d-md-block">
             <div class="text-center mb-4">
                 <img :src="this.restaurant.image" class="ms-company-img" :alt="this.restaurant.company_name" v-if="this.restaurant.image">
                 <img src="https://via.placeholder.com/150" class="ms-company-img" :alt="this.restaurant.company_name" v-else>
@@ -186,8 +187,10 @@ export default {
                 </div>
             </h4>
         </div>
-        <div class="ms-products-container">
-            <div class="ms-product mx-5 py-3 d-flex justify-content-start">
+        <!-- Aside da desktop -->
+        <!-- Main piatti desktop -->
+        <div class="ms-products-container d-none d-md-block">
+            <div class="ms-product mx-5 py-3 d-flex justify-content-lg-start justify-content-center">
                 <!-- Singolo Piatto -->
                 <div class=" mx-3 my-3 shadow" style="width: 18rem;" v-for="product in restaurant.products">
                     <div class="ms-img-container">
@@ -205,12 +208,12 @@ export default {
                             <span class="mx-2 px-2 ms-button" @click="$event=>decrementQuantity(product.id)"><strong><i class="text-danger fa-solid fa-minus"></i></strong></span>
                             <span class="mx-2">x {{ findQuantity(product.id) }}</span>
                             <span class="mx-2 px-2 ms-button" @click="$event=>incrementQuantity(product.id)"><strong><i class="text-success fa-solid fa-plus"></i></strong></span>
-                           
+                        
                         </div>
                         <div class="mt-auto" v-show="!store.shoppingCart.find(element => element.product.id == product.id)">
                             <button @click="addToCart(product), calculateTotalPrice()"
                                     class="btn ms-btn my-2 w-100">
-                                       <strong>Aggiungi al carrello</strong>
+                                    <strong>Aggiungi al carrello</strong>
                             </button>
                         </div>
                     </div>
@@ -245,6 +248,106 @@ export default {
 
             </div>
         </div>
+        <!-- /Main piatti desktop -->
+
+        <div class="row">
+             <!-- Aside da tablet in giu -->
+         <div class="col-12 py-4 px-4 d-flex shadow d-block d-md-none">
+            <div class="col-6 d-flex">
+                <div class="text-center mb-4">
+                    <img :src="this.restaurant.image" class="ms-company-img" :alt="this.restaurant.company_name" v-if="this.restaurant.image">
+                    <img src="https://via.placeholder.com/150" class="ms-company-img" :alt="this.restaurant.company_name" v-else>
+                    <h1 class="my-1"><strong>{{ this.restaurant.company_name }}</strong></h1>
+                    <small class="text-muted">{{ this.restaurant.address }}</small>
+                </div>
+            </div>
+            <div class="col-6 d-flex flex-column justify-content-center">
+                <h4 class="my-3 text-center">
+                <i class="fa-solid fa-phone mx-2"></i>
+                <strong>Numero di telefono:</strong>
+                    <div>
+                        {{ this.restaurant.telephone }}
+                    </div>
+                </h4>
+            <h4 class="my-3 text-center">
+                <i class="fa-regular fa-clock mx-2"></i>
+                <strong>Orario di apertura:</strong>
+                <div>
+                    {{ this.restaurant.opening_hours }}
+                </div>
+            </h4>
+            <h4 class="my-3 text-center">
+                <i class="fa-solid fa-cart-shopping mx-2"></i>
+                <strong class="ms-1">Ordine minimo:</strong>
+                <div >
+                    {{ Math.floor(parseFloat(restaurant.minimum_order)) }} €
+                </div>
+            </h4>
+            </div>
+        </div>
+        <!-- /Aside da tablet in giu -->
+        <!-- Main piatti tablet in giu -->
+        <div class="col-12 d-block d-md-none">
+            <div class="ms-product mx-5 py-3 d-flex justify-content-lg-start justify-content-center">
+                <!-- Singolo Piatto -->
+                <div class=" mx-3 my-3 shadow" style="width: 18rem;" v-for="product in restaurant.products">
+                    <div class="ms-img-container">
+                            <img class="" :src="product.image_url" :alt="product.name" v-if="product.image_url">
+                            <img class=" card-img-top" :src="product.image" :alt="product.name" v-else>
+                        </div>
+                    <div class="card-body d-flex flex-column p-3">
+                        
+                        <h3 class="ms-card-title my-2"><strong>{{ product.name }}</strong></h3>
+                        <p class="ms-card-description"><strong>Descrizione:</strong> {{ product.description }} </p>
+                        <p class="ms-card-price">  <strong>Prezzo:</strong> {{ product.price }} €</p>
+                        
+                        <strong v-if="store.shoppingCart.find(element => element.product.id == product.id)">Quantità:</strong>
+                        <div class="ms-btn-quantity m-auto" v-if="store.shoppingCart.find(element => element.product.id == product.id)">
+                            <span class="mx-2 px-2 ms-button" @click="$event=>decrementQuantity(product.id)"><strong><i class="text-danger fa-solid fa-minus"></i></strong></span>
+                            <span class="mx-2">x {{ findQuantity(product.id) }}</span>
+                            <span class="mx-2 px-2 ms-button" @click="$event=>incrementQuantity(product.id)"><strong><i class="text-success fa-solid fa-plus"></i></strong></span>
+                        
+                        </div>
+                        <div class="mt-auto" v-show="!store.shoppingCart.find(element => element.product.id == product.id)">
+                            <button @click="addToCart(product), calculateTotalPrice()"
+                                    class="btn ms-btn my-2 w-100">
+                                    <strong>Aggiungi al carrello</strong>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div v-show="this.addedToCart == true" class="ms-add-message my-3 mx-3 position-fixed bottom-0 end-0 p-3">
+                    <div class="toast-header">
+                        <strong class="me-auto ms-message-title">Prodotto aggiunto!</strong>
+                    </div>
+                    <div class="toast-body ms-message-desc">
+                        Continua ad aggiungere prodotti o vai al checkout!
+                    </div>
+                </div>
+
+                <div v-show="this.wasDeleted == true" class="ms-delete-message my-3 mx-3 position-fixed bottom-0 end-0 p-3">
+                    <div class="toast-header">
+                        <strong class="me-auto ms-message-title">Prodotto rimosso!</strong>
+                    </div>
+                    <div class="toast-body ms-message-desc">
+                        Il prodotto è stato rimosso dal carrello!
+                    </div>
+                </div>
+
+                <div v-show="this.addToCartError == true" class="ms-add-message-wrong my-3 mx-3 position-fixed bottom-0 end-0 p-3">
+                    <div class="toast-header">
+                        <strong class="me-auto ms-message-title">Ops!</strong>
+                    </div>
+                    <div class="toast-body ms-message-desc">
+                        Non puoi ordinare da due ristoranti diversi!
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- /Main piatti tablet in giu -->
+        </div>
 
     </div>
 
@@ -261,9 +364,23 @@ export default {
     }
 }
 
+.ms-aside-responsive{
+    width: 100vw;
+    height: 40vh;
+   
+    i{
+        color: rgba(23, 196, 185, 1);
+    }
+}
+
 .ms-products-container{
     width: 70vw;
     height: 130vh;
+    overflow-y: auto;
+}
+
+.ms-products-container-responsive{
+    width: 100vw;
     overflow-y: auto;
 }
 

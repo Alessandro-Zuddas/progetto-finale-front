@@ -199,11 +199,11 @@ export default {
         <div class="ms-products-container d-none d-md-block">
             <div class="ms-product mx-5 py-3 d-flex justify-content-center">
                 <!-- Singolo Piatto -->
-                <div class=" mx-3 my-3 shadow" style="width: 18rem;" v-for="product in restaurant.products">
+                <div class=" mx-3 my-3 shadow" style="width: 18rem;" v-for="product in restaurant.products" v-show="product.is_visible">
                     <div class="ms-img-container">
-                            <img class="" :src="product.image_url" :alt="product.name" v-if="product.image_url">
-                            <img class=" card-img-top" :src="product.image" :alt="product.name" v-else>
-                        </div>
+                        <img class="" :src="product.image_url" :alt="product.name" v-if="product.image_url">
+                        <img class=" card-img-top" :src="product.image" :alt="product.name" v-else>
+                    </div>
                     <div class="card-body d-flex flex-column p-3">
                         
                         <h3 class="ms-card-title my-2"><strong>{{ product.name }}</strong></h3>

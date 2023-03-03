@@ -237,6 +237,7 @@
     .ms-check-restaurant{
         font-size: 19px;
         padding: 10px;
+        text-shadow: 1px 1px black, 1px 1px black, 1px 1px black, 1px 1px black;
     }
 
     input[type=checkbox] {
@@ -283,7 +284,7 @@
         left: 30%;
         color: white;
         padding: 0 4px;
-        background-color: rgba(0, 0, 0, 0.709);
+        // background-color: rgba(0, 0, 0, 0.709);
         border-radius: 10px;
     }
 
@@ -310,34 +311,42 @@
 
     .ms-check-restaurant-2{
         background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhODdAUH8YKjh48hY_9HxHdi_6PcDXWR_L2A&usqp=CAU);
+        opacity: 0.7;
     }
 
     .ms-check-restaurant-3{
         background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBDOxqL6PMsnyreIoD7CKqaJ9Ci7iY5bYvjA&usqp=CAU);
+        opacity: 0.7;
     }
 
     .ms-check-restaurant-4{
         background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsYb7Nft0RzuGJVp3ycycja0pMYATL3japiQ&usqp=CAU);
+        opacity: 0.7;
     }
 
     .ms-check-restaurant-5{
         background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6eliCoMB-1bPmMatM06o9K1EBwkm7NCRmHQ&usqp=CAU);
+        opacity: 0.7;
     }
 
     .ms-check-restaurant-6{
         background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0GbZWT5MwgKVSiCT-NeH9nRj523xb8xewWQ&usqp=CAU);
+        opacity: 0.7;
     }
 
     .ms-check-restaurant-7{
         background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjcChp6A54gDCRtJ7mLgibHBpQh3wtpWgt1A&usqp=CAU);
+        opacity: 0.7;
     }
 
     .ms-check-restaurant-8{
         background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSF04ibBToBQwlrlaVgf7VSP6hVuFxdBAlhVg&usqp=CAU);
+        opacity: 0.7;
     }
 
     .ms-check-restaurant-9{
         background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDPIlOyya6y47R46rYXuIrzDhfHJk1HtneQg&usqp=CAU);
+        opacity: 0.7;
     }
 
 </style>

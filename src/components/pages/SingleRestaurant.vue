@@ -190,7 +190,7 @@ export default {
         <!-- Aside da desktop -->
         <!-- Main piatti desktop -->
         <div class="ms-products-container d-none d-md-block">
-            <div class="ms-product mx-5 py-3 d-flex justify-content-lg-start justify-content-center">
+            <div class="ms-product mx-5 py-3 d-flex justify-content-center">
                 <!-- Singolo Piatto -->
                 <div class=" mx-3 my-3 shadow" style="width: 18rem;" v-for="product in restaurant.products">
                     <div class="ms-img-container">

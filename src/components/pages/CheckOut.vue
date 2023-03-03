@@ -157,7 +157,8 @@ export default {
 
 <template>
     <div class="container d-flex">
-        <div class="ms-aside p-4">
+        <!-- Riepilogo desktop -->
+        <div class="ms-aside p-4 d-none d-lg-block">
             <!-- Carrello -->
             <div v-if="this.store.shoppingCart.length > 0">
                 <h1>Dettagli dell'ordine:</h1>
@@ -180,7 +181,7 @@ export default {
                     </div>
                 </div>
                 <hr>
-                <h1 class="ms-total-price my-4">Totale: {{ this.store.totalPrice }} €</h1>
+                <h2 class="ms-total-price my-4"><strong>Totale:</strong> {{ this.store.totalPrice }} €</h2>
             </div>
             <div v-else>
                 <h1>Il carrello è vuoto!</h1>
@@ -190,7 +191,9 @@ export default {
             </div>
             <!-- /Carrello -->
         </div>
-        <div class="ms-main-form">
+        <!-- /Riepilogo ordine desktop -->
+        <!-- Form pagamento ordine desktop -->
+        <div class="ms-main-form d-none d-lg-block">
             <form class="card ms-5 p-4 my-4" @submit.prevent @submit="submittingForm()" v-show="!submit">
                 <div class="mb-3">
                     <label for="name" class="form-label">Inserisci il nome*</label>
@@ -226,11 +229,87 @@ export default {
                 <button type="button" class="ms-btn button button--small mb-3 w-20 mx-3" @click="falseSubmit()">Indietro</button>
             </div>
         </div>
+        <!-- /Form pagamento ordine desktop -->
+
+       <div class="row">
+            <!-- Riepilogo tablet in giu -->
+            <div class="ms-aside-responsive p-4 d-lg-none d-block">
+                <!-- Carrello -->
+                <div v-if="this.store.shoppingCart.length > 0">
+                    <h1>Dettagli dell'ordine:</h1>
+                    <hr>
+                    <div class="ms-cart-product " v-for="item in this.store.shoppingCart">
+                        <div class="fs-3 my-2">
+                            <strong>{{ item.product.name }}:</strong>
+                        </div>
+                        <div class="row d-flex align-items-center my-4 ">
+                            <div class="col-3 fs-3">{{ item.product.price }}€</div>
+                            <div class="col fs-3 text-center">
+                                <button class="ms-quantity-button btn" @click="removeOneItem(item), calculateTotalPrice()"><i
+                                        class="ms-icon-red fa-solid fa-minus"></i></button> x {{ item.quantity }} <button
+                                    class="ms-quantity-button btn" @click="addOneItem(item), calculateTotalPrice()"><i
+                                        class="fa-solid fa-plus"></i></button>
+                            </div>
+                            <div class="col-2 fs-4 text-end ms-trash-icon" @click="deleteItem(item.product.id)">
+                                <i class="ms-icon fa-solid fa-trash-can"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <h2 class="ms-total-price my-4"><strong>Totale:</strong> {{ this.store.totalPrice }} €</h2>
+                </div>
+                <div v-else>
+                    <h1>Il carrello è vuoto!</h1>
+                    <router-link :to="{ name: 'homepage' }" class="btn btn-primary">
+                        Torna alla home
+                    </router-link>
+                </div>
+                <!-- /Carrello -->
+            </div>
+            <!-- /Riepilogo ordine tablet in giu -->
+            <!-- Form pagamento ordine tablet in giu -->
+            <div class="ms-main-form-responsive d-lg-none d-block">
+                <form class="card ms-5 p-4 my-4" @submit.prevent @submit="submittingForm()" v-show="!submit">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Inserisci il nome*</label>
+                        <input type="text" class="form-control" id="name" required v-model="name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="Email" class="form-label">Inserisci l'email*</label>
+                        <input type="email" class="form-control" id="Email" aria-describedby="emailHelp" required
+                            v-model="email">
+                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="telephone" class="form-label">Inserisci il numero di telefono*</label>
+                        <input type="text" class="form-control" id="telephone" required v-model="telephone">
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Inserisci l'indirizzo*</label>
+                        <input type="text" class="form-control" id="address" required v-model="address">
+                    </div>
+                    <button type="submit" class="btn btn-success w-auto me-auto"
+                        :disabled="parseFloat(store.totalPrice) <= parseFloat(cartCompany.minimum_order)">Conferma</button>
+                </form>
+                <div class="alert alert-danger ms-5 mt-2" role="alert"
+                    v-show="Math.floor(parseFloat(cartCompany.minimum_order)) > Math.floor(parseFloat(store.totalPrice))">
+                    Il prezzo del carrello deve superare l'ordine minimo di {{ Math.floor(cartCompany.minimum_order) }}€ per
+                    poter ordinare.
+                </div>
+                <div v-show="submit" class="mx-5">
+                    <div id="dropin-container"></div>
+                    <button id="submit-button" class="button button--small button--green mb-3 w-50 mx-auto"
+                        @click="pushOrder()">Purchase</button>
+                    <!-- Bottone torna al form -->
+                    <button type="button" class="ms-btn button button--small mb-3 w-20 mx-3" @click="falseSubmit()">Indietro</button>
+                </div>
+            </div>
+            <!-- /Form pagamento ordine tablet in giu -->
+       </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
-
 .container{
     padding-top: 100px;
 }
@@ -246,6 +325,19 @@ export default {
     background-color: rgba(23, 196, 185, 0.1);
     width: 70vw;
     height: 120vh;
+    padding-right: 45px;
+    border-right: 1px solid lightgray;
+}
+
+.ms-aside-responsive {
+    max-width: 100vw;
+    border-right: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+}
+
+.ms-main-form-responsive{
+    background-color: rgba(23, 196, 185, 0.1);
+    max-width: 100vw;
     padding-right: 45px;
     border-right: 1px solid lightgray;
 }

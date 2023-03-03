@@ -237,7 +237,7 @@
     .ms-check-restaurant{
         font-size: 19px;
         padding: 10px;
-        text-shadow: 1px 1px black, 1px 1px black, 1px 1px black, 1px 1px black;
+        text-shadow: 2px 2px black, 2px 2px black, 2px 2px black, 2px 2px black;
     }
 
     input[type=checkbox] {
@@ -307,6 +307,7 @@
 
     .ms-check-restaurant-1{
         background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfY0rG3h36m60KnjBCl7OmJD25SfJxNWeuNA&usqp=CAU);
+        opacity: 0.7;
     }
 
     .ms-check-restaurant-2{

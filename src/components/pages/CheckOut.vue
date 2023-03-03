@@ -17,6 +17,13 @@ export default {
         }
     },
     created() {
+        if(localStorage.getItem("email")){
+            this.store.email=localStorage.getItem('email');
+            this.store.name=localStorage.getItem('name');
+            this.store.telephone=localStorage.getItem('telephone');
+            this.store.address=localStorage.getItem('address');
+            this.store.id=localStorage.getItem('id');
+        }
         localStorage.setItem('paid', false);
         console.log(localStorage.getItem('paid'));
         this.paid = localStorage.getItem('paid');

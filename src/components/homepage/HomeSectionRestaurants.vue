@@ -185,7 +185,7 @@
         }
         .ms-address{
             font-size: 16px;
-            height: 50px;
+            height: 70px;
         }
         .ms-badge{
             color: rgba(23, 196, 185, 1);

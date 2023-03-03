@@ -251,38 +251,38 @@ export default {
         <!-- /Main piatti desktop -->
 
         <div class="row">
-             <!-- Aside da tablet in giu -->
-         <div class="col-12 py-4 px-4 d-flex shadow d-block d-md-none">
-            <div class="col-6 d-flex">
-                <div class="text-center mb-4">
-                    <img :src="this.restaurant.image" class="ms-company-img" :alt="this.restaurant.company_name" v-if="this.restaurant.image">
+        <!-- Aside da tablet in giu -->
+         <div class="ms-aside-responsive row px-4 d-flex shadow d-block d-md-none">
+            <div class="col-12 d-flex justify-content-center">
+                <div class="d-flex flex-column align-items-center mb-4">
+                    <img :src="this.restaurant.image" class="ms-img-responsive" :alt="this.restaurant.company_name" v-if="this.restaurant.image">
                     <img src="https://via.placeholder.com/150" class="ms-company-img" :alt="this.restaurant.company_name" v-else>
                     <h1 class="my-1"><strong>{{ this.restaurant.company_name }}</strong></h1>
                     <small class="text-muted">{{ this.restaurant.address }}</small>
                 </div>
             </div>
-            <div class="col-6 d-flex flex-column justify-content-center">
-                <h4 class="my-3 text-center">
+            <div class="col-12 d-flex justify-content-center">
+                <h5 class="my-3 text-center">
                 <i class="fa-solid fa-phone mx-2"></i>
                 <strong>Numero di telefono:</strong>
                     <div>
                         {{ this.restaurant.telephone }}
                     </div>
-                </h4>
-            <h4 class="my-3 text-center">
+                </h5>
+            <h5 class="my-3 text-center">
                 <i class="fa-regular fa-clock mx-2"></i>
                 <strong>Orario di apertura:</strong>
                 <div>
                     {{ this.restaurant.opening_hours }}
                 </div>
-            </h4>
-            <h4 class="my-3 text-center">
+            </h5>
+            <h5 class="my-3 text-center">
                 <i class="fa-solid fa-cart-shopping mx-2"></i>
                 <strong class="ms-1">Ordine minimo:</strong>
                 <div >
                     {{ Math.floor(parseFloat(restaurant.minimum_order)) }} €
                 </div>
-            </h4>
+            </h5>
             </div>
         </div>
         <!-- /Aside da tablet in giu -->
@@ -365,9 +365,6 @@ export default {
 }
 
 .ms-aside-responsive{
-    width: 100vw;
-    height: 40vh;
-   
     i{
         color: rgba(23, 196, 185, 1);
     }
@@ -395,6 +392,11 @@ export default {
     padding-bottom: 20px;
     // overflow-y: auto;
 }
+
+.ms-img-responsive{
+    max-width: 100vw;
+}
+
 
 .ms-img-container{
     height: 200px;

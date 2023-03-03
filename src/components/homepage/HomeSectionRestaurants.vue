@@ -243,7 +243,7 @@
     input[type=checkbox] {
         position: absolute;
         top: 38%;
-        left: 20%;
+        left: 18%;
         accent-color: rgba(23, 196, 185, 1);
     }
 
@@ -281,7 +281,7 @@
         // justify-content: center;
         position: absolute;
         top: 20%;
-        left: 30%;
+        left: 25%;
         color: white;
         padding: 0 4px;
         // background-color: rgba(0, 0, 0, 0.709);

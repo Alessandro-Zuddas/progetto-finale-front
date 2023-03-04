@@ -140,6 +140,13 @@ export default {
     if( localStorage.getItem("cart") ){
         this.store.shoppingCart = JSON.parse(localStorage.getItem('cart')); 
     }
+    if(localStorage.getItem("email")){
+        this.store.email=localStorage.getItem('email');
+        this.store.name=localStorage.getItem('name');
+        this.store.telephone=localStorage.getItem('telephone');
+        this.store.address=localStorage.getItem('address');
+        this.store.id=localStorage.getItem('id');
+    }
 
     axios.get('http://127.0.0.1:8000/api/companies/' + this.$route.params.slug)
     .then(response => {

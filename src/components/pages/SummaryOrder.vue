@@ -16,6 +16,13 @@ export default {
     },
     created() {
         this.calculateTotalPrice()
+        if(localStorage.getItem("email")){
+            this.store.email=localStorage.getItem('email');
+            this.store.name=localStorage.getItem('name');
+            this.store.telephone=localStorage.getItem('telephone');
+            this.store.address=localStorage.getItem('address');
+            this.store.id=localStorage.getItem('id');
+        }
         if (localStorage.getItem('totalPrice') && localStorage.getItem('totalPrice') != '0') {
             this.total = localStorage.getItem('totalPrice')
         } else {

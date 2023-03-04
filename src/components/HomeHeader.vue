@@ -89,7 +89,7 @@ export default {
                         <span class="ms-logo-name"> deliveboo</span>
                     </router-link>
                 </div>
-                <div class="col d-none d-md-flex justify-content-end my-4" v-if="this.store.email">
+                <div class="col d-none d-md-flex justify-content-end my-4" v-if="this.store.id">
                    
                     <span class="ms-name me-3">{{ this.store.name }}</span>
                    

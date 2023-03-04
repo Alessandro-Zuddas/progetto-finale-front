@@ -24,7 +24,8 @@ export default {
             this.store.id=localStorage.getItem('id');
         }
         if (localStorage.getItem('totalPrice') && localStorage.getItem('totalPrice') != '0') {
-            this.total = localStorage.getItem('totalPrice')
+            this.total = this.store.totalPrice
+            localStorage.setItem('totalPrice', this.total);
         } else {
             this.total = this.store.totalPrice
         }

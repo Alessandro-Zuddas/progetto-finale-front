@@ -202,28 +202,44 @@ export default {
             <div class="ms-product mx-5 py-3 d-flex justify-content-center">
                 <!-- Singolo Piatto -->
                 <div class=" mx-3 my-3 shadow" style="width: 18rem;" v-for="product in restaurant.products">
-                    <div class="ms-img-container">
+                    <div  v-if="product.is_visible">
+                        <div class="ms-img-container">
                             <img class="" :src="product.image_url" :alt="product.name" v-if="product.image_url">
                             <img class=" card-img-top" :src="product.image" :alt="product.name" v-else>
                         </div>
-                    <div class="card-body d-flex flex-column p-3">
-                        
-                        <h3 class="ms-card-title my-2"><strong>{{ product.name }}</strong></h3>
-                        <p class="ms-card-description"><strong>Descrizione:</strong> {{ product.description }} </p>
-                        <p class="ms-card-price">  <strong>Prezzo:</strong> {{ product.price }} €</p>
-                        
-                        <strong v-if="store.shoppingCart.find(element => element.product.id == product.id)">Quantità:</strong>
-                        <div class="ms-btn-quantity m-auto" v-if="store.shoppingCart.find(element => element.product.id == product.id)">
-                            <span class="mx-2 px-2 ms-button" @click="$event=>decrementQuantity(product.id)"><strong><i class="text-danger fa-solid fa-minus"></i></strong></span>
-                            <span class="mx-2">x {{ findQuantity(product.id) }}</span>
-                            <span class="mx-2 px-2 ms-button" @click="$event=>incrementQuantity(product.id)"><strong><i class="text-success fa-solid fa-plus"></i></strong></span>
-                        
+                        <div class="card-body d-flex flex-column p-3">
+                            
+                            <h3 class="ms-card-title my-2"><strong>{{ product.name }}</strong></h3>
+                            <p class="ms-card-description py-2"><strong>Descrizione:</strong> {{ product.description }} </p>
+                            <p class="ms-card-price mt-4">  <strong>Prezzo:</strong> {{ product.price }} €</p>
+                            
+                            <strong v-if="store.shoppingCart.find(element => element.product.id == product.id)">Quantità:</strong>
+                            <div class="ms-btn-quantity m-auto" v-if="store.shoppingCart.find(element => element.product.id == product.id)">
+                                <span class="mx-2 px-2 ms-button" @click="$event=>decrementQuantity(product.id)"><strong><i class="text-danger fa-solid fa-minus"></i></strong></span>
+                                <span class="mx-2">x {{ findQuantity(product.id) }}</span>
+                                <span class="mx-2 px-2 ms-button" @click="$event=>incrementQuantity(product.id)"><strong><i class="text-success fa-solid fa-plus"></i></strong></span>
+                            
+                            </div>
+                            <div class="mt-auto" v-show="!store.shoppingCart.find(element => element.product.id == product.id)">
+                                <button @click="addToCart(product), calculateTotalPrice()"
+                                        class="btn ms-btn my-2 w-100">
+                                        <strong>Aggiungi al carrello</strong>
+                                </button>
+                            </div>
                         </div>
-                        <div class="mt-auto" v-show="!store.shoppingCart.find(element => element.product.id == product.id)">
-                            <button @click="addToCart(product), calculateTotalPrice()"
-                                    class="btn ms-btn my-2 w-100">
-                                    <strong>Aggiungi al carrello</strong>
-                            </button>
+                    </div>
+                    <div class="ms-out-container" v-else>
+                        <span class="ms-out-of-order">Esaurito</span>
+                        <div class="ms-img-container ms-card-not-visible">
+                            <img class="" :src="product.image_url" :alt="product.name" v-if="product.image_url">
+                            <img class=" card-img-top" :src="product.image" :alt="product.name" v-else>
+                        </div>
+                        <div class="ms-card-not-visible card-body d-flex flex-column p-3">
+                            
+                            <h3 class="ms-card-title my-2"><strong>{{ product.name }}</strong></h3>
+                            <p class="ms-card-description my-2"><strong>Descrizione:</strong> {{ product.description }} </p>
+                            <p class="ms-card-price">  <strong>Prezzo:</strong> {{ product.price }} €</p>
+                            
                         </div>
                     </div>
                 </div>
@@ -411,7 +427,31 @@ export default {
 }
 
 .ms-img-responsive{
+    position: relative;
     max-width: 100vw;
+}
+
+.ms-out-container{
+    position: relative;
+}
+
+.ms-card-not-visible{
+    opacity: 0.5;
+}
+
+.ms-out-of-order{
+    text-align: center;
+    width: 110%;
+    font-size: 40px;
+    font-weight: bold;
+    position: absolute;
+    top: 65%;
+    left: -5%;
+    transform: translate(-50%, -50%);
+    background-color: lightcoral;
+    padding: 5px 10px;
+    border-radius: 15px;
+    transform: rotate(35deg);
 }
 
 

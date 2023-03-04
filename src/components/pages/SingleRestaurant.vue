@@ -62,6 +62,7 @@ export default {
     },
     deleteItem(id){
 
+        this.addedToCart = false;
         this.wasRemoved = true;
 
         this.store.shoppingCart.forEach(product => {
@@ -125,6 +126,7 @@ export default {
                 "quantity": 1,
             };
 
+            this.wasRemoved = false;
             this.addedToCart = true;
 
             this.store.shoppingCart.push(item);

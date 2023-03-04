@@ -323,7 +323,7 @@ export default {
 
 .ms-aside {
     width: 30vw;
-    height: 65vh;
+    height: 100vh;
     border-right: 1px solid lightgray;
     border-left: 1px solid lightgray;
 }
@@ -331,7 +331,7 @@ export default {
 .ms-main-form {
     background-color: rgba(23, 196, 185, 0.1);
     width: 70vw;
-    height: 65vh;
+    height: 100vh;
     padding-right: 45px;
     border-right: 1px solid lightgray;
 }

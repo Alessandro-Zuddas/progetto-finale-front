@@ -23,15 +23,13 @@ export default {
             this.store.address=localStorage.getItem('address');
             this.store.id=localStorage.getItem('id');
         }
-        if (localStorage.getItem('totalPrice') && localStorage.getItem('totalPrice') != '0') {
-            this.total = this.store.totalPrice
-            localStorage.setItem('totalPrice', this.total);
+        if (localStorage.getItem('totalPrice') && localStorage.getItem('totalPrice') != '0' && !localStorage.getItem('cart')) {
+            this.total = localStorage.getItem('totalPrice');
         } else {
             this.total = this.store.totalPrice
         }
         this.store.orderNumber = localStorage.getItem('orderNumber')
         this.store.companies = JSON.parse(localStorage.getItem('companies'));
-        console.log(this.store.companies)
 
         if (this.store.shoppingCart.length > 0) {
             this.cart = this.store.shoppingCart;

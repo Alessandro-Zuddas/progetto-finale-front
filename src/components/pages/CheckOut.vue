@@ -318,12 +318,12 @@ export default {
 
 <style lang="scss" scoped>
 .container{
-    padding-top: 100px;
+    padding-top: 90px;
 }
 
 .ms-aside {
     width: 30vw;
-    height: 120vh;
+    height: 65vh;
     border-right: 1px solid lightgray;
     border-left: 1px solid lightgray;
 }
@@ -331,7 +331,7 @@ export default {
 .ms-main-form {
     background-color: rgba(23, 196, 185, 0.1);
     width: 70vw;
-    height: 120vh;
+    height: 65vh;
     padding-right: 45px;
     border-right: 1px solid lightgray;
 }

@@ -168,7 +168,7 @@ export default {
     <div class="container-fluid d-flex">
         <!-- Aside da desktop -->
         <div class="ms-aside py-4 px-4 d-flex flex-column shadow d-none d-md-block">
-            <div class="text-center mb-4">
+            <div class="ms-side-data text-center">
                 <img :src="this.restaurant.image" class="ms-company-img" :alt="this.restaurant.company_name" v-if="this.restaurant.image">
                 <img src="https://via.placeholder.com/150" class="ms-company-img" :alt="this.restaurant.company_name" v-else>
                 <h1 class="my-1"><strong>{{ this.restaurant.company_name }}</strong></h1>
@@ -364,13 +364,17 @@ export default {
 
 <style lang="scss" scoped>
 
+.ms-side-data{
+    margin-bottom: 25px;
+}
+
 .container-fluid {
     padding-top: 100px;
 }
 
 .ms-aside{
     width: 30vw;
-    height: 130vh;
+    height: 100vh;
    
     i{
         color: rgba(23, 196, 185, 1);
@@ -385,7 +389,7 @@ export default {
 
 .ms-products-container{
     width: 70vw;
-    height: 130vh;
+    height: 100vh;
     overflow-y: auto;
 }
 

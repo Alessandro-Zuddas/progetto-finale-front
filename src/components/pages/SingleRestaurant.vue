@@ -423,6 +423,8 @@ export default {
     text-align: center;
 }
 .ms-card-description{
+    padding-top: 2px;
+    font-size: 17px;
     height: 60px;
 }
 .ms-card-price{

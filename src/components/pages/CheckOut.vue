@@ -42,25 +42,69 @@ export default {
     },
     mounted() {
         this.store.companies = JSON.parse(localStorage.getItem('companies'));
-        let button = document.getElementById('submit-button');
-        braintree.dropin.create({
-            authorization: 'sandbox_g42y39zw_348pk9cgf3bgyw2b',
-            selector: '#dropin-container',
-            locale: 'it_IT',
-        }, function (err, instance) {
-            button.addEventListener('click', function () {
-                instance.requestPaymentMethod(function (err, payload) {
-                    if (payload) {
-                        console.log(localStorage.getItem('paid'));
-                        localStorage.setItem('paid', true);
-                        console.log(localStorage.getItem('paid'));
-                    } else {
-                        console.log("Dentro errore paymenent", err, payload);
-                        console.log(localStorage.getItem('paid'));
-                    }
+
+        var braintree = window.braintree;
+        var form = document.querySelector('#checkout-form');
+        var submit = document.querySelector('input[type="submit"]');
+
+        braintree.client.create({
+            authorization: 'sandbox_g42y39zw_348pk9cgf3bgyw2b'
+        }, function (clientErr, clientInstance) {
+            if (clientErr) {
+            console.error(clientErr);
+            return;
+            }
+
+            braintree.hostedFields.create({
+            client: clientInstance,
+            styles: {
+                input: {
+                'font-size': '16px',
+                'font-family': 'courier, monospace'
+                },
+                ':focus': {
+                color: 'blue'
+                }
+            },
+            fields: {
+                number: {
+                selector: '#card-number',
+                placeholder: '4111 1111 1111 1111'
+                },
+                cvv: {
+                selector: '#cvv',
+                placeholder: '123'
+                },
+                expirationDate: {
+                selector: '#expiration-date',
+                placeholder: 'MM/YYYY'
+                }
+            }
+            }, function (hostedFieldsErr, hostedFieldsInstance) {
+            if (hostedFieldsErr) {
+                console.error(hostedFieldsErr);
+                return;
+            }
+
+            submit.removeAttribute('disabled');
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                hostedFieldsInstance.tokenize(function (tokenizeErr, payload) {
+                if (tokenizeErr) {
+                    console.error(tokenizeErr);
+                    return;
+                }
+
+                // Send payload.nonce to your server
+                console.log('Got a nonce: ' + payload.nonce);
                 });
-            })
+            }, false);
+            });
         });
+
+        
         if (this.store.shoppingCart.length > 0) {
 
             this.cartCompany = this.store.companies.data.find(element => element.id == this.store.shoppingCart[0].product.company_id);
@@ -303,13 +347,15 @@ export default {
                     Il prezzo del carrello deve superare l'ordine minimo di {{ Math.floor(cartCompany.minimum_order) }}€ per
                     poter ordinare.
                 </div>
-                <div v-show="submit" class="mx-5">
-                    <div id="dropin-container"></div>
-                    <button id="submit-button" class="button button--small button--green mb-3 w-50 mx-auto"
-                        @click="pushOrder()">Purchase</button>
-                    <!-- Bottone torna al form -->
-                    <button type="button" class="ms-btn button button--small mb-3 w-20 mx-3" @click="falseSubmit()">Indietro</button>
-                </div>
+                <form id="checkout-form" v-show="submit">
+                    <label for="card-number">Card Number</label>
+                    <div id="card-number"></div>
+                    <label for="expiration-date">Expiration Date</label>
+                    <div id="expiration-date"></div>
+                    <label for="cvv">CVV</label>
+                    <div id="cvv"></div>
+                    <input type="submit" value="Pay">
+                </form>
             </div>
             <!-- /Form pagamento ordine tablet in giu -->
        </div>

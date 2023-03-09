@@ -146,6 +146,8 @@
     <!-- /Visibile da tablet a scendere -->
 </template>
 
+<!-- Commento per GitHub -->
+
 <style lang="scss" scoped>
 
     .col-12{
